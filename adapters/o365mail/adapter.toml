@@ -192,6 +192,26 @@ action = "list"
 risk = "low"
 resource_chain = ["account:email={account}", "folder:*"]
 
+[[operation]]
+id = "folders.create"
+command = ["folders", "create"]
+positionals = ["name"]
+display = "Create folder '{name}' in mailbox {account}"
+action = "create"
+risk = "medium"
+exact_command = true
+resource_chain = ["account:email={account}", "folder:name={name}"]
+
+[[operation]]
+id = "folders.delete"
+command = ["folders", "delete"]
+positionals = ["name"]
+display = "Delete folder '{name}' in mailbox {account}"
+action = "delete"
+risk = "critical"
+exact_command = true
+resource_chain = ["account:email={account}", "folder:name={name}"]
+
 # ══════════════════════════════════════════════════════
 # RULES
 # ══════════════════════════════════════════════════════
@@ -203,3 +223,60 @@ display = "List inbox rules for mailbox {account}"
 action = "list"
 risk = "low"
 resource_chain = ["account:email={account}", "rule:*"]
+
+[[operation]]
+id = "rules.get"
+command = ["rules", "get"]
+positionals = ["rule_id"]
+display = "Get details of inbox rule {rule_id} in mailbox {account}"
+action = "read"
+risk = "low"
+resource_chain = ["account:email={account}", "rule:id={rule_id}"]
+
+[[operation]]
+id = "rules.create"
+command = ["rules", "create"]
+required_options = ["name"]
+display = "Create inbox rule '{name}' in mailbox {account}"
+action = "create"
+risk = "high"
+exact_command = true
+resource_chain = ["account:email={account}", "rule:*"]
+
+[[operation]]
+id = "rules.update"
+command = ["rules", "update"]
+positionals = ["rule_id"]
+display = "Update inbox rule {rule_id} in mailbox {account}"
+action = "edit"
+risk = "high"
+exact_command = true
+resource_chain = ["account:email={account}", "rule:id={rule_id}"]
+
+[[operation]]
+id = "rules.delete"
+command = ["rules", "delete"]
+positionals = ["rule_id"]
+display = "Delete inbox rule {rule_id} in mailbox {account}"
+action = "delete"
+risk = "high"
+exact_command = true
+resource_chain = ["account:email={account}", "rule:id={rule_id}"]
+
+[[operation]]
+id = "rules.enable"
+command = ["rules", "enable"]
+positionals = ["rule_id"]
+display = "Enable inbox rule {rule_id} in mailbox {account}"
+action = "edit"
+risk = "medium"
+resource_chain = ["account:email={account}", "rule:id={rule_id}"]
+
+[[operation]]
+id = "rules.disable"
+command = ["rules", "disable"]
+positionals = ["rule_id"]
+display = "Disable inbox rule {rule_id} in mailbox {account}"
+action = "edit"
+risk = "medium"
+resource_chain = ["account:email={account}", "rule:id={rule_id}"]

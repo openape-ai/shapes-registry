@@ -41,12 +41,25 @@ Shapes adapter for [o365-mail-cli](https://github.com/openape-ai/o365-mail-cli) 
 | `drafts.send` | send | high | Send a draft (exact_command) |
 | `drafts.delete` | delete | medium | Delete a draft |
 
-### Folders & Rules
+### Folders
 
 | ID | Action | Risk | Description |
 |----|--------|------|-------------|
 | `folders.list` | list | low | List mailbox folders |
+| `folders.create` | create | medium | Create a folder (exact_command) |
+| `folders.delete` | delete | critical | Delete a folder and all contents (exact_command) |
+
+### Rules
+
+| ID | Action | Risk | Description |
+|----|--------|------|-------------|
 | `rules.list` | list | low | List inbox rules |
+| `rules.get` | read | low | Get rule details |
+| `rules.create` | create | high | Create an inbox rule (exact_command) |
+| `rules.update` | edit | high | Update an inbox rule (exact_command) |
+| `rules.delete` | delete | high | Delete an inbox rule (exact_command) |
+| `rules.enable` | edit | medium | Enable an inbox rule |
+| `rules.disable` | edit | medium | Disable an inbox rule |
 
 ## Install
 

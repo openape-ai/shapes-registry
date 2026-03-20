@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-03-20T13:27:07.598Z",
+  "generated_at": "2026-03-20T15:20:00.750Z",
   "adapters": [
     {
       "id": "az",
@@ -156,7 +156,7 @@
       "author": "delta-mind",
       "executable": "o365-mail-cli",
       "min_shapes_version": "0.2.0",
-      "digest": "SHA-256:e920b03a84959fadbc8e95504d8de313a7f06ec1971b6cc0ae98c1d16d597289",
+      "digest": "SHA-256:30cc9da3ae445ef24fdba9424b4ba7b76adfe6b368702420b6cc04e7cc4c5ad4",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/o365mail/adapter.toml"
     }
   ]
