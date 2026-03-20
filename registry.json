@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "generated_at": "2026-03-20T06:54:34.476Z",
+  "adapters": [
+    {
+      "id": "az",
+      "name": "Azure DevOps CLI",
+      "description": "Shapes adapter for the Azure DevOps CLI — repos, pull requests, reviewers",
+      "category": "devtools",
+      "tags": [
+        "azure",
+        "devops",
+        "git",
+        "pull-requests"
+      ],
+      "author": "delta-mind",
+      "executable": "az",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:c62c35590440ce2ebc0de5260cb32d97de70bbb4a651348b90b1b1b45828c5cc",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/az/adapter.toml"
+    },
+    {
+      "id": "exo",
+      "name": "Exoscale CLI",
+      "description": "Shapes adapter for the Exoscale CLI — DNS domains and records",
+      "category": "infrastructure",
+      "tags": [
+        "exoscale",
+        "dns",
+        "cloud",
+        "infrastructure"
+      ],
+      "author": "delta-mind",
+      "executable": "exo",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:7536387aa2a85707d193dc60b2d6c87cb4179b88ea950b4bf2e8a778557d5c74",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/exo/adapter.toml"
+    },
+    {
+      "id": "gh",
+      "name": "GitHub CLI",
+      "description": "Shapes adapter for the GitHub CLI — repositories, issues, PRs",
+      "category": "devtools",
+      "tags": [
+        "github",
+        "git",
+        "repositories",
+        "issues"
+      ],
+      "author": "delta-mind",
+      "executable": "gh",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:d70bba52b13fc8ac9da123422b14915042a28fc7db237360ba27697b540ad56d",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/gh/adapter.toml"
+    },
+    {
+      "id": "o365mail",
+      "name": "Office 365 Mail CLI",
+      "description": "Shapes adapter for o365-mail-cli — read, search, send, draft, and manage emails",
+      "category": "mail",
+      "tags": [
+        "email",
+        "outlook",
+        "office365",
+        "microsoft"
+      ],
+      "author": "delta-mind",
+      "executable": "o365-mail-cli",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:e920b03a84959fadbc8e95504d8de313a7f06ec1971b6cc0ae98c1d16d597289",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/o365mail/adapter.toml"
+    }
+  ]
+}

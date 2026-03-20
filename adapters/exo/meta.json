@@ -1,0 +1,12 @@
+{
+  "id": "exo",
+  "name": "Exoscale CLI",
+  "description": "Shapes adapter for the Exoscale CLI — DNS domains and records",
+  "author": "delta-mind",
+  "category": "infrastructure",
+  "tags": ["exoscale", "dns", "cloud", "infrastructure"],
+  "executable": "exo",
+  "risk_summary": "List/read operations are low-risk. DNS record removal is high-risk with exact_command.",
+  "homepage": "https://community.exoscale.com/documentation/tools/exoscale-command-line-interface/",
+  "min_shapes_version": "0.2.0"
+}

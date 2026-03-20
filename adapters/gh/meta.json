@@ -1,0 +1,12 @@
+{
+  "id": "gh",
+  "name": "GitHub CLI",
+  "description": "Shapes adapter for the GitHub CLI — repositories, issues, PRs",
+  "author": "delta-mind",
+  "category": "devtools",
+  "tags": ["github", "git", "repositories", "issues"],
+  "executable": "gh",
+  "risk_summary": "Read/list operations are low-risk. Rename is high-risk with exact_command.",
+  "homepage": "https://cli.github.com",
+  "min_shapes_version": "0.2.0"
+}

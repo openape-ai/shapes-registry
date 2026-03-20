@@ -1,0 +1,12 @@
+{
+  "id": "o365mail",
+  "name": "Office 365 Mail CLI",
+  "description": "Shapes adapter for o365-mail-cli — read, search, send, draft, and manage emails",
+  "author": "delta-mind",
+  "category": "mail",
+  "tags": ["email", "outlook", "office365", "microsoft"],
+  "executable": "o365-mail-cli",
+  "risk_summary": "Read/search operations are low-risk. Send/forward/reply are high-risk with exact_command.",
+  "homepage": "https://github.com/openape-ai/o365-mail-cli",
+  "min_shapes_version": "0.2.0"
+}

@@ -1,0 +1,205 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "o365mail"
+executable = "o365-mail-cli"
+audience = "shapes"
+version = "1"
+
+# ══════════════════════════════════════════════════════
+# MAIL — Read Operations
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "mail.list"
+command = ["mail", "list"]
+display = "List emails in mailbox {account}"
+action = "list"
+risk = "low"
+resource_chain = ["account:email={account}", "mail:*"]
+
+[[operation]]
+id = "mail.read"
+command = ["mail", "read"]
+positionals = ["message_id"]
+display = "Read email {message_id} in mailbox {account}"
+action = "read"
+risk = "low"
+resource_chain = ["account:email={account}", "mail:id={message_id}"]
+
+[[operation]]
+id = "mail.search"
+command = ["mail", "search"]
+display = "Search emails in mailbox {account}"
+action = "search"
+risk = "low"
+resource_chain = ["account:email={account}", "mail:*"]
+
+[[operation]]
+id = "mail.query"
+command = ["mail", "query"]
+positionals = ["search_text"]
+display = "Full-text search '{search_text}' in mailbox {account}"
+action = "search"
+risk = "low"
+resource_chain = ["account:email={account}", "mail:*"]
+
+[[operation]]
+id = "mail.attachments"
+command = ["mail", "attachments"]
+positionals = ["message_id"]
+display = "Download attachments from email {message_id} in mailbox {account}"
+action = "read"
+risk = "low"
+resource_chain = ["account:email={account}", "mail:id={message_id}"]
+
+# ══════════════════════════════════════════════════════
+# MAIL — Edit Operations
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "mail.mark-read"
+command = ["mail", "mark-read"]
+positionals = ["message_id"]
+display = "Mark email {message_id} as read in mailbox {account}"
+action = "edit"
+risk = "medium"
+resource_chain = ["account:email={account}", "mail:id={message_id}"]
+
+[[operation]]
+id = "mail.mark-unread"
+command = ["mail", "mark-unread"]
+positionals = ["message_id"]
+display = "Mark email {message_id} as unread in mailbox {account}"
+action = "edit"
+risk = "medium"
+resource_chain = ["account:email={account}", "mail:id={message_id}"]
+
+[[operation]]
+id = "mail.move"
+command = ["mail", "move"]
+positionals = ["message_id"]
+required_options = ["to"]
+display = "Move email {message_id} to folder {to} in mailbox {account}"
+action = "edit"
+risk = "medium"
+resource_chain = ["account:email={account}", "mail:id={message_id}"]
+
+[[operation]]
+id = "mail.trash"
+command = ["mail", "trash"]
+positionals = ["message_id"]
+display = "Trash email {message_id} in mailbox {account}"
+action = "delete"
+risk = "high"
+exact_command = true
+resource_chain = ["account:email={account}", "mail:id={message_id}"]
+
+[[operation]]
+id = "mail.archive-from"
+command = ["mail", "archive-from"]
+positionals = ["senders"]
+display = "Archive emails from {senders} in mailbox {account}"
+action = "edit"
+risk = "high"
+exact_command = true
+resource_chain = ["account:email={account}", "mail:*"]
+
+# ══════════════════════════════════════════════════════
+# MAIL — Send Operations
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "mail.send"
+command = ["mail", "send"]
+required_options = ["to", "subject", "body"]
+display = "Send email to {to} from mailbox {account}"
+action = "send"
+risk = "high"
+exact_command = true
+resource_chain = ["account:email={account}", "mail:*"]
+
+[[operation]]
+id = "mail.reply"
+command = ["mail", "reply"]
+positionals = ["message_id"]
+display = "Reply to email {message_id} in mailbox {account}"
+action = "send"
+risk = "high"
+exact_command = true
+resource_chain = ["account:email={account}", "mail:id={message_id}"]
+
+[[operation]]
+id = "mail.forward"
+command = ["mail", "forward"]
+positionals = ["message_id"]
+required_options = ["to"]
+display = "Forward email {message_id} to {to} from mailbox {account}"
+action = "send"
+risk = "high"
+exact_command = true
+resource_chain = ["account:email={account}", "mail:id={message_id}"]
+
+# ══════════════════════════════════════════════════════
+# DRAFTS
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "drafts.list"
+command = ["mail", "drafts", "list"]
+display = "List drafts in mailbox {account}"
+action = "list"
+risk = "low"
+resource_chain = ["account:email={account}", "draft:*"]
+
+[[operation]]
+id = "drafts.create"
+command = ["mail", "drafts", "create"]
+required_options = ["to", "subject", "body"]
+display = "Create draft to {to} in mailbox {account}"
+action = "draft"
+risk = "medium"
+resource_chain = ["account:email={account}", "draft:*"]
+
+[[operation]]
+id = "drafts.send"
+command = ["mail", "drafts", "send"]
+positionals = ["message_id"]
+display = "Send draft {message_id} from mailbox {account}"
+action = "send"
+risk = "high"
+exact_command = true
+resource_chain = ["account:email={account}", "draft:id={message_id}"]
+
+[[operation]]
+id = "drafts.delete"
+command = ["mail", "drafts", "delete"]
+positionals = ["message_id"]
+display = "Delete draft {message_id} in mailbox {account}"
+action = "delete"
+risk = "medium"
+resource_chain = ["account:email={account}", "draft:id={message_id}"]
+
+# ══════════════════════════════════════════════════════
+# FOLDERS
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "folders.list"
+command = ["folders", "list"]
+display = "List folders in mailbox {account}"
+action = "list"
+risk = "low"
+resource_chain = ["account:email={account}", "folder:*"]
+
+# ══════════════════════════════════════════════════════
+# RULES
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "rules.list"
+command = ["rules", "list"]
+display = "List inbox rules for mailbox {account}"
+action = "list"
+risk = "low"
+resource_chain = ["account:email={account}", "rule:*"]

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/openape-ai/shapes-registry/schemas/meta.schema.json",
+  "title": "Shapes Adapter Metadata",
+  "description": "Metadata for a Shapes adapter in the registry",
+  "type": "object",
+  "required": ["id", "name", "description", "author", "category", "tags", "executable", "min_shapes_version"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "Unique adapter identifier, must match directory name"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable adapter name"
+    },
+    "description": {
+      "type": "string",
+      "description": "One-line description of what the adapter wraps"
+    },
+    "author": {
+      "type": "string",
+      "description": "Author or organization handle"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["devtools", "infrastructure", "mail", "cloud", "database", "monitoring", "other"],
+      "description": "Primary category"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Searchable tags"
+    },
+    "executable": {
+      "type": "string",
+      "description": "Name of the CLI binary this adapter wraps"
+    },
+    "risk_summary": {
+      "type": "string",
+      "description": "Brief summary of risk levels across operations"
+    },
+    "homepage": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to the wrapped CLI's homepage or documentation"
+    },
+    "min_shapes_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Minimum @openape/shapes version required"
+    }
+  },
+  "additionalProperties": false
+}

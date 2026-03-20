@@ -1,0 +1,12 @@
+{
+  "id": "az",
+  "name": "Azure DevOps CLI",
+  "description": "Shapes adapter for the Azure DevOps CLI — repos, pull requests, reviewers",
+  "author": "delta-mind",
+  "category": "devtools",
+  "tags": ["azure", "devops", "git", "pull-requests"],
+  "executable": "az",
+  "risk_summary": "List/read operations are low-risk. Create/update operations are high-risk with exact_command.",
+  "homepage": "https://learn.microsoft.com/en-us/cli/azure/devops",
+  "min_shapes_version": "0.2.0"
+}
