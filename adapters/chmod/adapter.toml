@@ -1,0 +1,27 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "chmod"
+executable = "chmod"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "chmod.set"
+command = []
+positionals = ["mode", "path"]
+display = "Change permissions of {path} to {mode}"
+action = "edit"
+risk = "high"
+exact_command = true
+resource_chain = ["filesystem:path={path}", "permissions:mode={mode}"]
+
+[[operation]]
+id = "chmod.recursive"
+command = ["-R"]
+positionals = ["mode", "path"]
+display = "Recursively change permissions of {path} to {mode}"
+action = "edit"
+risk = "critical"
+exact_command = true
+resource_chain = ["filesystem:path={path}", "permissions:mode={mode}"]

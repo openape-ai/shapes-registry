@@ -1,0 +1,27 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "chown"
+executable = "chown"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "chown.set"
+command = []
+positionals = ["owner", "path"]
+display = "Change owner of {path} to {owner}"
+action = "edit"
+risk = "high"
+exact_command = true
+resource_chain = ["filesystem:path={path}", "ownership:owner={owner}"]
+
+[[operation]]
+id = "chown.recursive"
+command = ["-R"]
+positionals = ["owner", "path"]
+display = "Recursively change owner of {path} to {owner}"
+action = "edit"
+risk = "critical"
+exact_command = true
+resource_chain = ["filesystem:path={path}", "ownership:owner={owner}"]

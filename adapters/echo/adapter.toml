@@ -1,0 +1,16 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "echo"
+executable = "echo"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "echo.print"
+command = []
+positionals = ["message"]
+display = "Print message: {message}"
+action = "read"
+risk = "low"
+resource_chain = ["stdout:*"]

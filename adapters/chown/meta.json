@@ -1,0 +1,11 @@
+{
+  "id": "chown",
+  "name": "Change File Ownership",
+  "description": "Shapes adapter for chown — change file and directory ownership",
+  "author": "patrick-hofmann",
+  "category": "other",
+  "tags": ["chown", "ownership", "security", "files", "coreutils"],
+  "executable": "chown",
+  "risk_summary": "All operations modify file ownership. Single-file is high-risk, recursive is critical.",
+  "min_shapes_version": "0.2.0"
+}

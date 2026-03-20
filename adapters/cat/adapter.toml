@@ -1,0 +1,25 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "cat"
+executable = "cat"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "cat.read"
+command = []
+positionals = ["path"]
+display = "Read file contents of {path}"
+action = "read"
+risk = "low"
+resource_chain = ["filesystem:path={path}"]
+
+[[operation]]
+id = "cat.read-numbered"
+command = ["-n"]
+positionals = ["path"]
+display = "Read file contents of {path} with line numbers"
+action = "read"
+risk = "low"
+resource_chain = ["filesystem:path={path}"]

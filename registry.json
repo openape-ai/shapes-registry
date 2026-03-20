@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-03-20T06:55:17.721Z",
+  "generated_at": "2026-03-20T13:26:54.331Z",
   "adapters": [
     {
       "id": "az",
@@ -18,6 +18,77 @@
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:c62c35590440ce2ebc0de5260cb32d97de70bbb4a651348b90b1b1b45828c5cc",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/az/adapter.toml"
+    },
+    {
+      "id": "cat",
+      "name": "Concatenate Files",
+      "description": "Shapes adapter for cat — read and display file contents",
+      "category": "other",
+      "tags": [
+        "cat",
+        "read",
+        "files",
+        "output",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "cat",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:020100f9dcfc4fc77c9ec7b649ac994507118283710ab0fd47549205e08af919",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/cat/adapter.toml"
+    },
+    {
+      "id": "chmod",
+      "name": "Change File Permissions",
+      "description": "Shapes adapter for chmod — change file and directory permissions",
+      "category": "other",
+      "tags": [
+        "chmod",
+        "permissions",
+        "security",
+        "files",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "chmod",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:c6a6ff83b8b7fdbde8f31f053624014eb93997679f64f073fb4ebebc127cc3ec",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/chmod/adapter.toml"
+    },
+    {
+      "id": "chown",
+      "name": "Change File Ownership",
+      "description": "Shapes adapter for chown — change file and directory ownership",
+      "category": "other",
+      "tags": [
+        "chown",
+        "ownership",
+        "security",
+        "files",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "chown",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:2d9e2576d80e3436e113c1b1de33b825e41330da88f21c055c34d5effb14c6e9",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/chown/adapter.toml"
+    },
+    {
+      "id": "echo",
+      "name": "Echo",
+      "description": "Shapes adapter for echo — print messages to stdout",
+      "category": "other",
+      "tags": [
+        "echo",
+        "print",
+        "output",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "echo",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:e884dd7f49ac163cde988fd857f895c8e080c19cd4aef6fb65c17d299b0abfd6",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/echo/adapter.toml"
     },
     {
       "id": "exo",
@@ -52,6 +123,24 @@
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:d70bba52b13fc8ac9da123422b14915042a28fc7db237360ba27697b540ad56d",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/gh/adapter.toml"
+    },
+    {
+      "id": "ls",
+      "name": "List Directory",
+      "description": "Shapes adapter for ls — list directory contents and file metadata",
+      "category": "other",
+      "tags": [
+        "ls",
+        "list",
+        "directory",
+        "files",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "ls",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:0646db26c21740e70b9e156e18a61ab7748451e9e320949bd6e98a5ed9c177c8",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/ls/adapter.toml"
     },
     {
       "id": "o365mail",
