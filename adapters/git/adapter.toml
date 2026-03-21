@@ -1,0 +1,192 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "git"
+executable = "git"
+audience = "shapes"
+version = "1"
+
+# ══════════════════════════════════════════════════════
+# READ Operations
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "git.status"
+command = ["status"]
+display = "Show working tree status"
+action = "read"
+risk = "low"
+resource_chain = ["repo:*"]
+
+[[operation]]
+id = "git.log"
+command = ["log"]
+display = "Show commit log"
+action = "read"
+risk = "low"
+resource_chain = ["repo:*"]
+
+[[operation]]
+id = "git.diff"
+command = ["diff"]
+display = "Show changes"
+action = "read"
+risk = "low"
+resource_chain = ["repo:*"]
+
+[[operation]]
+id = "git.branch"
+command = ["branch"]
+display = "List or manage branches"
+action = "read"
+risk = "low"
+resource_chain = ["repo:*"]
+
+[[operation]]
+id = "git.remote"
+command = ["remote"]
+display = "Show remotes"
+action = "read"
+risk = "low"
+resource_chain = ["repo:*"]
+
+# ══════════════════════════════════════════════════════
+# FETCH / PULL
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "git.fetch"
+command = ["fetch"]
+display = "Fetch from remote"
+action = "read"
+risk = "low"
+resource_chain = ["repo:*", "remote:*"]
+
+[[operation]]
+id = "git.pull"
+command = ["pull"]
+display = "Pull from remote"
+action = "edit"
+risk = "medium"
+resource_chain = ["repo:*", "remote:*"]
+
+# ══════════════════════════════════════════════════════
+# STAGING
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "git.add"
+command = ["add"]
+positionals = ["path"]
+display = "Stage changes: {path}"
+action = "edit"
+risk = "low"
+resource_chain = ["repo:*", "file:path={path}"]
+
+# ══════════════════════════════════════════════════════
+# COMMIT
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "git.commit"
+command = ["commit"]
+required_options = ["m"]
+display = "Commit: {m}"
+action = "create"
+risk = "medium"
+resource_chain = ["repo:*", "commit:*"]
+
+# ══════════════════════════════════════════════════════
+# PUSH
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "git.push"
+command = ["push"]
+display = "Push to remote"
+action = "edit"
+risk = "high"
+resource_chain = ["repo:*", "remote:*"]
+
+# ══════════════════════════════════════════════════════
+# CLONE
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "git.clone"
+command = ["clone"]
+positionals = ["url"]
+display = "Clone repository {url}"
+action = "create"
+risk = "low"
+resource_chain = ["repo:url={url}"]
+
+# ══════════════════════════════════════════════════════
+# BRANCH MANAGEMENT
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "git.checkout"
+command = ["checkout"]
+positionals = ["ref"]
+display = "Checkout {ref}"
+action = "edit"
+risk = "medium"
+resource_chain = ["repo:*", "ref:name={ref}"]
+
+[[operation]]
+id = "git.switch"
+command = ["switch"]
+positionals = ["branch"]
+display = "Switch to branch {branch}"
+action = "edit"
+risk = "medium"
+resource_chain = ["repo:*", "branch:name={branch}"]
+
+[[operation]]
+id = "git.merge"
+command = ["merge"]
+positionals = ["branch"]
+display = "Merge branch {branch}"
+action = "edit"
+risk = "high"
+resource_chain = ["repo:*", "branch:name={branch}"]
+
+# ══════════════════════════════════════════════════════
+# DESTRUCTIVE
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "git.reset"
+command = ["reset"]
+display = "Reset current HEAD"
+action = "delete"
+risk = "high"
+exact_command = true
+resource_chain = ["repo:*"]
+
+[[operation]]
+id = "git.rebase"
+command = ["rebase"]
+display = "Rebase current branch"
+action = "edit"
+risk = "high"
+exact_command = true
+resource_chain = ["repo:*"]
+
+[[operation]]
+id = "git.stash"
+command = ["stash"]
+display = "Stash changes"
+action = "edit"
+risk = "medium"
+resource_chain = ["repo:*"]
+
+[[operation]]
+id = "git.tag"
+command = ["tag"]
+positionals = ["name"]
+display = "Create tag {name}"
+action = "create"
+risk = "medium"
+resource_chain = ["repo:*", "tag:name={name}"]

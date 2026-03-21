@@ -1,0 +1,12 @@
+{
+  "id": "git",
+  "name": "Git Version Control",
+  "description": "Shapes adapter for git — staging, committing, pushing, pulling, branching",
+  "author": "delta-mind",
+  "category": "devtools",
+  "tags": ["git", "version-control", "scm", "repositories"],
+  "executable": "git",
+  "risk_summary": "Read/status/log are low-risk. Commit is medium. Push/merge/rebase/reset are high-risk.",
+  "homepage": "https://git-scm.com",
+  "min_shapes_version": "0.2.0"
+}
