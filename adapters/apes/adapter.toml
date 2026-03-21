@@ -1,0 +1,54 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "apes"
+executable = "apes"
+audience = "apes"
+version = "1"
+
+# ══════════════════════════════════════════════════════
+# COMMAND EXECUTION
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "exec.run"
+command = []
+positionals = ["command"]
+display = "Execute with elevated privileges: {command}"
+action = "execute"
+risk = "high"
+exact_command = true
+resource_chain = ["host:*", "process:command={command}"]
+
+# ══════════════════════════════════════════════════════
+# AGENT MANAGEMENT
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "agent.enroll"
+command = ["enroll"]
+required_options = ["server", "agent-email", "agent-name", "key"]
+display = "Enroll agent {agent-name} ({agent-email}) at {server}"
+action = "create"
+risk = "high"
+exact_command = true
+resource_chain = ["idp:url={server}", "agent:email={agent-email}"]
+
+[[operation]]
+id = "agent.update"
+command = ["update"]
+required_options = ["email"]
+display = "Update agent {email}"
+action = "edit"
+risk = "medium"
+resource_chain = ["agent:email={email}"]
+
+[[operation]]
+id = "agent.remove"
+command = ["remove"]
+required_options = ["email"]
+display = "Remove agent {email}"
+action = "delete"
+risk = "high"
+exact_command = true
+resource_chain = ["agent:email={email}"]

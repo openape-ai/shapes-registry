@@ -1,0 +1,12 @@
+{
+  "id": "apes",
+  "name": "OpenApe Privilege Elevation",
+  "description": "Shapes adapter for apes — grant-authorized privilege elevation and agent management",
+  "author": "delta-mind",
+  "category": "security",
+  "tags": ["sudo", "privilege-elevation", "security", "grants", "agent-management"],
+  "executable": "apes",
+  "risk_summary": "All command execution is high-risk with exact_command. Agent management operations vary from medium to high risk.",
+  "homepage": "https://github.com/openape-ai/sudo",
+  "min_shapes_version": "0.2.0"
+}
