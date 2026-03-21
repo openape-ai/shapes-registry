@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-03-20T15:20:17.053Z",
+  "generated_at": "2026-03-21T06:07:49.499Z",
   "adapters": [
     {
       "id": "az",
@@ -121,7 +121,7 @@
       "author": "delta-mind",
       "executable": "gh",
       "min_shapes_version": "0.2.0",
-      "digest": "SHA-256:d70bba52b13fc8ac9da123422b14915042a28fc7db237360ba27697b540ad56d",
+      "digest": "SHA-256:b592b8bdececdd716dd35b28f3339f88e9d4d42bb5889fa42cd5d98af1801af5",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/gh/adapter.toml"
     },
     {
