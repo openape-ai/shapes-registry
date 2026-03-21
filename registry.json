@@ -1,7 +1,25 @@
 {
   "version": 1,
-  "generated_at": "2026-03-21T06:07:49.499Z",
+  "generated_at": "2026-03-21T19:04:42.658Z",
   "adapters": [
+    {
+      "id": "apes",
+      "name": "OpenApe Privilege Elevation",
+      "description": "Shapes adapter for apes — grant-authorized privilege elevation and agent management",
+      "category": "security",
+      "tags": [
+        "sudo",
+        "privilege-elevation",
+        "security",
+        "grants",
+        "agent-management"
+      ],
+      "author": "delta-mind",
+      "executable": "apes",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:7fee8fe8bdd382234ae2eca5fde4f18fea70c82e7d9b330b27eb14e5a8a465ef",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/apes/adapter.toml"
+    },
     {
       "id": "az",
       "name": "Azure DevOps CLI",
@@ -123,6 +141,23 @@
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:b592b8bdececdd716dd35b28f3339f88e9d4d42bb5889fa42cd5d98af1801af5",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/gh/adapter.toml"
+    },
+    {
+      "id": "git",
+      "name": "Git Version Control",
+      "description": "Shapes adapter for git — staging, committing, pushing, pulling, branching",
+      "category": "devtools",
+      "tags": [
+        "git",
+        "version-control",
+        "scm",
+        "repositories"
+      ],
+      "author": "delta-mind",
+      "executable": "git",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:5d9962f4eec90a6dade576eb5d0cfa510c2f5b433d1a15f23d387c99d13591b5",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/git/adapter.toml"
     },
     {
       "id": "ls",
