@@ -1,0 +1,11 @@
+{
+  "id": "date",
+  "name": "Date",
+  "description": "Shapes adapter for date — show current date and time",
+  "author": "patrick-hofmann",
+  "category": "other",
+  "tags": ["date", "time", "system", "coreutils"],
+  "executable": "date",
+  "risk_summary": "Read-only time display, no modification risk",
+  "min_shapes_version": "0.2.0"
+}

@@ -1,0 +1,25 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "tail"
+executable = "tail"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "tail.read"
+command = []
+positionals = ["path"]
+display = "Show last 10 lines of {path}"
+action = "read"
+risk = "low"
+resource_chain = ["filesystem:path={path}"]
+
+[[operation]]
+id = "tail.follow"
+command = ["-f"]
+positionals = ["path"]
+display = "Follow {path} in real-time"
+action = "read"
+risk = "low"
+resource_chain = ["filesystem:path={path}"]

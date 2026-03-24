@@ -1,0 +1,27 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "ln"
+executable = "ln"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "ln.link"
+command = []
+positionals = ["target", "link"]
+display = "Create hard link {link} to {target}"
+action = "create"
+risk = "medium"
+exact_command = true
+resource_chain = ["filesystem:path={target}", "filesystem:path={link}"]
+
+[[operation]]
+id = "ln.symlink"
+command = ["-s"]
+positionals = ["target", "link"]
+display = "Create symbolic link {link} to {target}"
+action = "create"
+risk = "medium"
+exact_command = true
+resource_chain = ["filesystem:path={target}", "filesystem:path={link}"]

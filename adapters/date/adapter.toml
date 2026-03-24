@@ -1,0 +1,15 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "date"
+executable = "date"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "date.info"
+command = []
+display = "Show current date and time"
+action = "read"
+risk = "low"
+resource_chain = ["system:time=current"]

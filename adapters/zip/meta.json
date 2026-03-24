@@ -1,0 +1,11 @@
+{
+  "id": "zip",
+  "name": "Zip",
+  "description": "Shapes adapter for zip — create zip archives",
+  "author": "patrick-hofmann",
+  "category": "other",
+  "tags": ["zip", "archive", "compress", "coreutils"],
+  "executable": "zip",
+  "risk_summary": "Creates zip archives which write new files to disk",
+  "min_shapes_version": "0.2.0"
+}

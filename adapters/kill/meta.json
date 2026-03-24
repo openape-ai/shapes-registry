@@ -1,0 +1,11 @@
+{
+  "id": "kill",
+  "name": "Kill",
+  "description": "Shapes adapter for kill — send signals to processes",
+  "author": "patrick-hofmann",
+  "category": "other",
+  "tags": ["kill", "signal", "processes", "system", "coreutils"],
+  "executable": "kill",
+  "risk_summary": "Terminates or signals processes, can cause data loss",
+  "min_shapes_version": "0.2.0"
+}

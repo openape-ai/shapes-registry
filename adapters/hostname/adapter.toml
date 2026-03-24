@@ -1,0 +1,15 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "hostname"
+executable = "hostname"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "hostname.info"
+command = []
+display = "Show system hostname"
+action = "read"
+risk = "low"
+resource_chain = ["system:hostname=current"]

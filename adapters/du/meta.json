@@ -1,0 +1,11 @@
+{
+  "id": "du",
+  "name": "DU",
+  "description": "Shapes adapter for du — show disk usage of files and directories",
+  "author": "patrick-hofmann",
+  "category": "other",
+  "tags": ["du", "disk", "size", "system", "coreutils"],
+  "executable": "du",
+  "risk_summary": "Read-only disk usage reporting, no modification risk",
+  "min_shapes_version": "0.2.0"
+}

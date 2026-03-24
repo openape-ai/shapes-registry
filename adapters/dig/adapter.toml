@@ -1,0 +1,25 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "dig"
+executable = "dig"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "dig.lookup"
+command = []
+positionals = ["domain"]
+display = "DNS lookup for {domain}"
+action = "read"
+risk = "low"
+resource_chain = ["dns:domain={domain}"]
+
+[[operation]]
+id = "dig.lookup-type"
+command = []
+positionals = ["domain", "type"]
+display = "DNS {type} lookup for {domain}"
+action = "read"
+risk = "low"
+resource_chain = ["dns:domain={domain}"]

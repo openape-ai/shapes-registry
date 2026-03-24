@@ -1,0 +1,11 @@
+{
+  "id": "grep",
+  "name": "Grep",
+  "description": "Shapes adapter for grep — search for patterns in files",
+  "author": "patrick-hofmann",
+  "category": "other",
+  "tags": ["grep", "search", "pattern", "regex", "text", "coreutils"],
+  "executable": "grep",
+  "risk_summary": "All operations are read-only. No side effects.",
+  "min_shapes_version": "0.2.0"
+}

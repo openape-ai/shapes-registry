@@ -1,0 +1,11 @@
+{
+  "id": "sed",
+  "name": "Stream Editor",
+  "description": "Shapes adapter for sed — stream editor for filtering and transforming text",
+  "author": "patrick-hofmann",
+  "category": "other",
+  "tags": ["sed", "edit", "replace", "transform", "text", "coreutils"],
+  "executable": "sed",
+  "risk_summary": "Stream output is read-only; in-place editing modifies files directly.",
+  "min_shapes_version": "0.2.0"
+}

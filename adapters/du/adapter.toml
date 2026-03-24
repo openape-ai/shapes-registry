@@ -1,0 +1,16 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "du"
+executable = "du"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "du.size"
+command = ["-sh"]
+positionals = ["path"]
+display = "Show size of {path}"
+action = "read"
+risk = "low"
+resource_chain = ["filesystem:path={path}"]

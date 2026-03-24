@@ -1,0 +1,27 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "cut"
+executable = "cut"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "cut.fields"
+command = []
+required_options = ["f", "d"]
+positionals = ["path"]
+display = "Extract fields from {path}"
+action = "read"
+risk = "low"
+resource_chain = ["filesystem:path={path}"]
+
+[[operation]]
+id = "cut.chars"
+command = []
+required_options = ["c"]
+positionals = ["path"]
+display = "Extract character positions from {path}"
+action = "read"
+risk = "low"
+resource_chain = ["filesystem:path={path}"]

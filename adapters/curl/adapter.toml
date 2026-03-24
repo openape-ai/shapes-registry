@@ -1,0 +1,37 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "curl"
+executable = "curl"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "curl.get"
+command = []
+positionals = ["url"]
+display = "GET request to {url}"
+action = "read"
+risk = "medium"
+resource_chain = ["network:url={url}"]
+
+[[operation]]
+id = "curl.post"
+command = ["-X", "POST"]
+positionals = ["url"]
+required_options = ["d"]
+display = "POST request to {url}"
+action = "create"
+risk = "medium"
+exact_command = true
+resource_chain = ["network:url={url}"]
+
+[[operation]]
+id = "curl.download"
+command = ["-o"]
+positionals = ["output", "url"]
+display = "Download {url} to {output}"
+action = "download"
+risk = "medium"
+exact_command = true
+resource_chain = ["network:url={url}", "filesystem:path={output}"]

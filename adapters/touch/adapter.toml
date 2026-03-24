@@ -1,0 +1,16 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "touch"
+executable = "touch"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "touch.create"
+command = []
+positionals = ["path"]
+display = "Create file or update timestamp of {path}"
+action = "create"
+risk = "low"
+resource_chain = ["filesystem:path={path}"]

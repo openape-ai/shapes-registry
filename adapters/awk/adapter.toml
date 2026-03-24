@@ -1,0 +1,16 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "awk"
+executable = "awk"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "awk.process"
+command = []
+positionals = ["program", "path"]
+display = "Process {path} with AWK program {program}"
+action = "read"
+risk = "low"
+resource_chain = ["filesystem:path={path}"]

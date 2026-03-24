@@ -1,0 +1,16 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "ping"
+executable = "ping"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "ping.test"
+command = ["-c", "4"]
+positionals = ["host"]
+display = "Ping {host} (4 packets)"
+action = "test"
+risk = "low"
+resource_chain = ["network:host={host}"]

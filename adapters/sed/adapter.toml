@@ -1,0 +1,26 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "sed"
+executable = "sed"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "sed.replace"
+command = []
+positionals = ["expression", "path"]
+display = "Stream edit {path} with {expression}"
+action = "read"
+risk = "low"
+resource_chain = ["filesystem:path={path}"]
+
+[[operation]]
+id = "sed.replace-inplace"
+command = ["-i"]
+positionals = ["expression", "path"]
+display = "Edit {path} in-place with {expression}"
+action = "edit"
+risk = "high"
+exact_command = true
+resource_chain = ["filesystem:path={path}"]

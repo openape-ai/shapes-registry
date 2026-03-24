@@ -1,0 +1,11 @@
+{
+  "id": "rmdir",
+  "name": "Remove Directory",
+  "description": "Shapes adapter for rmdir — remove empty directories",
+  "author": "patrick-hofmann",
+  "category": "other",
+  "tags": ["rmdir", "directory", "remove", "delete", "coreutils"],
+  "executable": "rmdir",
+  "risk_summary": "Only removes empty directories. Fails if directory contains files.",
+  "min_shapes_version": "0.2.0"
+}

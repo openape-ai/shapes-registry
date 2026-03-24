@@ -1,0 +1,11 @@
+{
+  "id": "id",
+  "name": "ID",
+  "description": "Shapes adapter for id — show user and group identity information",
+  "author": "patrick-hofmann",
+  "category": "other",
+  "tags": ["id", "user", "groups", "identity", "system", "coreutils"],
+  "executable": "id",
+  "risk_summary": "Read-only identity information, no modification risk",
+  "min_shapes_version": "0.2.0"
+}

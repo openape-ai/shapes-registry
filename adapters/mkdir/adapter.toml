@@ -1,0 +1,25 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "mkdir"
+executable = "mkdir"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "mkdir.create"
+command = []
+positionals = ["path"]
+display = "Create directory {path}"
+action = "create"
+risk = "low"
+resource_chain = ["filesystem:path={path}"]
+
+[[operation]]
+id = "mkdir.create-parents"
+command = ["-p"]
+positionals = ["path"]
+display = "Create directory {path} with parents"
+action = "create"
+risk = "low"
+resource_chain = ["filesystem:path={path}"]

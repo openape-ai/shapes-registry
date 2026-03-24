@@ -1,0 +1,11 @@
+{
+  "id": "tee",
+  "name": "Tee",
+  "description": "Shapes adapter for tee — copy stdin to file and stdout",
+  "author": "patrick-hofmann",
+  "category": "other",
+  "tags": ["tee", "write", "append", "pipe", "text", "coreutils"],
+  "executable": "tee",
+  "risk_summary": "Writes or appends stdin content to files.",
+  "min_shapes_version": "0.2.0"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "df",
+  "name": "DF",
+  "description": "Shapes adapter for df — show disk space usage",
+  "author": "patrick-hofmann",
+  "category": "other",
+  "tags": ["df", "disk", "space", "system", "coreutils"],
+  "executable": "df",
+  "risk_summary": "Read-only disk space reporting, no modification risk",
+  "min_shapes_version": "0.2.0"
+}

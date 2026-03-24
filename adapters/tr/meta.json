@@ -1,0 +1,11 @@
+{
+  "id": "tr",
+  "name": "Translate",
+  "description": "Shapes adapter for tr — translate or delete characters from stdin",
+  "author": "patrick-hofmann",
+  "category": "other",
+  "tags": ["tr", "translate", "delete", "characters", "text", "coreutils"],
+  "executable": "tr",
+  "risk_summary": "All operations read from stdin and write to stdout. No file side effects.",
+  "min_shapes_version": "0.2.0"
+}

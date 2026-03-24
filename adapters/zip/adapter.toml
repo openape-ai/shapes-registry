@@ -1,0 +1,27 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "zip"
+executable = "zip"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "zip.compress"
+command = []
+positionals = ["archive", "path"]
+display = "Compress {path} into {archive}"
+action = "create"
+risk = "medium"
+exact_command = true
+resource_chain = ["filesystem:path={path}", "filesystem:path={archive}"]
+
+[[operation]]
+id = "zip.compress-recursive"
+command = ["-r"]
+positionals = ["archive", "path"]
+display = "Recursively compress {path} into {archive}"
+action = "create"
+risk = "medium"
+exact_command = true
+resource_chain = ["filesystem:path={path}", "filesystem:path={archive}"]

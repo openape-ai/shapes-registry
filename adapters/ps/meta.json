@@ -1,0 +1,11 @@
+{
+  "id": "ps",
+  "name": "PS",
+  "description": "Shapes adapter for ps — list running processes",
+  "author": "patrick-hofmann",
+  "category": "other",
+  "tags": ["ps", "processes", "system", "coreutils"],
+  "executable": "ps",
+  "risk_summary": "Read-only process listing, no modification risk",
+  "min_shapes_version": "0.2.0"
+}

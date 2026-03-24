@@ -1,0 +1,25 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "diff"
+executable = "diff"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "diff.compare"
+command = []
+positionals = ["file1", "file2"]
+display = "Compare {file1} and {file2}"
+action = "read"
+risk = "low"
+resource_chain = ["filesystem:path={file1}", "filesystem:path={file2}"]
+
+[[operation]]
+id = "diff.unified"
+command = ["-u"]
+positionals = ["file1", "file2"]
+display = "Unified diff of {file1} and {file2}"
+action = "read"
+risk = "low"
+resource_chain = ["filesystem:path={file1}", "filesystem:path={file2}"]

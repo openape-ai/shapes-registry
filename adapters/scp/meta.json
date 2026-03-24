@@ -1,0 +1,11 @@
+{
+  "id": "scp",
+  "name": "SCP",
+  "description": "Shapes adapter for scp — secure copy between hosts",
+  "author": "patrick-hofmann",
+  "category": "infrastructure",
+  "tags": ["scp", "copy", "remote", "network", "security"],
+  "executable": "scp",
+  "risk_summary": "Copies files between local and remote hosts over SSH",
+  "min_shapes_version": "0.2.0"
+}

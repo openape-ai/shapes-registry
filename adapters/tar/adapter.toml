@@ -1,0 +1,36 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "tar"
+executable = "tar"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "tar.create"
+command = ["-cf"]
+positionals = ["archive", "path"]
+display = "Create tar archive {archive} from {path}"
+action = "create"
+risk = "medium"
+exact_command = true
+resource_chain = ["filesystem:path={path}", "filesystem:path={archive}"]
+
+[[operation]]
+id = "tar.extract"
+command = ["-xf"]
+positionals = ["archive"]
+display = "Extract tar archive {archive}"
+action = "extract"
+risk = "medium"
+exact_command = true
+resource_chain = ["filesystem:path={archive}"]
+
+[[operation]]
+id = "tar.list"
+command = ["-tf"]
+positionals = ["archive"]
+display = "List contents of tar archive {archive}"
+action = "list"
+risk = "low"
+resource_chain = ["filesystem:path={archive}"]

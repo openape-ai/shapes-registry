@@ -1,0 +1,25 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "head"
+executable = "head"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "head.read"
+command = []
+positionals = ["path"]
+display = "Show first 10 lines of {path}"
+action = "read"
+risk = "low"
+resource_chain = ["filesystem:path={path}"]
+
+[[operation]]
+id = "head.read-lines"
+command = ["-n"]
+positionals = ["count", "path"]
+display = "Show first {count} lines of {path}"
+action = "read"
+risk = "low"
+resource_chain = ["filesystem:path={path}"]

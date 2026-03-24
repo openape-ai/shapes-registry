@@ -1,0 +1,11 @@
+{
+  "id": "ssh",
+  "name": "SSH",
+  "description": "Shapes adapter for ssh — secure shell remote access",
+  "author": "patrick-hofmann",
+  "category": "infrastructure",
+  "tags": ["ssh", "remote", "shell", "network", "security"],
+  "executable": "ssh",
+  "risk_summary": "Opens remote shell sessions and executes commands on remote hosts",
+  "min_shapes_version": "0.2.0"
+}

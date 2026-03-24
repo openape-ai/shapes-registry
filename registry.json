@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-03-21T19:04:42.658Z",
+  "generated_at": "2026-03-24T16:52:17.474Z",
   "adapters": [
     {
       "id": "apes",
@@ -19,6 +19,24 @@
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:7fee8fe8bdd382234ae2eca5fde4f18fea70c82e7d9b330b27eb14e5a8a465ef",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/apes/adapter.toml"
+    },
+    {
+      "id": "awk",
+      "name": "AWK",
+      "description": "Shapes adapter for awk — pattern scanning and text processing",
+      "category": "other",
+      "tags": [
+        "awk",
+        "process",
+        "pattern",
+        "text",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "awk",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:6eb0720f6645dec8859ea3b86a74bd04631f720bc00871dc34717ed0d4488a70",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/awk/adapter.toml"
     },
     {
       "id": "az",
@@ -92,6 +110,149 @@
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/chown/adapter.toml"
     },
     {
+      "id": "cp",
+      "name": "Copy Files",
+      "description": "Shapes adapter for cp — copy files and directories",
+      "category": "other",
+      "tags": [
+        "cp",
+        "copy",
+        "files",
+        "directories",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "cp",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:89b3160366c2801dcfbf24bc11982e9175d8a72a75c3d45c6d3cd71bb789b043",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/cp/adapter.toml"
+    },
+    {
+      "id": "curl",
+      "name": "cURL",
+      "description": "Shapes adapter for curl — transfer data with URLs",
+      "category": "infrastructure",
+      "tags": [
+        "curl",
+        "http",
+        "api",
+        "network",
+        "download"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "curl",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:145fe19388ee10ce783b0e19c12f0463ea0dcef0be586803b86122b74e7e8edf",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/curl/adapter.toml"
+    },
+    {
+      "id": "cut",
+      "name": "Cut",
+      "description": "Shapes adapter for cut — extract sections from lines of files",
+      "category": "other",
+      "tags": [
+        "cut",
+        "extract",
+        "fields",
+        "columns",
+        "text",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "cut",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:d6d75dafdb1849741be949f6953aaa1e8071f8b03ed6d34bd20c3f3a71b6dc9d",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/cut/adapter.toml"
+    },
+    {
+      "id": "date",
+      "name": "Date",
+      "description": "Shapes adapter for date — show current date and time",
+      "category": "other",
+      "tags": [
+        "date",
+        "time",
+        "system",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "date",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:c00f38f472d44db2b2942d014a4438140de4459bfe98c75afe5b22bc7fa99fcf",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/date/adapter.toml"
+    },
+    {
+      "id": "df",
+      "name": "DF",
+      "description": "Shapes adapter for df — show disk space usage",
+      "category": "other",
+      "tags": [
+        "df",
+        "disk",
+        "space",
+        "system",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "df",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:6262802af83ef1431465b3f0ae05a67848142dd02ee7ef9f74aab1ecb230f03d",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/df/adapter.toml"
+    },
+    {
+      "id": "diff",
+      "name": "Diff",
+      "description": "Shapes adapter for diff — compare files line by line",
+      "category": "other",
+      "tags": [
+        "diff",
+        "compare",
+        "files",
+        "text",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "diff",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:0ffc370704418ae0d342de98ede88765bd70c46eff95f37cdfc2c24b68643d8a",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/diff/adapter.toml"
+    },
+    {
+      "id": "dig",
+      "name": "Dig",
+      "description": "Shapes adapter for dig — DNS lookup utility",
+      "category": "infrastructure",
+      "tags": [
+        "dig",
+        "dns",
+        "lookup",
+        "network"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "dig",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:8d17729bbe2025817d51f2e99b08787b150d605784277bdb9cf34281f17a945f",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/dig/adapter.toml"
+    },
+    {
+      "id": "du",
+      "name": "DU",
+      "description": "Shapes adapter for du — show disk usage of files and directories",
+      "category": "other",
+      "tags": [
+        "du",
+        "disk",
+        "size",
+        "system",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "du",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:e0c25250603f229afcb85e8349d5b721d224a03aaadbc4f36954f46857b6fd53",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/du/adapter.toml"
+    },
+    {
       "id": "echo",
       "name": "Echo",
       "description": "Shapes adapter for echo — print messages to stdout",
@@ -109,6 +270,24 @@
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/echo/adapter.toml"
     },
     {
+      "id": "env",
+      "name": "Env",
+      "description": "Shapes adapter for env — list environment variables",
+      "category": "other",
+      "tags": [
+        "env",
+        "environment",
+        "variables",
+        "system",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "env",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:0a2777317f1bb849da8dd18323190f0be4504c6f1f0a2187faa8c8a1c9edd088",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/env/adapter.toml"
+    },
+    {
       "id": "exo",
       "name": "Exoscale CLI",
       "description": "Shapes adapter for the Exoscale CLI — DNS domains and records",
@@ -124,6 +303,25 @@
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:7536387aa2a85707d193dc60b2d6c87cb4179b88ea950b4bf2e8a778557d5c74",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/exo/adapter.toml"
+    },
+    {
+      "id": "find",
+      "name": "Find Files",
+      "description": "Shapes adapter for find — search for files in a directory hierarchy",
+      "category": "other",
+      "tags": [
+        "find",
+        "search",
+        "files",
+        "directories",
+        "pattern",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "find",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:99b401bf3a8b448ad21210afcfc9ea0da37b3688a5d247bfbec0248eb5cdc1e3",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/find/adapter.toml"
     },
     {
       "id": "gh",
@@ -160,6 +358,116 @@
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/git/adapter.toml"
     },
     {
+      "id": "grep",
+      "name": "Grep",
+      "description": "Shapes adapter for grep — search for patterns in files",
+      "category": "other",
+      "tags": [
+        "grep",
+        "search",
+        "pattern",
+        "regex",
+        "text",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "grep",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:79cf310ec03ebde4f2e824beac9f06da9c0188134561f8f2efef3e61b99a3cce",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/grep/adapter.toml"
+    },
+    {
+      "id": "head",
+      "name": "Head",
+      "description": "Shapes adapter for head — display the beginning of files",
+      "category": "other",
+      "tags": [
+        "head",
+        "read",
+        "lines",
+        "text",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "head",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:f25a5ca35a3133b32e20bf517646c8d618df055657602b891ed15f6e9d1be384",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/head/adapter.toml"
+    },
+    {
+      "id": "hostname",
+      "name": "Hostname",
+      "description": "Shapes adapter for hostname — show system hostname",
+      "category": "other",
+      "tags": [
+        "hostname",
+        "system",
+        "network",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "hostname",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:fad3b721ed5e872eee1801c1af1af850ea73c66d04cdefc00c9fd34aad0775b8",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/hostname/adapter.toml"
+    },
+    {
+      "id": "id",
+      "name": "ID",
+      "description": "Shapes adapter for id — show user and group identity information",
+      "category": "other",
+      "tags": [
+        "id",
+        "user",
+        "groups",
+        "identity",
+        "system",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "id",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:fc09ab9f783f36258dc0b46d9dcbb968d2a7dfb781680acbf712333e404f217c",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/id/adapter.toml"
+    },
+    {
+      "id": "kill",
+      "name": "Kill",
+      "description": "Shapes adapter for kill — send signals to processes",
+      "category": "other",
+      "tags": [
+        "kill",
+        "signal",
+        "processes",
+        "system",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "kill",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:16e1d3369ee9166637ed6766a7cff28036db396264e4cd060662fd0ce1a829ad",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/kill/adapter.toml"
+    },
+    {
+      "id": "ln",
+      "name": "Link Files",
+      "description": "Shapes adapter for ln — create hard and symbolic links",
+      "category": "other",
+      "tags": [
+        "ln",
+        "link",
+        "symlink",
+        "hardlink",
+        "files",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "ln",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:9e54815e5a0f6a2342b88ef5d3df5edf4d1151b8867a5249678469ec131db28a",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/ln/adapter.toml"
+    },
+    {
       "id": "ls",
       "name": "List Directory",
       "description": "Shapes adapter for ls — list directory contents and file metadata",
@@ -178,6 +486,42 @@
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/ls/adapter.toml"
     },
     {
+      "id": "mkdir",
+      "name": "Make Directory",
+      "description": "Shapes adapter for mkdir — create directories",
+      "category": "other",
+      "tags": [
+        "mkdir",
+        "directory",
+        "create",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "mkdir",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:5d0076b905215e14a7c2ef0fccb2ba6f22394863280a98cae40a62f624a07da8",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/mkdir/adapter.toml"
+    },
+    {
+      "id": "mv",
+      "name": "Move Files",
+      "description": "Shapes adapter for mv — move or rename files and directories",
+      "category": "other",
+      "tags": [
+        "mv",
+        "move",
+        "rename",
+        "files",
+        "directories",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "mv",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:88486f1d4c11032baef4175d1f3247a30385a549935ff267786d0f383f08bcdc",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/mv/adapter.toml"
+    },
+    {
       "id": "o365mail",
       "name": "Office 365 Mail CLI",
       "description": "Shapes adapter for o365-mail-cli — read, search, send, draft, and manage emails",
@@ -193,6 +537,349 @@
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:30cc9da3ae445ef24fdba9424b4ba7b76adfe6b368702420b6cc04e7cc4c5ad4",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/o365mail/adapter.toml"
+    },
+    {
+      "id": "ping",
+      "name": "Ping",
+      "description": "Shapes adapter for ping — test network connectivity",
+      "category": "infrastructure",
+      "tags": [
+        "ping",
+        "network",
+        "connectivity",
+        "diagnostic"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "ping",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:62c01c073d05f0ae3cf01ad17386f41a9ad3d22925daf25f22849f75977abb8f",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/ping/adapter.toml"
+    },
+    {
+      "id": "ps",
+      "name": "PS",
+      "description": "Shapes adapter for ps — list running processes",
+      "category": "other",
+      "tags": [
+        "ps",
+        "processes",
+        "system",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "ps",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:53b14fe69ca8021243ae5b5916d78b8250e49d5e8f271bbbf1411aa21d5f4b44",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/ps/adapter.toml"
+    },
+    {
+      "id": "rm",
+      "name": "Remove Files",
+      "description": "Shapes adapter for rm — remove files and directories",
+      "category": "other",
+      "tags": [
+        "rm",
+        "remove",
+        "delete",
+        "files",
+        "directories",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "rm",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:07feeaa1fc759e4607c80481a18452fa631ac733cb0c3f465fccef38ed5ca831",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/rm/adapter.toml"
+    },
+    {
+      "id": "rmdir",
+      "name": "Remove Directory",
+      "description": "Shapes adapter for rmdir — remove empty directories",
+      "category": "other",
+      "tags": [
+        "rmdir",
+        "directory",
+        "remove",
+        "delete",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "rmdir",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:7c0892b840cda52e4d159a32bdd7b0cfb32c68731704a01e6ff53f2df63f05ba",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/rmdir/adapter.toml"
+    },
+    {
+      "id": "scp",
+      "name": "SCP",
+      "description": "Shapes adapter for scp — secure copy between hosts",
+      "category": "infrastructure",
+      "tags": [
+        "scp",
+        "copy",
+        "remote",
+        "network",
+        "security"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "scp",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:43c3fb9c3883990660225e0b9edfaf18211afa200146be85d7c4aa7dcfa66227",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/scp/adapter.toml"
+    },
+    {
+      "id": "sed",
+      "name": "Stream Editor",
+      "description": "Shapes adapter for sed — stream editor for filtering and transforming text",
+      "category": "other",
+      "tags": [
+        "sed",
+        "edit",
+        "replace",
+        "transform",
+        "text",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "sed",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:f29385aef31c946956c91e978897333386ff0285077e385e52fc26096abf759d",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/sed/adapter.toml"
+    },
+    {
+      "id": "sort",
+      "name": "Sort",
+      "description": "Shapes adapter for sort — sort lines of text files",
+      "category": "other",
+      "tags": [
+        "sort",
+        "order",
+        "lines",
+        "text",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "sort",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:a5e35d970b2ddbe4e801c8eae8cb7e990fb3fa8b1050cf9d1a909653eef49ca9",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/sort/adapter.toml"
+    },
+    {
+      "id": "ssh",
+      "name": "SSH",
+      "description": "Shapes adapter for ssh — secure shell remote access",
+      "category": "infrastructure",
+      "tags": [
+        "ssh",
+        "remote",
+        "shell",
+        "network",
+        "security"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "ssh",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:0b60b39c4e7a04b4ad025ebad822469e94a2ff60adcf38d702b4e62e0882249a",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/ssh/adapter.toml"
+    },
+    {
+      "id": "stat",
+      "name": "File Status",
+      "description": "Shapes adapter for stat — show file status and metadata",
+      "category": "other",
+      "tags": [
+        "stat",
+        "status",
+        "metadata",
+        "files",
+        "permissions",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "stat",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:f00972f8bdc593c11fefbe68b4c67fc8d0ca5a4564fd564e55f1ba03cc5024cd",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/stat/adapter.toml"
+    },
+    {
+      "id": "tail",
+      "name": "Tail",
+      "description": "Shapes adapter for tail — display the end of files",
+      "category": "other",
+      "tags": [
+        "tail",
+        "read",
+        "lines",
+        "follow",
+        "text",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "tail",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:d862ee76ec358592327f1f6106cb531c3d90824e2eaaa19ae1c474a55dce8f8c",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/tail/adapter.toml"
+    },
+    {
+      "id": "tar",
+      "name": "Tar",
+      "description": "Shapes adapter for tar — create, extract, and list tar archives",
+      "category": "other",
+      "tags": [
+        "tar",
+        "archive",
+        "compress",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "tar",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:0ddb46cff384c12d55754eb623acf0d7387ea4e2c9af7605cd1e317339c12348",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/tar/adapter.toml"
+    },
+    {
+      "id": "tee",
+      "name": "Tee",
+      "description": "Shapes adapter for tee — copy stdin to file and stdout",
+      "category": "other",
+      "tags": [
+        "tee",
+        "write",
+        "append",
+        "pipe",
+        "text",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "tee",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:9666d0b1a9de590cae250db788f476a24321b45c5f00e4a47680352e4bfe5d58",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/tee/adapter.toml"
+    },
+    {
+      "id": "touch",
+      "name": "Touch File",
+      "description": "Shapes adapter for touch — create files or update timestamps",
+      "category": "other",
+      "tags": [
+        "touch",
+        "create",
+        "timestamp",
+        "files",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "touch",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:8ef0515c56d67687796e713ddabb9e358a8deeb18f64886db99be5a32a4c0d7b",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/touch/adapter.toml"
+    },
+    {
+      "id": "tr",
+      "name": "Translate",
+      "description": "Shapes adapter for tr — translate or delete characters from stdin",
+      "category": "other",
+      "tags": [
+        "tr",
+        "translate",
+        "delete",
+        "characters",
+        "text",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "tr",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:ef1652f427f729754dcdcce7d571a3de5f02b76374b97e3ad5cf9abce345d7ac",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/tr/adapter.toml"
+    },
+    {
+      "id": "uname",
+      "name": "Uname",
+      "description": "Shapes adapter for uname — show system information",
+      "category": "other",
+      "tags": [
+        "uname",
+        "system",
+        "info",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "uname",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:96164c8625cfb1493ba17d7018f8a531a42ef115d8d438b8ebc4e348d706c15f",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/uname/adapter.toml"
+    },
+    {
+      "id": "wc",
+      "name": "Word Count",
+      "description": "Shapes adapter for wc — count lines, words, and bytes in files",
+      "category": "other",
+      "tags": [
+        "wc",
+        "count",
+        "lines",
+        "words",
+        "text",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "wc",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:e01fb8673a9a56895c0aebbdbeb12978633758a913e062ccaccf30d2ad9eb38e",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/wc/adapter.toml"
+    },
+    {
+      "id": "wget",
+      "name": "Wget",
+      "description": "Shapes adapter for wget — download files from the web",
+      "category": "infrastructure",
+      "tags": [
+        "wget",
+        "download",
+        "http",
+        "network"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "wget",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:95db4ad08e6064ce51593e963644b3c39a47ddf557ed853ad546cfa9caa62506",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/wget/adapter.toml"
+    },
+    {
+      "id": "whoami",
+      "name": "Whoami",
+      "description": "Shapes adapter for whoami — show current username",
+      "category": "other",
+      "tags": [
+        "whoami",
+        "user",
+        "identity",
+        "system",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "whoami",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:c9a0ab458f21985f6f034facf530c5c38dd991fdc9bd2ac885aed39c787a98c2",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/whoami/adapter.toml"
+    },
+    {
+      "id": "zip",
+      "name": "Zip",
+      "description": "Shapes adapter for zip — create zip archives",
+      "category": "other",
+      "tags": [
+        "zip",
+        "archive",
+        "compress",
+        "coreutils"
+      ],
+      "author": "patrick-hofmann",
+      "executable": "zip",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:601c1b02b619d8a31feb0f7d9dac5e3f65484e0ecc0bd90ad75c3cad513c3734",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/zip/adapter.toml"
     }
   ]
 }

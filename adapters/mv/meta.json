@@ -1,0 +1,11 @@
+{
+  "id": "mv",
+  "name": "Move Files",
+  "description": "Shapes adapter for mv — move or rename files and directories",
+  "author": "patrick-hofmann",
+  "category": "other",
+  "tags": ["mv", "move", "rename", "files", "directories", "coreutils"],
+  "executable": "mv",
+  "risk_summary": "Destructive: source is removed after move. Overwrites destination without warning.",
+  "min_shapes_version": "0.2.0"
+}

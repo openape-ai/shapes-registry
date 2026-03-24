@@ -1,0 +1,27 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "scp"
+executable = "scp"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "scp.upload"
+command = []
+positionals = ["source", "destination"]
+display = "Copy {source} to remote {destination}"
+action = "upload"
+risk = "high"
+exact_command = true
+resource_chain = ["filesystem:path={source}", "network:path={destination}"]
+
+[[operation]]
+id = "scp.download"
+command = []
+positionals = ["source", "destination"]
+display = "Copy remote {source} to {destination}"
+action = "download"
+risk = "high"
+exact_command = true
+resource_chain = ["network:path={source}", "filesystem:path={destination}"]

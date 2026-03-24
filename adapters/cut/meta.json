@@ -1,0 +1,11 @@
+{
+  "id": "cut",
+  "name": "Cut",
+  "description": "Shapes adapter for cut — extract sections from lines of files",
+  "author": "patrick-hofmann",
+  "category": "other",
+  "tags": ["cut", "extract", "fields", "columns", "text", "coreutils"],
+  "executable": "cut",
+  "risk_summary": "All operations are read-only. No side effects.",
+  "min_shapes_version": "0.2.0"
+}

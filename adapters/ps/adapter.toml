@@ -1,0 +1,23 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "ps"
+executable = "ps"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "ps.list"
+command = []
+display = "List current user processes"
+action = "list"
+risk = "low"
+resource_chain = ["system:processes=user"]
+
+[[operation]]
+id = "ps.list-all"
+command = ["aux"]
+display = "List all system processes"
+action = "list"
+risk = "low"
+resource_chain = ["system:processes=all"]

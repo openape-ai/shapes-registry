@@ -1,0 +1,17 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "rmdir"
+executable = "rmdir"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "rmdir.remove"
+command = []
+positionals = ["path"]
+display = "Remove empty directory {path}"
+action = "delete"
+risk = "medium"
+exact_command = true
+resource_chain = ["filesystem:path={path}"]

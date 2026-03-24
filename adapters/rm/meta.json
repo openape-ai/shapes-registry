@@ -1,0 +1,11 @@
+{
+  "id": "rm",
+  "name": "Remove Files",
+  "description": "Shapes adapter for rm — remove files and directories",
+  "author": "patrick-hofmann",
+  "category": "other",
+  "tags": ["rm", "remove", "delete", "files", "directories", "coreutils"],
+  "executable": "rm",
+  "risk_summary": "Permanently deletes files and directories. No undo. Force mode suppresses errors.",
+  "min_shapes_version": "0.2.0"
+}

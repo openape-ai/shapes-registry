@@ -1,0 +1,25 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "wc"
+executable = "wc"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "wc.count"
+command = []
+positionals = ["path"]
+display = "Count lines, words, and bytes in {path}"
+action = "read"
+risk = "low"
+resource_chain = ["filesystem:path={path}"]
+
+[[operation]]
+id = "wc.lines"
+command = ["-l"]
+positionals = ["path"]
+display = "Count lines in {path}"
+action = "read"
+risk = "low"
+resource_chain = ["filesystem:path={path}"]

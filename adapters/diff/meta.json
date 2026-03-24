@@ -1,0 +1,11 @@
+{
+  "id": "diff",
+  "name": "Diff",
+  "description": "Shapes adapter for diff — compare files line by line",
+  "author": "patrick-hofmann",
+  "category": "other",
+  "tags": ["diff", "compare", "files", "text", "coreutils"],
+  "executable": "diff",
+  "risk_summary": "All operations are read-only. No side effects.",
+  "min_shapes_version": "0.2.0"
+}

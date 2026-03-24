@@ -1,0 +1,11 @@
+{
+  "id": "wc",
+  "name": "Word Count",
+  "description": "Shapes adapter for wc — count lines, words, and bytes in files",
+  "author": "patrick-hofmann",
+  "category": "other",
+  "tags": ["wc", "count", "lines", "words", "text", "coreutils"],
+  "executable": "wc",
+  "risk_summary": "All operations are read-only. No side effects.",
+  "min_shapes_version": "0.2.0"
+}

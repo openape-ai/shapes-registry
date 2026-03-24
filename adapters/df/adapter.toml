@@ -1,0 +1,15 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "df"
+executable = "df"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "df.info"
+command = ["-h"]
+display = "Show disk space usage (human-readable)"
+action = "read"
+risk = "low"
+resource_chain = ["system:disk=*"]

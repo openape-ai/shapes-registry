@@ -1,0 +1,11 @@
+{
+  "id": "env",
+  "name": "Env",
+  "description": "Shapes adapter for env — list environment variables",
+  "author": "patrick-hofmann",
+  "category": "other",
+  "tags": ["env", "environment", "variables", "system", "coreutils"],
+  "executable": "env",
+  "risk_summary": "Read-only environment variable listing, may expose sensitive values",
+  "min_shapes_version": "0.2.0"
+}

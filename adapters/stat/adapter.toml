@@ -1,0 +1,16 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "stat"
+executable = "stat"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "stat.info"
+command = []
+positionals = ["path"]
+display = "Show file status of {path}"
+action = "read"
+risk = "low"
+resource_chain = ["filesystem:path={path}"]

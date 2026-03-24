@@ -1,0 +1,15 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "whoami"
+executable = "whoami"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "whoami.info"
+command = []
+display = "Show current username"
+action = "read"
+risk = "low"
+resource_chain = ["system:identity=current"]

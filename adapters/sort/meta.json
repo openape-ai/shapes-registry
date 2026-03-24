@@ -1,0 +1,11 @@
+{
+  "id": "sort",
+  "name": "Sort",
+  "description": "Shapes adapter for sort — sort lines of text files",
+  "author": "patrick-hofmann",
+  "category": "other",
+  "tags": ["sort", "order", "lines", "text", "coreutils"],
+  "executable": "sort",
+  "risk_summary": "All operations are read-only. No side effects.",
+  "min_shapes_version": "0.2.0"
+}

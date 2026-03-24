@@ -1,0 +1,37 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "kill"
+executable = "kill"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "kill.signal"
+command = []
+positionals = ["pid"]
+display = "Send signal to process {pid}"
+action = "signal"
+risk = "high"
+exact_command = true
+resource_chain = ["system:process={pid}"]
+
+[[operation]]
+id = "kill.term"
+command = ["-15"]
+positionals = ["pid"]
+display = "Terminate process {pid}"
+action = "signal"
+risk = "high"
+exact_command = true
+resource_chain = ["system:process={pid}"]
+
+[[operation]]
+id = "kill.force"
+command = ["-9"]
+positionals = ["pid"]
+display = "Force kill process {pid}"
+action = "signal"
+risk = "critical"
+exact_command = true
+resource_chain = ["system:process={pid}"]

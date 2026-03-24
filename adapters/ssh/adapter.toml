@@ -1,0 +1,27 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "ssh"
+executable = "ssh"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "ssh.connect"
+command = []
+positionals = ["destination"]
+display = "SSH connect to {destination}"
+action = "connect"
+risk = "critical"
+exact_command = true
+resource_chain = ["network:host={destination}"]
+
+[[operation]]
+id = "ssh.command"
+command = []
+positionals = ["destination", "command"]
+display = "Execute command on {destination}"
+action = "execute"
+risk = "critical"
+exact_command = true
+resource_chain = ["network:host={destination}"]

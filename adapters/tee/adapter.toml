@@ -1,0 +1,25 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "tee"
+executable = "tee"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "tee.write"
+command = []
+positionals = ["path"]
+display = "Copy stdin to {path} and stdout"
+action = "create"
+risk = "low"
+resource_chain = ["filesystem:path={path}"]
+
+[[operation]]
+id = "tee.append"
+command = ["-a"]
+positionals = ["path"]
+display = "Append stdin to {path} and stdout"
+action = "edit"
+risk = "low"
+resource_chain = ["filesystem:path={path}"]

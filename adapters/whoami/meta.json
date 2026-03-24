@@ -1,0 +1,11 @@
+{
+  "id": "whoami",
+  "name": "Whoami",
+  "description": "Shapes adapter for whoami — show current username",
+  "author": "patrick-hofmann",
+  "category": "other",
+  "tags": ["whoami", "user", "identity", "system", "coreutils"],
+  "executable": "whoami",
+  "risk_summary": "Read-only identity check, no modification risk",
+  "min_shapes_version": "0.2.0"
+}

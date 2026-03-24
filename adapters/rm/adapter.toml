@@ -1,0 +1,37 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "rm"
+executable = "rm"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "rm.remove"
+command = []
+positionals = ["path"]
+display = "Remove file {path}"
+action = "delete"
+risk = "high"
+exact_command = true
+resource_chain = ["filesystem:path={path}"]
+
+[[operation]]
+id = "rm.remove-recursive"
+command = ["-r"]
+positionals = ["path"]
+display = "Remove directory {path} recursively"
+action = "delete"
+risk = "critical"
+exact_command = true
+resource_chain = ["filesystem:path={path}"]
+
+[[operation]]
+id = "rm.remove-force"
+command = ["-rf"]
+positionals = ["path"]
+display = "Force remove {path} recursively"
+action = "delete"
+risk = "critical"
+exact_command = true
+resource_chain = ["filesystem:path={path}"]

@@ -1,0 +1,11 @@
+{
+  "id": "head",
+  "name": "Head",
+  "description": "Shapes adapter for head — display the beginning of files",
+  "author": "patrick-hofmann",
+  "category": "other",
+  "tags": ["head", "read", "lines", "text", "coreutils"],
+  "executable": "head",
+  "risk_summary": "All operations are read-only. No side effects.",
+  "min_shapes_version": "0.2.0"
+}

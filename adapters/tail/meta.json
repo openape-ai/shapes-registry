@@ -1,0 +1,11 @@
+{
+  "id": "tail",
+  "name": "Tail",
+  "description": "Shapes adapter for tail — display the end of files",
+  "author": "patrick-hofmann",
+  "category": "other",
+  "tags": ["tail", "read", "lines", "follow", "text", "coreutils"],
+  "executable": "tail",
+  "risk_summary": "All operations are read-only. No side effects.",
+  "min_shapes_version": "0.2.0"
+}

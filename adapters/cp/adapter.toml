@@ -1,0 +1,27 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "cp"
+executable = "cp"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "cp.copy"
+command = []
+positionals = ["source", "dest"]
+display = "Copy {source} to {dest}"
+action = "create"
+risk = "medium"
+exact_command = true
+resource_chain = ["filesystem:path={source}", "filesystem:path={dest}"]
+
+[[operation]]
+id = "cp.copy-recursive"
+command = ["-r"]
+positionals = ["source", "dest"]
+display = "Copy directory {source} to {dest} recursively"
+action = "create"
+risk = "high"
+exact_command = true
+resource_chain = ["filesystem:path={source}", "filesystem:path={dest}"]

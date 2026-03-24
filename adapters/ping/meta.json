@@ -1,0 +1,11 @@
+{
+  "id": "ping",
+  "name": "Ping",
+  "description": "Shapes adapter for ping — test network connectivity",
+  "author": "patrick-hofmann",
+  "category": "infrastructure",
+  "tags": ["ping", "network", "connectivity", "diagnostic"],
+  "executable": "ping",
+  "risk_summary": "Read-only network connectivity test, no modification risk",
+  "min_shapes_version": "0.2.0"
+}

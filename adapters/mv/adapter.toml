@@ -1,0 +1,17 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "mv"
+executable = "mv"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "mv.move"
+command = []
+positionals = ["source", "dest"]
+display = "Move {source} to {dest}"
+action = "edit"
+risk = "high"
+exact_command = true
+resource_chain = ["filesystem:path={source}", "filesystem:path={dest}"]

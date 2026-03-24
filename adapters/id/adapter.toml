@@ -1,0 +1,24 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "id"
+executable = "id"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "id.info"
+command = []
+display = "Show current user and group IDs"
+action = "read"
+risk = "low"
+resource_chain = ["system:identity=current"]
+
+[[operation]]
+id = "id.user"
+command = []
+positionals = ["username"]
+display = "Show user and group IDs for {username}"
+action = "read"
+risk = "low"
+resource_chain = ["system:identity={username}"]

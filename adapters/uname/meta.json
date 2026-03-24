@@ -1,0 +1,11 @@
+{
+  "id": "uname",
+  "name": "Uname",
+  "description": "Shapes adapter for uname — show system information",
+  "author": "patrick-hofmann",
+  "category": "other",
+  "tags": ["uname", "system", "info", "coreutils"],
+  "executable": "uname",
+  "risk_summary": "Read-only system info display, no modification risk",
+  "min_shapes_version": "0.2.0"
+}

@@ -1,0 +1,26 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "wget"
+executable = "wget"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "wget.download"
+command = []
+positionals = ["url"]
+display = "Download {url}"
+action = "download"
+risk = "medium"
+resource_chain = ["network:url={url}"]
+
+[[operation]]
+id = "wget.download-output"
+command = ["-O"]
+positionals = ["output", "url"]
+display = "Download {url} to {output}"
+action = "download"
+risk = "medium"
+exact_command = true
+resource_chain = ["network:url={url}", "filesystem:path={output}"]

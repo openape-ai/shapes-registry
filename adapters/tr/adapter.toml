@@ -1,0 +1,25 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "tr"
+executable = "tr"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "tr.translate"
+command = []
+positionals = ["set1", "set2"]
+display = "Translate {set1} to {set2}"
+action = "read"
+risk = "low"
+resource_chain = ["stdin:*"]
+
+[[operation]]
+id = "tr.delete"
+command = ["-d"]
+positionals = ["set"]
+display = "Delete characters in {set}"
+action = "read"
+risk = "low"
+resource_chain = ["stdin:*"]
