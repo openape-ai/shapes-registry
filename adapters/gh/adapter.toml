@@ -105,11 +105,31 @@ risk = "medium"
 resource_chain = ["repo:owner={repo|owner},name={repo|name}", "issue:*"]
 
 [[operation]]
+id = "issue.edit"
+command = ["issue", "edit"]
+positionals = ["number"]
+required_options = ["repo"]
+display = "Edit issue #{number} in {repo}"
+action = "edit"
+risk = "medium"
+resource_chain = ["repo:owner={repo|owner},name={repo|name}", "issue:number={number}"]
+
+[[operation]]
 id = "issue.close"
 command = ["issue", "close"]
 positionals = ["number"]
 required_options = ["repo"]
 display = "Close issue #{number} in {repo}"
+action = "edit"
+risk = "medium"
+resource_chain = ["repo:owner={repo|owner},name={repo|name}", "issue:number={number}"]
+
+[[operation]]
+id = "issue.reopen"
+command = ["issue", "reopen"]
+positionals = ["number"]
+required_options = ["repo"]
+display = "Reopen issue #{number} in {repo}"
 action = "edit"
 risk = "medium"
 resource_chain = ["repo:owner={repo|owner},name={repo|name}", "issue:number={number}"]
