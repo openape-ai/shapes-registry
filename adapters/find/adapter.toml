@@ -10,8 +10,8 @@ version = "1"
 id = "find.by-name"
 command = []
 positionals = ["path"]
-required_options = { "-name" = "pattern" }
-display = "Find files in {path} matching name {pattern}"
+required_options = ["name"]
+display = "Find files in {path} matching name {name}"
 action = "read"
 risk = "low"
 resource_chain = ["filesystem:path={path}"]
@@ -20,7 +20,7 @@ resource_chain = ["filesystem:path={path}"]
 id = "find.by-type"
 command = []
 positionals = ["path"]
-required_options = { "-type" = "type" }
+required_options = ["type"]
 display = "Find files in {path} of type {type}"
 action = "read"
 risk = "low"
