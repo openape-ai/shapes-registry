@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-03-25T12:51:35.166Z",
+  "generated_at": "2026-03-28T12:34:35.682Z",
   "adapters": [
     {
       "id": "apes",
@@ -520,6 +520,25 @@
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:88486f1d4c11032baef4175d1f3247a30385a549935ff267786d0f383f08bcdc",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/mv/adapter.toml"
+    },
+    {
+      "id": "o365",
+      "name": "Microsoft 365 CLI",
+      "description": "Shapes adapter for o365-cli — mail, calendar, folders, rules, and drafts across multiple accounts",
+      "category": "mail",
+      "tags": [
+        "email",
+        "calendar",
+        "outlook",
+        "office365",
+        "microsoft",
+        "graph-api"
+      ],
+      "author": "delta-mind",
+      "executable": "o365-cli",
+      "min_shapes_version": "0.2.0",
+      "digest": "SHA-256:3c6ea05d660f7b30e072397f99b7257ad6ed7b3f57095793a1246d4ca7dd71ef",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/o365/adapter.toml"
     },
     {
       "id": "o365mail",

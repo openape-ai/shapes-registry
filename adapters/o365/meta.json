@@ -1,0 +1,12 @@
+{
+  "id": "o365",
+  "name": "Microsoft 365 CLI",
+  "description": "Shapes adapter for o365-cli — mail, calendar, folders, rules, and drafts across multiple accounts",
+  "author": "delta-mind",
+  "category": "mail",
+  "tags": ["email", "calendar", "outlook", "office365", "microsoft", "graph-api"],
+  "executable": "o365-cli",
+  "risk_summary": "Read/list/search operations are low-risk. Send/create/delete are high-risk with exact_command. Multi-account: writes require --account when multiple accounts are logged in.",
+  "homepage": "https://github.com/patrick-hofmann/o365-cli",
+  "min_shapes_version": "0.2.0"
+}

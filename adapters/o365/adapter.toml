@@ -1,0 +1,436 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "o365"
+executable = "o365-cli"
+audience = "shapes"
+version = "2"
+
+# ══════════════════════════════════════════════════════
+# AUTH
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "auth.login"
+command = ["auth", "login"]
+display = "Login to Microsoft 365 account"
+action = "create"
+risk = "medium"
+resource_chain = ["auth:*"]
+
+[[operation]]
+id = "auth.logout"
+command = ["auth", "logout"]
+positionals = ["email"]
+display = "Logout from account {email}"
+action = "delete"
+risk = "medium"
+exact_command = true
+resource_chain = ["auth:email={email}"]
+
+[[operation]]
+id = "auth.logout-all"
+command = ["auth", "logout", "--all"]
+display = "Logout from all accounts"
+action = "delete"
+risk = "high"
+exact_command = true
+resource_chain = ["auth:*"]
+
+[[operation]]
+id = "auth.list"
+command = ["auth", "list"]
+display = "List logged-in accounts"
+action = "list"
+risk = "low"
+resource_chain = ["auth:*"]
+
+[[operation]]
+id = "auth.status"
+command = ["auth", "status"]
+display = "Show auth token status"
+action = "read"
+risk = "low"
+resource_chain = ["auth:*"]
+
+# ══════════════════════════════════════════════════════
+# MAIL — Read Operations
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "mail.list"
+command = ["mail", "list"]
+display = "List emails (all accounts)"
+action = "list"
+risk = "low"
+resource_chain = ["account:email=*", "mail:*"]
+
+[[operation]]
+id = "mail.read"
+command = ["mail", "read"]
+positionals = ["message_id"]
+required_options = ["account"]
+display = "Read email {message_id} from account {account}"
+action = "read"
+risk = "low"
+resource_chain = ["account:email={account}", "mail:id={message_id}"]
+
+[[operation]]
+id = "mail.search"
+command = ["mail", "search"]
+display = "Search emails (all accounts)"
+action = "search"
+risk = "low"
+resource_chain = ["account:email=*", "mail:*"]
+
+[[operation]]
+id = "mail.query"
+command = ["mail", "query"]
+positionals = ["search_text"]
+display = "Search emails via KQL: {search_text}"
+action = "search"
+risk = "low"
+resource_chain = ["account:email=*", "mail:*"]
+
+[[operation]]
+id = "mail.attachments"
+command = ["mail", "attachments"]
+positionals = ["message_id"]
+required_options = ["account"]
+display = "Download attachments from email {message_id}"
+action = "read"
+risk = "low"
+resource_chain = ["account:email={account}", "mail:id={message_id}"]
+
+# ══════════════════════════════════════════════════════
+# MAIL — Edit Operations
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "mail.mark-read"
+command = ["mail", "mark-read"]
+positionals = ["message_id"]
+required_options = ["account"]
+display = "Mark email {message_id} as read"
+action = "edit"
+risk = "medium"
+resource_chain = ["account:email={account}", "mail:id={message_id}"]
+
+[[operation]]
+id = "mail.mark-unread"
+command = ["mail", "mark-unread"]
+positionals = ["message_id"]
+required_options = ["account"]
+display = "Mark email {message_id} as unread"
+action = "edit"
+risk = "medium"
+resource_chain = ["account:email={account}", "mail:id={message_id}"]
+
+[[operation]]
+id = "mail.move"
+command = ["mail", "move"]
+positionals = ["message_id"]
+required_options = ["account", "to"]
+display = "Move email {message_id} to folder {to}"
+action = "edit"
+risk = "medium"
+exact_command = true
+resource_chain = ["account:email={account}", "mail:id={message_id}"]
+
+[[operation]]
+id = "mail.trash"
+command = ["mail", "trash"]
+positionals = ["message_id"]
+required_options = ["account"]
+display = "Trash email {message_id}"
+action = "delete"
+risk = "high"
+exact_command = true
+resource_chain = ["account:email={account}", "mail:id={message_id}"]
+
+[[operation]]
+id = "mail.archive-from"
+command = ["mail", "archive-from"]
+positionals = ["email_addresses"]
+required_options = ["account"]
+display = "Archive all emails from {email_addresses}"
+action = "edit"
+risk = "high"
+exact_command = true
+resource_chain = ["account:email={account}", "mail:*"]
+
+# ══════════════════════════════════════════════════════
+# MAIL — Send Operations
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "mail.send"
+command = ["mail", "send"]
+required_options = ["account", "to", "subject", "body"]
+display = "Send email to {to} from {account}"
+action = "send"
+risk = "high"
+exact_command = true
+resource_chain = ["account:email={account}", "mail:*"]
+
+[[operation]]
+id = "mail.reply"
+command = ["mail", "reply"]
+positionals = ["message_id"]
+required_options = ["account"]
+display = "Reply to email {message_id} from {account}"
+action = "send"
+risk = "high"
+exact_command = true
+resource_chain = ["account:email={account}", "mail:id={message_id}"]
+
+[[operation]]
+id = "mail.forward"
+command = ["mail", "forward"]
+positionals = ["message_id"]
+required_options = ["account", "to"]
+display = "Forward email {message_id} to {to} from {account}"
+action = "send"
+risk = "high"
+exact_command = true
+resource_chain = ["account:email={account}", "mail:id={message_id}"]
+
+# ══════════════════════════════════════════════════════
+# CALENDAR — Read Operations
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "calendar.list"
+command = ["calendar", "list"]
+display = "List upcoming events (all accounts)"
+action = "list"
+risk = "low"
+resource_chain = ["account:email=*", "calendar:*"]
+
+[[operation]]
+id = "calendar.today"
+command = ["calendar", "today"]
+display = "List today's events (all accounts)"
+action = "list"
+risk = "low"
+resource_chain = ["account:email=*", "calendar:*"]
+
+[[operation]]
+id = "calendar.get"
+command = ["calendar", "get"]
+positionals = ["event_id"]
+required_options = ["account"]
+display = "Get event details {event_id}"
+action = "read"
+risk = "low"
+resource_chain = ["account:email={account}", "calendar:id={event_id}"]
+
+# ══════════════════════════════════════════════════════
+# CALENDAR — Write Operations
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "calendar.create"
+command = ["calendar", "create"]
+required_options = ["account", "subject", "start", "end"]
+display = "Create event '{subject}' on {account}"
+action = "create"
+risk = "high"
+exact_command = true
+resource_chain = ["account:email={account}", "calendar:*"]
+
+[[operation]]
+id = "calendar.update"
+command = ["calendar", "update"]
+positionals = ["event_id"]
+required_options = ["account"]
+display = "Update event {event_id} on {account}"
+action = "edit"
+risk = "high"
+exact_command = true
+resource_chain = ["account:email={account}", "calendar:id={event_id}"]
+
+[[operation]]
+id = "calendar.delete"
+command = ["calendar", "delete"]
+positionals = ["event_id"]
+required_options = ["account"]
+display = "Delete event {event_id} on {account}"
+action = "delete"
+risk = "critical"
+exact_command = true
+resource_chain = ["account:email={account}", "calendar:id={event_id}"]
+
+[[operation]]
+id = "calendar.accept"
+command = ["calendar", "accept"]
+positionals = ["event_id"]
+required_options = ["account"]
+display = "Accept event invitation {event_id}"
+action = "send"
+risk = "high"
+exact_command = true
+resource_chain = ["account:email={account}", "calendar:id={event_id}"]
+
+[[operation]]
+id = "calendar.decline"
+command = ["calendar", "decline"]
+positionals = ["event_id"]
+required_options = ["account"]
+display = "Decline event invitation {event_id}"
+action = "send"
+risk = "high"
+exact_command = true
+resource_chain = ["account:email={account}", "calendar:id={event_id}"]
+
+[[operation]]
+id = "calendar.tentative"
+command = ["calendar", "tentative"]
+positionals = ["event_id"]
+required_options = ["account"]
+display = "Tentatively accept event {event_id}"
+action = "send"
+risk = "high"
+exact_command = true
+resource_chain = ["account:email={account}", "calendar:id={event_id}"]
+
+# ══════════════════════════════════════════════════════
+# DRAFTS
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "drafts.list"
+command = ["drafts", "list"]
+display = "List drafts (all accounts)"
+action = "list"
+risk = "low"
+resource_chain = ["account:email=*", "draft:*"]
+
+[[operation]]
+id = "drafts.read"
+command = ["drafts", "read"]
+positionals = ["draft_id"]
+required_options = ["account"]
+display = "Read draft {draft_id}"
+action = "read"
+risk = "low"
+resource_chain = ["account:email={account}", "draft:id={draft_id}"]
+
+[[operation]]
+id = "drafts.save"
+command = ["drafts", "save"]
+required_options = ["account", "to", "subject", "body"]
+display = "Save draft to {to} from {account}"
+action = "create"
+risk = "medium"
+resource_chain = ["account:email={account}", "draft:*"]
+
+[[operation]]
+id = "drafts.send"
+command = ["drafts", "send"]
+positionals = ["draft_id"]
+required_options = ["account"]
+display = "Send draft {draft_id} from {account}"
+action = "send"
+risk = "high"
+exact_command = true
+resource_chain = ["account:email={account}", "draft:id={draft_id}"]
+
+[[operation]]
+id = "drafts.delete"
+command = ["drafts", "delete"]
+positionals = ["draft_id"]
+required_options = ["account"]
+display = "Delete draft {draft_id}"
+action = "delete"
+risk = "high"
+exact_command = true
+resource_chain = ["account:email={account}", "draft:id={draft_id}"]
+
+# ══════════════════════════════════════════════════════
+# FOLDERS
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "folders.list"
+command = ["folders", "list"]
+display = "List mail folders (all accounts)"
+action = "list"
+risk = "low"
+resource_chain = ["account:email=*", "folder:*"]
+
+[[operation]]
+id = "folders.create"
+command = ["folders", "create"]
+positionals = ["name"]
+required_options = ["account"]
+display = "Create folder '{name}' on {account}"
+action = "create"
+risk = "medium"
+exact_command = true
+resource_chain = ["account:email={account}", "folder:name={name}"]
+
+[[operation]]
+id = "folders.delete"
+command = ["folders", "delete"]
+positionals = ["name"]
+required_options = ["account"]
+display = "Delete folder '{name}' on {account}"
+action = "delete"
+risk = "critical"
+exact_command = true
+resource_chain = ["account:email={account}", "folder:name={name}"]
+
+# ══════════════════════════════════════════════════════
+# RULES
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "rules.list"
+command = ["rules", "list"]
+display = "List inbox rules (all accounts)"
+action = "list"
+risk = "low"
+resource_chain = ["account:email=*", "rule:*"]
+
+[[operation]]
+id = "rules.get"
+command = ["rules", "get"]
+positionals = ["rule_id"]
+required_options = ["account"]
+display = "Get inbox rule {rule_id}"
+action = "read"
+risk = "low"
+resource_chain = ["account:email={account}", "rule:id={rule_id}"]
+
+[[operation]]
+id = "rules.create"
+command = ["rules", "create"]
+required_options = ["account", "name"]
+display = "Create inbox rule '{name}' on {account}"
+action = "create"
+risk = "high"
+exact_command = true
+resource_chain = ["account:email={account}", "rule:*"]
+
+[[operation]]
+id = "rules.update"
+command = ["rules", "update"]
+positionals = ["rule_id"]
+required_options = ["account"]
+display = "Update inbox rule {rule_id} on {account}"
+action = "edit"
+risk = "high"
+exact_command = true
+resource_chain = ["account:email={account}", "rule:id={rule_id}"]
+
+[[operation]]
+id = "rules.delete"
+command = ["rules", "delete"]
+positionals = ["rule_id"]
+required_options = ["account"]
+display = "Delete inbox rule {rule_id} on {account}"
+action = "delete"
+risk = "high"
+exact_command = true
+resource_chain = ["account:email={account}", "rule:id={rule_id}"]
