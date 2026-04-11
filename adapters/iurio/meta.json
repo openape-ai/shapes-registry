@@ -1,0 +1,12 @@
+{
+  "id": "iurio",
+  "name": "iurio CLI",
+  "description": "Shapes adapter for the iurio CLI — projects, workspaces, datasafe, tasks",
+  "author": "delta-mind",
+  "category": "devtools",
+  "tags": ["iurio", "docpit", "task-management", "datasafe", "legal-tech"],
+  "executable": "iurio",
+  "risk_summary": "Read/list low. Task mutations, comments, attachments, datasafe uploads medium. Task remove high.",
+  "homepage": "https://iurio.com",
+  "min_shapes_version": "0.8.0"
+}

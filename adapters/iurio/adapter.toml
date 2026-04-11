@@ -1,0 +1,244 @@
+schema = "openape-shapes/v1"
+
+[cli]
+id = "iurio"
+executable = "iurio"
+audience = "shapes"
+version = "1"
+
+# ══════════════════════════════════════════════════════
+# ROOT — Read Operations
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "mytasks.list"
+command = ["mytasks"]
+display = "List my tasks"
+action = "list"
+risk = "low"
+resource_chain = ["user:id=current", "task:*"]
+
+[[operation]]
+id = "projects.list"
+command = ["projects", "list"]
+display = "List projects"
+action = "list"
+risk = "low"
+resource_chain = ["project:*"]
+
+# ══════════════════════════════════════════════════════
+# PROJECT → WORKSPACES
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "workspaces.list"
+command = ["project"]
+positionals = ["project_id", "=workspaces", "=list"]
+display = "List workspaces in project {project_id}"
+action = "list"
+risk = "low"
+resource_chain = ["project:id={project_id}", "workspace:*"]
+
+# ══════════════════════════════════════════════════════
+# PROJECT → WORKSPACE → DATASAFE
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "datasafe.list"
+command = ["project"]
+positionals = ["project_id", "=workspace", "workspace_id", "=datasafe", "=list"]
+display = "List datasafe in project {project_id} / workspace {workspace_id}"
+action = "list"
+risk = "low"
+resource_chain = ["project:id={project_id}", "workspace:id={workspace_id}", "datasafe:*"]
+
+[[operation]]
+id = "datasafe.download"
+command = ["project"]
+positionals = ["project_id", "=workspace", "workspace_id", "=datasafe", "=download", "path"]
+display = "Download datasafe of project {project_id} / workspace {workspace_id} to {path}"
+action = "read"
+risk = "low"
+resource_chain = ["project:id={project_id}", "workspace:id={workspace_id}", "datasafe:*"]
+
+[[operation]]
+id = "datasafe.file.download"
+command = ["project"]
+positionals = ["project_id", "=workspace", "workspace_id", "=datasafe", "=file", "file_id", "=download", "path"]
+display = "Download datasafe file {file_id} to {path}"
+action = "read"
+risk = "low"
+resource_chain = ["project:id={project_id}", "workspace:id={workspace_id}", "datasafe:file={file_id}"]
+
+[[operation]]
+id = "datasafe.file.upload"
+command = ["project"]
+positionals = ["project_id", "=workspace", "workspace_id", "=datasafe", "=file", "=upload", "folder_id", "path"]
+display = "Upload {path} into datasafe folder {folder_id}"
+action = "create"
+risk = "medium"
+resource_chain = ["project:id={project_id}", "workspace:id={workspace_id}", "datasafe:folder={folder_id}"]
+
+[[operation]]
+id = "datasafe.file.upload-version"
+command = ["project"]
+positionals = ["project_id", "=workspace", "workspace_id", "=datasafe", "=file", "=upload-version", "file_id", "path"]
+display = "Upload new version of datasafe file {file_id} from {path}"
+action = "edit"
+risk = "medium"
+resource_chain = ["project:id={project_id}", "workspace:id={workspace_id}", "datasafe:file={file_id}"]
+
+# ══════════════════════════════════════════════════════
+# PROJECT → WORKSPACE → LANES
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "lanes.list"
+command = ["project"]
+positionals = ["project_id", "=workspace", "workspace_id", "=lanes", "=list"]
+display = "List lanes in project {project_id} / workspace {workspace_id}"
+action = "list"
+risk = "low"
+resource_chain = ["project:id={project_id}", "workspace:id={workspace_id}", "lane:*"]
+
+# ══════════════════════════════════════════════════════
+# PROJECT → WORKSPACE → TASKS (collection)
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "tasks.list"
+command = ["project"]
+positionals = ["project_id", "=workspace", "workspace_id", "=tasks", "=list"]
+display = "List tasks in project {project_id} / workspace {workspace_id}"
+action = "list"
+risk = "low"
+resource_chain = ["project:id={project_id}", "workspace:id={workspace_id}", "task:*"]
+
+[[operation]]
+id = "task.add"
+command = ["project"]
+positionals = ["project_id", "=workspace", "workspace_id", "=task", "=add", "lane_id", "text"]
+display = "Add task to lane {lane_id}: {text}"
+action = "create"
+risk = "medium"
+resource_chain = ["project:id={project_id}", "workspace:id={workspace_id}", "lane:id={lane_id}", "task:*"]
+
+# ══════════════════════════════════════════════════════
+# PROJECT → WORKSPACE → TASK (by id)
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "task.show"
+command = ["project"]
+positionals = ["project_id", "=workspace", "workspace_id", "=task", "task_id", "=show"]
+display = "Show task {task_id}"
+action = "read"
+risk = "low"
+resource_chain = ["project:id={project_id}", "workspace:id={workspace_id}", "task:id={task_id}"]
+
+[[operation]]
+id = "task.edit"
+command = ["project"]
+positionals = ["project_id", "=workspace", "workspace_id", "=task", "task_id", "=edit"]
+display = "Edit task {task_id}"
+action = "edit"
+risk = "medium"
+resource_chain = ["project:id={project_id}", "workspace:id={workspace_id}", "task:id={task_id}"]
+
+[[operation]]
+id = "task.move"
+command = ["project"]
+positionals = ["project_id", "=workspace", "workspace_id", "=task", "task_id", "=move", "lane_id"]
+display = "Move task {task_id} to lane {lane_id}"
+action = "edit"
+risk = "medium"
+resource_chain = ["project:id={project_id}", "workspace:id={workspace_id}", "task:id={task_id}", "lane:id={lane_id}"]
+
+[[operation]]
+id = "task.archive"
+command = ["project"]
+positionals = ["project_id", "=workspace", "workspace_id", "=task", "task_id", "=archive"]
+display = "Archive task {task_id}"
+action = "edit"
+risk = "medium"
+resource_chain = ["project:id={project_id}", "workspace:id={workspace_id}", "task:id={task_id}"]
+
+[[operation]]
+id = "task.unarchive"
+command = ["project"]
+positionals = ["project_id", "=workspace", "workspace_id", "=task", "task_id", "=unarchive"]
+display = "Unarchive task {task_id}"
+action = "edit"
+risk = "medium"
+resource_chain = ["project:id={project_id}", "workspace:id={workspace_id}", "task:id={task_id}"]
+
+[[operation]]
+id = "task.remove"
+command = ["project"]
+positionals = ["project_id", "=workspace", "workspace_id", "=task", "task_id", "=remove"]
+display = "Remove task {task_id}"
+action = "delete"
+risk = "high"
+resource_chain = ["project:id={project_id}", "workspace:id={workspace_id}", "task:id={task_id}"]
+
+[[operation]]
+id = "task.log"
+command = ["project"]
+positionals = ["project_id", "=workspace", "workspace_id", "=task", "task_id", "=log"]
+display = "Show activity log of task {task_id}"
+action = "read"
+risk = "low"
+resource_chain = ["project:id={project_id}", "workspace:id={workspace_id}", "task:id={task_id}"]
+
+# ══════════════════════════════════════════════════════
+# PROJECT → WORKSPACE → TASK → COMMENTS
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "task.comments.list"
+command = ["project"]
+positionals = ["project_id", "=workspace", "workspace_id", "=task", "task_id", "=comments", "=list"]
+display = "List comments on task {task_id}"
+action = "list"
+risk = "low"
+resource_chain = ["project:id={project_id}", "workspace:id={workspace_id}", "task:id={task_id}", "comment:*"]
+
+[[operation]]
+id = "task.comment.add"
+command = ["project"]
+positionals = ["project_id", "=workspace", "workspace_id", "=task", "task_id", "=comment", "=add", "text"]
+display = "Add comment to task {task_id}: {text}"
+action = "create"
+risk = "medium"
+resource_chain = ["project:id={project_id}", "workspace:id={workspace_id}", "task:id={task_id}", "comment:*"]
+
+# ══════════════════════════════════════════════════════
+# PROJECT → WORKSPACE → TASK → ATTACHMENTS
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "task.attachments.list"
+command = ["project"]
+positionals = ["project_id", "=workspace", "workspace_id", "=task", "task_id", "=attachments", "=list"]
+display = "List attachments of task {task_id}"
+action = "list"
+risk = "low"
+resource_chain = ["project:id={project_id}", "workspace:id={workspace_id}", "task:id={task_id}", "attachment:*"]
+
+[[operation]]
+id = "task.attachment.add"
+command = ["project"]
+positionals = ["project_id", "=workspace", "workspace_id", "=task", "task_id", "=attachment", "=add", "url"]
+display = "Attach {url} to task {task_id}"
+action = "create"
+risk = "medium"
+resource_chain = ["project:id={project_id}", "workspace:id={workspace_id}", "task:id={task_id}", "attachment:*"]
+
+[[operation]]
+id = "task.attachment.remove"
+command = ["project"]
+positionals = ["project_id", "=workspace", "workspace_id", "=task", "task_id", "=attachment", "attachment_id", "=remove"]
+display = "Remove attachment {attachment_id} from task {task_id}"
+action = "delete"
+risk = "medium"
+resource_chain = ["project:id={project_id}", "workspace:id={workspace_id}", "task:id={task_id}", "attachment:id={attachment_id}"]

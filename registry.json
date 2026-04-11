@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-03-28T12:34:53.977Z",
+  "generated_at": "2026-04-11T07:18:43.915Z",
   "adapters": [
     {
       "id": "apes",
@@ -429,6 +429,24 @@
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:fc09ab9f783f36258dc0b46d9dcbb968d2a7dfb781680acbf712333e404f217c",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/id/adapter.toml"
+    },
+    {
+      "id": "iurio",
+      "name": "iurio CLI",
+      "description": "Shapes adapter for the iurio CLI — projects, workspaces, datasafe, tasks",
+      "category": "devtools",
+      "tags": [
+        "iurio",
+        "docpit",
+        "task-management",
+        "datasafe",
+        "legal-tech"
+      ],
+      "author": "delta-mind",
+      "executable": "iurio",
+      "min_shapes_version": "0.8.0",
+      "digest": "SHA-256:503342f54e099550f29f6640207a823882056bc648ded71b851c143206a894f4",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/iurio/adapter.toml"
     },
     {
       "id": "kill",

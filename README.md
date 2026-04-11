@@ -10,6 +10,7 @@ Curated registry of [OpenApe Shapes](https://github.com/openape-ai/openape) adap
 | [az](adapters/az/) | Azure DevOps CLI | devtools | `az` | 8 |
 | [exo](adapters/exo/) | Exoscale CLI | infrastructure | `exo` | 4 |
 | [o365mail](adapters/o365mail/) | Office 365 Mail CLI | mail | `o365-mail-cli` | 20 |
+| [iurio](adapters/iurio/) | iurio CLI | devtools | `iurio` | 23 |
 
 ## Install an Adapter
 
