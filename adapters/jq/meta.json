@@ -1,0 +1,12 @@
+{
+  "id": "jq",
+  "name": "jq",
+  "description": "Shapes adapter for jq — stdin-only JSON filtering, the standard downstream of --json-emitting CLIs in agent pipes",
+  "author": "delta-mind",
+  "category": "devtools",
+  "tags": ["json", "filter", "pipe"],
+  "executable": "jq",
+  "risk_summary": "Only the stdin-filter form matches (low risk, no exec facility). Every file-reading form (file positional, --rawfile, --slurpfile, --from-file) deliberately falls through to the generic fallback.",
+  "homepage": "https://jqlang.github.io/jq/",
+  "min_shapes_version": "0.2.0"
+}

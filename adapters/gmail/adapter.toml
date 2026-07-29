@@ -1,0 +1,194 @@
+schema = "openape-shapes/v1"
+
+# gmail-cli — himalaya-backed Gmail mail + Google Calendar CLI.
+# Risk model mirrors the o365 adapter: read/list/search are low, moves and
+# archive are medium (recoverable), anything that leaves the mailbox
+# (send/reply) or changes the calendar is high with exact_command.
+
+[cli]
+id = "gmail"
+executable = "gmail-cli"
+audience = "shapes"
+version = "1"
+
+# ══════════════════════════════════════════════════════
+# MAIL — Read Operations
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "mail.list"
+command = ["mail", "list"]
+display = "List emails"
+action = "list"
+risk = "low"
+resource_chain = ["account:name=*", "mail:*"]
+
+[[operation]]
+id = "mail.read"
+command = ["mail", "read"]
+positionals = ["message_id"]
+display = "Read email {message_id}"
+action = "read"
+risk = "low"
+resource_chain = ["account:name=*", "mail:id={message_id}"]
+
+[[operation]]
+id = "mail.search"
+command = ["mail", "search"]
+display = "Search emails"
+action = "search"
+risk = "low"
+resource_chain = ["account:name=*", "mail:*"]
+
+# ══════════════════════════════════════════════════════
+# MAIL — Edit Operations
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "mail.archive"
+command = ["mail", "archive"]
+positionals = ["message_id"]
+display = "Archive email {message_id}"
+action = "edit"
+risk = "medium"
+resource_chain = ["account:name=*", "mail:id={message_id}"]
+
+[[operation]]
+id = "mail.move"
+command = ["mail", "move"]
+positionals = ["message_id"]
+required_options = ["to"]
+display = "Move email {message_id} to folder {to}"
+action = "edit"
+risk = "medium"
+exact_command = true
+resource_chain = ["account:name=*", "mail:id={message_id}"]
+
+# ══════════════════════════════════════════════════════
+# MAIL — Send Operations
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "mail.send"
+command = ["mail", "send"]
+required_options = ["to", "subject"]
+display = "Send email to {to}"
+action = "send"
+risk = "high"
+exact_command = true
+resource_chain = ["account:name=*", "mail:*"]
+
+[[operation]]
+id = "mail.reply"
+command = ["mail", "reply"]
+positionals = ["message_id"]
+display = "Reply to email {message_id}"
+action = "send"
+risk = "high"
+exact_command = true
+resource_chain = ["account:name=*", "mail:id={message_id}"]
+
+# ══════════════════════════════════════════════════════
+# FOLDERS
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "folders.list"
+command = ["folders", "list"]
+display = "List mail folders"
+action = "list"
+risk = "low"
+resource_chain = ["account:name=*", "folder:*"]
+
+# ══════════════════════════════════════════════════════
+# CALENDAR — Read Operations
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "calendar.list"
+command = ["calendar", "list"]
+display = "List upcoming events"
+action = "list"
+risk = "low"
+resource_chain = ["account:name=*", "calendar:*"]
+
+[[operation]]
+id = "calendar.today"
+command = ["calendar", "today"]
+display = "List today's events"
+action = "list"
+risk = "low"
+resource_chain = ["account:name=*", "calendar:*"]
+
+[[operation]]
+id = "calendar.get"
+command = ["calendar", "get"]
+positionals = ["event_id"]
+display = "Get event details {event_id}"
+action = "read"
+risk = "low"
+resource_chain = ["account:name=*", "calendar:id={event_id}"]
+
+# ══════════════════════════════════════════════════════
+# CALENDAR — Write Operations
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "calendar.create"
+command = ["calendar", "create"]
+required_options = ["subject", "start"]
+display = "Create event '{subject}'"
+action = "create"
+risk = "high"
+exact_command = true
+resource_chain = ["account:name=*", "calendar:*"]
+
+[[operation]]
+id = "calendar.update"
+command = ["calendar", "update"]
+positionals = ["event_id"]
+display = "Update event {event_id}"
+action = "edit"
+risk = "high"
+exact_command = true
+resource_chain = ["account:name=*", "calendar:id={event_id}"]
+
+[[operation]]
+id = "calendar.delete"
+command = ["calendar", "delete"]
+positionals = ["event_id"]
+display = "Delete event {event_id}"
+action = "delete"
+risk = "critical"
+exact_command = true
+resource_chain = ["account:name=*", "calendar:id={event_id}"]
+
+[[operation]]
+id = "calendar.accept"
+command = ["calendar", "accept"]
+positionals = ["event_id"]
+display = "Accept event invitation {event_id}"
+action = "send"
+risk = "high"
+exact_command = true
+resource_chain = ["account:name=*", "calendar:id={event_id}"]
+
+[[operation]]
+id = "calendar.decline"
+command = ["calendar", "decline"]
+positionals = ["event_id"]
+display = "Decline event invitation {event_id}"
+action = "send"
+risk = "high"
+exact_command = true
+resource_chain = ["account:name=*", "calendar:id={event_id}"]
+
+[[operation]]
+id = "calendar.tentative"
+command = ["calendar", "tentative"]
+positionals = ["event_id"]
+display = "Tentatively accept event {event_id}"
+action = "send"
+risk = "high"
+exact_command = true
+resource_chain = ["account:name=*", "calendar:id={event_id}"]

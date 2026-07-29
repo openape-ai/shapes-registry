@@ -1,0 +1,12 @@
+{
+  "id": "gmail",
+  "name": "Gmail CLI",
+  "description": "Shapes adapter for gmail-cli — Gmail mail (himalaya backend) and Google Calendar",
+  "author": "delta-mind",
+  "category": "mail",
+  "tags": ["email", "calendar", "gmail", "google", "himalaya"],
+  "executable": "gmail-cli",
+  "risk_summary": "Read/list/search operations are low-risk. Archive/move are medium (recoverable inside the mailbox). Send/reply and all calendar writes are high-risk with exact_command; calendar delete is critical.",
+  "homepage": "https://github.com/patrick-hofmann/gmail-cli",
+  "min_shapes_version": "0.2.0"
+}

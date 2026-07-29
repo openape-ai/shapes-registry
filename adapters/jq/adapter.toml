@@ -1,0 +1,28 @@
+schema = "openape-shapes/v1"
+
+# jq — pure JSON filter, the standard downstream of `--json`-emitting CLIs
+# in agent pipes (`o365-cli mail list --json | jq -r '.[].id'`). jq has no
+# exec facility, so the stdin-filter form is safe to classify low.
+#
+# Deliberately modelled narrow: ONLY `jq [flags] '<filter>'` reading stdin
+# matches. Every file-reading form falls through to the generic fallback
+# (risk high, argv-bound) by construction:
+#   - `jq '.x' file.json`      → 2 positionals, no matching operation
+#   - `--rawfile n f` / `--slurpfile n f` → f becomes a 2nd positional
+#   - `--from-file f` / `--fromfile f`    → filter positional missing
+# So a low-risk jq rule can never become a file-read primitive.
+
+[cli]
+id = "jq"
+executable = "jq"
+audience = "shapes"
+version = "1"
+
+[[operation]]
+id = "filter.stdin"
+command = []
+positionals = ["filter"]
+display = "Filter JSON from stdin: jq {filter}"
+action = "read"
+risk = "low"
+resource_chain = ["stdin:*"]
