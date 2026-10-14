@@ -589,5 +589,186 @@
     ],
     "expected": null,
     "note": "Unknown commands never match."
+  },
+  {
+    "argv": [
+      "auth",
+      "login",
+      "--account",
+      "user@example.test"
+    ],
+    "expected": {
+      "operation_id": "auth.login",
+      "permission": "o365.auth[*]#create",
+      "display": "Login to Microsoft 365 account",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "calendar",
+      "today",
+      "--account",
+      "user@example.test"
+    ],
+    "expected": {
+      "operation_id": "calendar.today.account",
+      "permission": "o365.account[email=user@example.test].calendar[*]#list",
+      "display": "List today's events of user@example.test",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "calendar",
+      "list",
+      "--account",
+      "user@example.test",
+      "--days",
+      "3"
+    ],
+    "expected": {
+      "operation_id": "calendar.list.account",
+      "permission": "o365.account[email=user@example.test].calendar[*]#list",
+      "display": "List upcoming events of user@example.test",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "list",
+      "--account",
+      "user@example.test",
+      "--unread",
+      "--limit",
+      "20"
+    ],
+    "expected": {
+      "operation_id": "mail.list.account",
+      "permission": "o365.account[email=user@example.test].mail[*]#list",
+      "display": "List emails of user@example.test",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "list",
+      "--config",
+      "/tmp/other.yaml"
+    ],
+    "expected": null
+  },
+  {
+    "argv": [
+      "workflow",
+      "delta",
+      "--account",
+      "user@example.test",
+      "--folder",
+      "inbox",
+      "--cursor",
+      "opaque"
+    ],
+    "expected": {
+      "operation_id": "workflow.delta",
+      "permission": "o365.account[email=user@example.test].mail[*]#read",
+      "display": "Read inbox changes of user@example.test",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "workflow",
+      "read",
+      "--account",
+      "user@example.test",
+      "--message",
+      "AAMk1"
+    ],
+    "expected": {
+      "operation_id": "workflow.read",
+      "permission": "o365.account[email=user@example.test].mail[*]#read",
+      "display": "Read one provider-versioned message of user@example.test",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "workflow",
+      "categorize",
+      "--account",
+      "user@example.test",
+      "--message",
+      "AAMk1",
+      "--expected-version",
+      "CQ1",
+      "--categories",
+      "[\"Rechnung\"]"
+    ],
+    "expected": {
+      "operation_id": "workflow.categorize",
+      "permission": "o365.account[email=user@example.test].mail[*]#categorize",
+      "display": "Set the categories of one message of user@example.test",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "workflow",
+      "ensure-categories",
+      "--account",
+      "user@example.test",
+      "--categories",
+      "[\"Rechnung\"]"
+    ],
+    "expected": {
+      "operation_id": "workflow.ensure-categories",
+      "permission": "o365.account[email=user@example.test].mailbox-settings[*]#configure",
+      "display": "Add missing names to the Outlook category list of user@example.test",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "workflow",
+      "move",
+      "--account",
+      "user@example.test",
+      "--message",
+      "AAMk1",
+      "--expected-version",
+      "CQ1",
+      "--source-folder",
+      "AQMk1",
+      "--destination",
+      "archive"
+    ],
+    "expected": {
+      "operation_id": "workflow.move",
+      "permission": "o365.account[email=user@example.test].mail[*]#move",
+      "display": "Move one approved message of user@example.test into its Archive folder",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "workflow",
+      "move",
+      "--account",
+      "user@example.test",
+      "--message",
+      "AAMk1",
+      "--expected-version",
+      "CQ1",
+      "--source-folder",
+      "AQMk1",
+      "--destination",
+      "archive",
+      "--profile",
+      "admin"
+    ],
+    "expected": null
   }
 ]

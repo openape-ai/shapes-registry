@@ -94,6 +94,17 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 200
+        },
+        "tested_digests": {
+          "description": "SHA-256 file digests of executables the operations were checked against. For tools without a version command (single-file scripts, own builds whose version text does not identify the build), a matching digest is the tested version and binds the executable to this adapter whatever its file name. Another file falls back to exact approvals or, under another name, is refused.",
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 64,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^SHA-256:[a-f0-9]{64}$"
+          }
         }
       }
     },

@@ -29,6 +29,11 @@ changes keep existing grants and only rule changes ask for new approvals.
 - `[cli] tested_versions`, `version_command` and `version_pattern` name the
   CLI versions the declared options were checked against. Consumers fall back
   to exact approvals for other versions.
+- `[cli] tested_digests` lists SHA-256 file digests of tested executables, for
+  tools without a version command (single-file scripts) or whose version text
+  does not identify the build. A matching digest is a tested version and binds
+  the file to the adapter whatever its name; OpenApe Pods then runs no version
+  probe. Any other executable must carry the adapter's `executable` name.
 - `[operation.presentation]` holds the German and English texts of the IdP
   grant card: `title`, `statement`, `consequence` (`allows`,
   `does_not_allow`), `facts`, `details` and `details_note`. Texts may only use

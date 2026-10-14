@@ -9,7 +9,6 @@
     "datasafe.file.upload",
     "datasafe.file.upload-version",
     "lanes.list",
-    "tasks.list",
     "task.add",
     "task.show",
     "task.edit",

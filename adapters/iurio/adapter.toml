@@ -5,6 +5,10 @@ id = "iurio"
 executable = "iurio"
 audience = "shapes"
 version = "1"
+# The tested iurio CLI is the single-file bundle of the OpenApe Pods task
+# monitor (openape-pods pods/iurio-task-monitor/program/iurio.cjs); it has no
+# version command, so it is listed by file digest (issue 1473).
+tested_digests = ["SHA-256:0ac77b16876cda6615952f1015387a3bec2555f0ad11c68ca1a7e9b050c5a163"]
 
 # ══════════════════════════════════════════════════════
 # ROOT — Read Operations
@@ -109,10 +113,29 @@ resource_chain = ["project:id={project_id}", "workspace:id={workspace_id}", "lan
 id = "tasks.list"
 command = ["project"]
 positionals = ["project_id", "=workspace", "workspace_id", "=tasks", "=list"]
+value_options = ["lane", "tag", "archived"]
+flag_options = []
 display = "List tasks in project {project_id} / workspace {workspace_id}"
 action = "list"
 risk = "low"
 resource_chain = ["project:id={project_id}", "workspace:id={workspace_id}", "task:*"]
+
+[operation.presentation]
+title = { de = "IURIO-Aufgaben eines Taskboards lesen", en = "Read the IURIO tasks of a task board" }
+
+[operation.presentation.consequence]
+allows = { de = "Liest die Aufgaben dieses Taskboards, optional nach Spalte, Tag oder Archivstatus gefiltert.", en = "Reads the tasks of this task board, optionally filtered by lane, tag or archive state." }
+does_not_allow = { de = "Erstellt, ändert, verschiebt oder archiviert keine Aufgaben.", en = "Does not create, change, move or archive tasks." }
+
+[[operation.presentation.facts]]
+label = { de = "Projekt", en = "Project" }
+binding = "project_id"
+format = "code"
+
+[[operation.presentation.facts]]
+label = { de = "Taskboard", en = "Task board" }
+binding = "workspace_id"
+format = "code"
 
 [[operation]]
 id = "task.add"

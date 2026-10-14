@@ -1,0 +1,18 @@
+[
+  {
+    "argv": [
+      "inventory",
+      "--binding",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "--profile",
+      "linde-server-v1"
+    ],
+    "expected": {
+      "operation_id": "inventory",
+      "permission": "pod-ssh.ssh-binding[hash=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa].inventory-profile[name=linde-server-v1]#read",
+      "display": "Read fixed SSH inventory linde-server-v1 for reviewed binding aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "exact_command": false
+    },
+    "note": "One inventory Pods builds (sshGrantArgv)."
+  }
+]

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-10-14T07:29:03.156Z",
+  "generated_at": "2026-10-14T08:41:22.553Z",
   "adapters": [
     {
       "id": "apes",
@@ -35,8 +35,8 @@
       "author": "delta-mind",
       "executable": "az",
       "min_shapes_version": "0.2.0",
-      "digest": "SHA-256:c62c35590440ce2ebc0de5260cb32d97de70bbb4a651348b90b1b1b45828c5cc",
-      "grant_digest": "SHA-256:fcd550a86024e59ab070a22fc3270c552791f6e5b5c29b0988b91662acfda172",
+      "digest": "SHA-256:2c96befb61c9cfcfe606254edfdd4db543329e9c59f3b8c55bf85a42c8ab0858",
+      "grant_digest": "SHA-256:42212444fde6c2893ef3fbc9c8faea08d3ef0e281117c3b19b079d109a398a13",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/az/adapter.toml"
     },
     {
@@ -95,6 +95,24 @@
       "digest": "SHA-256:145fe19388ee10ce783b0e19c12f0463ea0dcef0be586803b86122b74e7e8edf",
       "grant_digest": "SHA-256:75d89f2127ffa049f48f39bbb6ba9284009c0ed35633e9dca2b7c9420fd9ee44",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/curl/adapter.toml"
+    },
+    {
+      "id": "dependency-audit",
+      "name": "Dependency audit",
+      "description": "Shapes adapter for the OpenApe dependency audit — one read-only vulnerability check per configured project",
+      "category": "security",
+      "tags": [
+        "openape",
+        "pods",
+        "dependencies",
+        "audit"
+      ],
+      "author": "delta-mind",
+      "executable": "dependency-audit",
+      "min_shapes_version": "0.10.0",
+      "digest": "SHA-256:4997fcb9bda70d772ef842210acdc766f33d44d0c4605fe4d821ae06f6ae76b3",
+      "grant_digest": "SHA-256:cfa6d9208471c51e91e6ff440725afd57cfcb27d7066bea193c907cbe619d5e8",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/dependency-audit/adapter.toml"
     },
     {
       "id": "exo",
@@ -204,8 +222,8 @@
       "author": "delta-mind",
       "executable": "iurio",
       "min_shapes_version": "0.8.0",
-      "digest": "SHA-256:503342f54e099550f29f6640207a823882056bc648ded71b851c143206a894f4",
-      "grant_digest": "SHA-256:eb621e39c1b5fb392701dff0ffded6100839351d36ec12e2724a305aea270b54",
+      "digest": "SHA-256:818ad6f21ff96171c7ae583093285ab485aabc73131e1846cd553a9a50fc9326",
+      "grant_digest": "SHA-256:ea1651a584406e687bee5766f41e27f1b90d314765a8ce634dd8e3c63e440833",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/iurio/adapter.toml"
     },
     {
@@ -318,8 +336,8 @@
       "author": "delta-mind",
       "executable": "o365-cli",
       "min_shapes_version": "0.2.0",
-      "digest": "SHA-256:3c6ea05d660f7b30e072397f99b7257ad6ed7b3f57095793a1246d4ca7dd71ef",
-      "grant_digest": "SHA-256:087101bf59192746e07b94c10dffd03cfb080f2e86f7ece3907bd79dd5b87868",
+      "digest": "SHA-256:ebc43aae91d0143495dd596a4bf065a62b39f5d759cbb8ff0b8846ba930dceb0",
+      "grant_digest": "SHA-256:1be3e1bd0cc3329a6f3d60c7da63f2a6a541355dbffe557f58adf1285945779c",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/o365/adapter.toml"
     },
     {
@@ -375,6 +393,42 @@
       "digest": "SHA-256:a6d2591ce95b7ccca9ae5efecbc974379fdea2d9ee3644bf80d79a13fd450a43",
       "grant_digest": "SHA-256:3151180871015971f972b17a6f717ce35408e6393fbc0dd7d03cc5444ce31a1e",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/pod-runtime/adapter.toml"
+    },
+    {
+      "id": "pod-ssh",
+      "name": "OpenApe Pods SSH inventory",
+      "description": "Shapes adapter for the OpenApe Pods SSH inventory authority — one fixed read-only inventory per reviewed SSH binding",
+      "category": "infrastructure",
+      "tags": [
+        "openape",
+        "pods",
+        "ssh",
+        "inventory"
+      ],
+      "author": "delta-mind",
+      "executable": "pod-ssh",
+      "min_shapes_version": "0.10.0",
+      "digest": "SHA-256:022abe2f1c54ee2a1c698c2d7f583c1f4ff413effee5e087ffb7209e1e3aa6bc",
+      "grant_digest": "SHA-256:207e241c0ac71a0429974461d9d3e6a0b8111aafa8b907898846dc5b8ece94a2",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/pod-ssh/adapter.toml"
+    },
+    {
+      "id": "pods-mail",
+      "name": "OpenApe Pods mail reader",
+      "description": "Shapes adapter for the OpenApe Pods Microsoft Graph mail reader — list, read, thread, sent-recipient protection and approved archive moves",
+      "category": "mail",
+      "tags": [
+        "openape",
+        "pods",
+        "mail",
+        "microsoft-graph"
+      ],
+      "author": "delta-mind",
+      "executable": "pods-mail",
+      "min_shapes_version": "0.10.0",
+      "digest": "SHA-256:0831511729bc09ec9ada29797ab747331aa9eb68b86290f3c53120081ecf6bdc",
+      "grant_digest": "SHA-256:3eddba878169953ec2f61776600d3ed11e4d131dd6bc4ea3ac35396ec7c1700a",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/pods-mail/adapter.toml"
     },
     {
       "id": "rm",

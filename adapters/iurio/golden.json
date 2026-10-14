@@ -395,5 +395,56 @@
     ],
     "expected": null,
     "note": "Unknown commands never match."
+  },
+  {
+    "argv": [
+      "project",
+      "1",
+      "workspace",
+      "2",
+      "tasks",
+      "list",
+      "--archived",
+      "false"
+    ],
+    "expected": {
+      "operation_id": "tasks.list",
+      "permission": "iurio.project[id=1].workspace[id=2].task[*]#list",
+      "display": "List tasks in project 1 / workspace 2",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "project",
+      "1",
+      "workspace",
+      "2",
+      "tasks",
+      "list",
+      "--lane",
+      "3",
+      "--tag",
+      "review"
+    ],
+    "expected": {
+      "operation_id": "tasks.list",
+      "permission": "iurio.project[id=1].workspace[id=2].task[*]#list",
+      "display": "List tasks in project 1 / workspace 2",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "project",
+      "1",
+      "workspace",
+      "2",
+      "tasks",
+      "list",
+      "--output",
+      "/tmp/x"
+    ],
+    "expected": null
   }
 ]

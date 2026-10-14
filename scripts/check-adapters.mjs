@@ -11,7 +11,8 @@
 //   node scripts/check-adapters.mjs --record git   # rewrite golden expectations from the adapter (review the diff)
 
 import { spawnSync } from 'node:child_process'
-import { existsSync, mkdtempSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { createHash } from 'node:crypto'
+import { existsSync, mkdtempSync, readdirSync, readFileSync, realpathSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import Ajv from 'ajv/dist/2020.js'
@@ -143,42 +144,76 @@ function listed(help, name) {
   return new RegExp(`--(\\[no-\\])?${escaped}\\b`).test(help) || (negated !== null && new RegExp(`--\\[no-\\]${negated}\\b`).test(help))
 }
 
+/** The installed executable on PATH, or null. */
+function installed(executable) {
+  for (const directory of (process.env.PATH ?? '').split(':').filter(Boolean)) {
+    const path = join(directory, executable)
+    if (existsSync(path)) return realpathSync(path)
+  }
+  return null
+}
+
+/** A tested executable on this runner: by file digest (`tested_digests`) or by version output (`tested_versions`). */
+function testedExecutable(id, cli, cwd) {
+  const path = installed(cli.executable)
+  if (!path) {
+    note(id, `${cli.executable} is not installed on this runner; real-CLI check skipped`)
+    return null
+  }
+  const digest = `SHA-256:${createHash('sha256').update(readFileSync(path)).digest('hex')}`
+  if (cli.tested_digests?.includes(digest)) return { path, label: digest }
+  if (!cli.tested_versions) {
+    note(id, `runner has ${path} with ${digest}, which tested_digests does not list; option check skipped`)
+    return null
+  }
+  const probe = run(path, cli.version_command, cwd)
+  const version = new RegExp(cli.version_pattern, 'm').exec(probe.output)?.[1] ?? null
+  if (!version) {
+    fail(id, `version_pattern does not match the output of ${cli.executable} ${cli.version_command.join(' ')}`)
+    return null
+  }
+  if (!cli.tested_versions.includes(version)) {
+    note(id, `runner has ${cli.executable} ${version}, adapter is tested with ${cli.tested_versions.join(', ')}; option check skipped`)
+    return null
+  }
+  return { path, label: version }
+}
+
 function checkRealCli(id, adapter, checks) {
   const { cli } = adapter
   // Some CLIs print command help only inside a repository (git diff, git worktree); the registry checkout is one.
   const cwd = ROOT
-  if (!cli.tested_versions) {
-    if (checks.help) fail(id, 'checks.json help needs [cli] tested_versions')
-    note(id, 'no tested_versions declared; real-CLI check skipped')
-    return
-  }
-  const probe = run(cli.executable, cli.version_command, cwd)
-  if (probe.missing) {
-    note(id, `${cli.executable} is not installed on this runner; real-CLI check skipped`)
-    return
-  }
-  const version = new RegExp(cli.version_pattern, 'm').exec(probe.output)?.[1] ?? null
-  if (!version) {
-    fail(id, `version_pattern does not match the output of ${cli.executable} ${cli.version_command.join(' ')}`)
-    return
-  }
-  if (!cli.tested_versions.includes(version)) {
-    note(id, `runner has ${cli.executable} ${version}, adapter is tested with ${cli.tested_versions.join(', ')}; option check skipped`)
+  if (!cli.tested_versions && !cli.tested_digests) {
+    if (checks.help) fail(id, 'checks.json help needs [cli] tested_versions or tested_digests')
+    note(id, 'no tested_versions or tested_digests declared; real-CLI check skipped')
     return
   }
   if (!checks.help) {
-    fail(id, 'tested_versions needs checks.json help to compare declared options with the CLI')
+    // A single-file tool listed by digest may have no help output; a versioned CLI always prints one.
+    if (cli.tested_versions) fail(id, 'tested_versions needs checks.json help to compare declared options with the CLI')
+    else note(id, 'tested by digest without help arguments; option check skipped')
     return
   }
-  const globalHelp = run(cli.executable, checks.help, cwd).output
+  const tested = testedExecutable(id, cli, cwd)
+  if (!tested) return
+  const version = tested.label
+  const globalHelp = run(tested.path, checks.help, cwd).output
   for (const option of (adapter.operations[0]?.global_options ?? []).map(entry => entry.split('=')[0])) {
     if (!listed(globalHelp, option)) fail(id, `global option -${option.length === 1 ? '' : '-'}${option} is not listed by ${cli.executable} ${checks.help.join(' ')}`)
+  }
+  const absent = new Set(checks.absent_operations ?? [])
+  for (const name of absent) {
+    if (!adapter.operations.some(operation => operation.id === name)) fail(id, `absent_operations lists unknown operation ${name}`)
   }
   for (const operation of adapter.operations) {
     const words = operation.command.filter(token => !token.startsWith('-'))
     const declared = [...optionNames(operation.command), ...(operation.required_options ?? []), ...(operation.value_options ?? []), ...(operation.flag_options ?? [])]
     if (!declared.length) continue
-    const help = run(cli.executable, [...words, ...checks.help], cwd).output
+    const help = run(tested.path, [...words, ...checks.help], cwd).output
+    if (absent.has(operation.id) && !help.includes([cli.executable, ...words].join(' '))) {
+      note(id, `${operation.id}: ${cli.executable} ${version} does not provide ${words.join(' ')}; option check skipped`)
+      continue
+    }
     const unlisted = new Set(checks.unlisted_options?.[operation.id] ?? [])
     for (const name of declared) {
       const present = listed(help, name)

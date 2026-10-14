@@ -1,10 +1,23 @@
 schema = "openape-shapes/v1"
 
+# Azure CLI with the azure-devops extension (issue 1473). Operations used by
+# Pods declare their options; `rest` is split by method so a GET grant never
+# covers a POST. Declared options were checked against `az <command> --help`
+# of azure-cli 2.83.0 (registry CI, scripts/check-adapters.mjs).
+# tested_digests holds the Homebrew azure-cli 2.83.0 launcher
+# (/opt/homebrew/Cellar/azure-cli/2.83.0/bin/az): it starts the bundled Python
+# and cannot run in the isolated version probe, so its digest is the tested
+# version.
+
 [cli]
 id = "az"
 executable = "az"
 audience = "shapes"
-version = "1"
+version = "2"
+tested_versions = ["2.83.0"]
+version_command = ["--version"]
+version_pattern = '^azure-cli\s+(\d+\.\d+\.\d+)'
+tested_digests = ["SHA-256:7eb79dbdb36ccb6f3f008afd5780b8da06e6cb46c5cc4441dad19b2926100f82"]
 
 [[operation]]
 id = "repos.list"
@@ -38,15 +51,39 @@ resource_chain = ["organization:url={org}", "project:name={project}", "repo:name
 id = "repos.pr.list"
 command = ["repos", "pr", "list"]
 required_options = ["org", "project", "repository"]
+value_options = ["status", "top", "skip", "creator", "reviewer", "source-branch", "target-branch", "output", "query"]
+flag_options = ["only-show-errors"]
 display = "List pull requests for repository {repository} in project {project}"
 action = "list"
 risk = "low"
 resource_chain = ["organization:url={org}", "project:name={project}", "repo:name={repository}", "pull-request:*"]
 
+[operation.presentation]
+title = { de = "Pull Requests von {repository} auflisten", en = "List the pull requests of {repository}" }
+
+[operation.presentation.consequence]
+allows = { de = "Liest die Liste der Pull Requests dieses Repositorys in Azure DevOps.", en = "Reads the list of pull requests of this repository in Azure DevOps." }
+does_not_allow = { de = "Erstellt, ändert oder schließt keine Pull Requests.", en = "Does not create, change or close pull requests." }
+
+[[operation.presentation.facts]]
+label = { de = "Organisation", en = "Organization" }
+binding = "org"
+format = "code"
+
+[[operation.presentation.facts]]
+label = { de = "Projekt", en = "Project" }
+binding = "project"
+
+[[operation.presentation.facts]]
+label = { de = "Repository", en = "Repository" }
+binding = "repository"
+
 [[operation]]
 id = "repos.pr.show"
 command = ["repos", "pr", "show"]
 required_options = ["org", "id"]
+value_options = ["output", "query"]
+flag_options = ["only-show-errors"]
 display = "Read pull request {id} in organization {org}"
 action = "read"
 risk = "low"
@@ -81,3 +118,112 @@ action = "update"
 risk = "high"
 exact_command = true
 resource_chain = ["organization:url={org}", "pull-request:id={id}"]
+
+# ══════════════════════════════════════════════════════
+# SESSION AND REST (Pods PR monitor, issue 1473)
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "login.device-code"
+command = ["login", "--use-device-code", "--allow-no-subscriptions"]
+display = "Sign in to Azure with a device code"
+action = "login"
+risk = "high"
+exact_command = true
+resource_chain = ["account:*"]
+
+[operation.presentation]
+title = { de = "Bei Azure mit Gerätecode anmelden", en = "Sign in to Azure with a device code" }
+
+[operation.presentation.consequence]
+allows = { de = "Startet die Azure-Anmeldung; der Code wird im Browser bestätigt.", en = "Starts the Azure sign-in; the code is confirmed in the browser." }
+does_not_allow = { de = "Liest oder ändert keine Azure-DevOps-Daten.", en = "Does not read or change Azure DevOps data." }
+
+[[operation]]
+id = "version"
+command = ["version"]
+value_options = []
+flag_options = []
+display = "Show Azure CLI and extension versions"
+action = "read"
+risk = "low"
+resource_chain = ["runtime:*"]
+
+[operation.presentation]
+title = { de = "Azure-CLI-Version anzeigen", en = "Show the Azure CLI version" }
+
+[operation.presentation.consequence]
+allows = { de = "Zeigt die Versionen der Azure CLI und ihrer Erweiterungen.", en = "Shows the versions of the Azure CLI and its extensions." }
+
+[[operation]]
+id = "account.show"
+command = ["account", "show"]
+value_options = []
+flag_options = []
+display = "Show the signed-in Azure account"
+action = "read"
+risk = "low"
+resource_chain = ["account:*"]
+
+[operation.presentation]
+title = { de = "Angemeldetes Azure-Konto anzeigen", en = "Show the signed-in Azure account" }
+
+[operation.presentation.consequence]
+allows = { de = "Zeigt Konto und Mandant der aktuellen Anmeldung.", en = "Shows the account and tenant of the current sign-in." }
+does_not_allow = { de = "Ändert keine Anmeldung und keine Abonnements.", en = "Does not change the sign-in or subscriptions." }
+
+[[operation]]
+id = "rest.get"
+command = ["rest", "--method", "GET"]
+required_options = ["resource", "url"]
+value_options = ["output"]
+flag_options = ["only-show-errors"]
+display = "Azure REST GET {url} with audience {resource}"
+action = "read"
+risk = "low"
+resource_chain = ["http:method=GET", "audience:id={resource}"]
+
+[operation.presentation]
+title = { de = "Azure-REST-Daten lesen", en = "Read Azure REST data" }
+
+[operation.presentation.consequence]
+allows = { de = "Sendet GET-Anfragen an jede Adresse, die das Zugriffstoken dieser Zielgruppe erreicht.", en = "Sends GET requests to any address the access token of this audience reaches." }
+does_not_allow = { de = "Sendet keine POST-, PUT-, PATCH- oder DELETE-Anfragen und schreibt keine Dateien.", en = "Sends no POST, PUT, PATCH or DELETE requests and writes no files." }
+
+[[operation.presentation.facts]]
+label = { de = "Zielgruppe", en = "Audience" }
+binding = "resource"
+format = "code"
+
+[[operation.presentation.details]]
+label = { de = "Adresse", en = "URL" }
+binding = "url"
+format = "code"
+
+[[operation]]
+id = "rest.post"
+command = ["rest", "--method", "POST"]
+required_options = ["resource", "url", "body"]
+value_options = ["output"]
+flag_options = ["only-show-errors"]
+display = "Azure REST POST to {url} with audience {resource}"
+action = "request"
+risk = "medium"
+resource_chain = ["http:method=POST", "audience:id={resource}", "endpoint:url={url}"]
+
+[operation.presentation]
+title = { de = "Azure-REST-Anfrage an {url} senden", en = "Send an Azure REST request to {url}" }
+
+[operation.presentation.consequence]
+allows = { de = "Sendet POST-Anfragen mit beliebigem Inhalt an genau diese Adresse.", en = "Sends POST requests with any body to exactly this address." }
+does_not_allow = { de = "Erreicht keine andere Adresse und schreibt keine Dateien.", en = "Reaches no other address and writes no files." }
+
+[[operation.presentation.facts]]
+label = { de = "Adresse", en = "URL" }
+binding = "url"
+format = "code"
+
+[[operation.presentation.facts]]
+label = { de = "Zielgruppe", en = "Audience" }
+binding = "resource"
+format = "code"

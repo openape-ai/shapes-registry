@@ -1,9 +1,10 @@
 {
   "legacy_operations": [
     "repos.list",
-    "repos.show",
-    "repos.pr.list",
-    "repos.pr.show"
+    "repos.show"
   ],
-  "legacy_reason": "Predates declared options (issue 1468): these operations still accept undeclared options until value_options/flag_options are declared."
+  "legacy_reason": "Predates declared options (issue 1468): these operations still accept undeclared options until value_options/flag_options are declared.",
+  "help": [
+    "--help"
+  ]
 }

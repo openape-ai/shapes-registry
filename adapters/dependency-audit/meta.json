@@ -1,0 +1,17 @@
+{
+  "id": "dependency-audit",
+  "name": "Dependency audit",
+  "description": "Shapes adapter for the OpenApe dependency audit — one read-only vulnerability check per configured project",
+  "author": "delta-mind",
+  "category": "security",
+  "tags": [
+    "openape",
+    "pods",
+    "dependencies",
+    "audit"
+  ],
+  "executable": "dependency-audit",
+  "risk_summary": "One low-risk read per configured project; no options are accepted.",
+  "homepage": "https://openape.ai",
+  "min_shapes_version": "0.10.0"
+}

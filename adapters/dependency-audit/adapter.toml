@@ -1,0 +1,36 @@
+schema = "openape-shapes/v1"
+
+# dependency-audit (issue 1473): the single-file dependency audit of the
+# OpenApe dependency audit Pod (run-audit.mjs, run by Node.js). It audits one
+# configured project and takes no options. It has no version command, so the
+# tested script is listed by file digest.
+
+[cli]
+id = "dependency-audit"
+executable = "dependency-audit"
+audience = "shapes"
+version = "1"
+tested_digests = ["SHA-256:9c6f944306cf993d846750e4bad629eb4042a0fedb20b49e9c3f98612c91500a"]
+
+[[operation]]
+id = "dependency-audit.project"
+command = []
+positionals = ["project"]
+value_options = []
+flag_options = []
+display = "Check dependency vulnerabilities in {project}"
+action = "read"
+risk = "low"
+resource_chain = ["repository:name={project}"]
+
+[operation.presentation]
+title = { de = "Abhängigkeiten von {project} prüfen", en = "Audit the dependencies of {project}" }
+
+[operation.presentation.consequence]
+allows = { de = "Liest die Abhängigkeiten des konfigurierten Projekts und meldet bekannte Schwachstellen.", en = "Reads the dependencies of the configured project and reports known vulnerabilities." }
+does_not_allow = { de = "Ändert, installiert und aktualisiert keine Abhängigkeiten.", en = "Does not change, install or update dependencies." }
+
+[[operation.presentation.facts]]
+label = { de = "Projekt", en = "Project" }
+binding = "project"
+format = "code"
