@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-10-14T07:29:03.156Z",
+  "generated_at": "2026-10-14T08:15:32.428Z",
   "adapters": [
     {
       "id": "apes",
@@ -372,7 +372,7 @@
       "author": "delta-mind",
       "executable": "pod-runtime",
       "min_shapes_version": "0.10.0",
-      "digest": "SHA-256:a6d2591ce95b7ccca9ae5efecbc974379fdea2d9ee3644bf80d79a13fd450a43",
+      "digest": "SHA-256:a6b121037e733bfd863b4638229512c36036f7a4b994901daf58095774d40ff1",
       "grant_digest": "SHA-256:3151180871015971f972b17a6f717ce35408e6393fbc0dd7d03cc5444ce31a1e",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/pod-runtime/adapter.toml"
     },

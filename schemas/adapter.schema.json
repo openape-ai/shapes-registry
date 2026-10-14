@@ -212,6 +212,18 @@
         },
         "details_note": {
           "$ref": "#/$defs/text"
+        },
+        "requires": {
+          "description": "Conditions a request must meet for the IdP to use this presentation; otherwise it shows the generic card. target_host is a template over always-bound bindings that must equal the request's target_host.",
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "target_host": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            }
+          }
         }
       }
     },
