@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// Writes registry.json from adapters/*. With --check it only verifies that the
+// committed registry.json lists the current adapters and digests (registry CI);
+// the mirrors are read-only, so CI never commits a regenerated file.
 
 import { createHash } from 'node:crypto'
 import { readdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs'
@@ -60,6 +63,16 @@ function buildRegistry() {
     console.error('Errors:')
     for (const err of errors) console.error(`  - ${err}`)
     process.exit(1)
+  }
+
+  if (process.argv.includes('--check')) {
+    const committed = existsSync(OUTPUT) ? JSON.parse(readFileSync(OUTPUT, 'utf-8')).adapters : null
+    if (JSON.stringify(committed) !== JSON.stringify(adapters)) {
+      console.error('registry.json is stale: run `node scripts/build-registry.mjs` and commit it')
+      process.exit(1)
+    }
+    console.log(`registry.json is current: ${adapters.length} adapters`)
+    return
   }
 
   const registry = {

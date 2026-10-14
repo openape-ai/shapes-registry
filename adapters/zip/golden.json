@@ -1,0 +1,34 @@
+[
+  {
+    "argv": [
+      "own/archive",
+      "own/path"
+    ],
+    "expected": {
+      "operation_id": "zip.compress",
+      "permission": "zip.filesystem[path=own/path].filesystem[path=own/archive]#create",
+      "display": "Compress own/path into own/archive",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "-r",
+      "own/archive",
+      "own/path"
+    ],
+    "expected": {
+      "operation_id": "zip.compress-recursive",
+      "permission": "zip.filesystem[path=own/path].filesystem[path=own/archive]#create",
+      "display": "Recursively compress own/path into own/archive",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "__no_such_command__"
+    ],
+    "expected": null,
+    "note": "Unknown commands never match."
+  }
+]

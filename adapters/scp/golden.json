@@ -1,0 +1,33 @@
+[
+  {
+    "argv": [
+      "own/source",
+      "own/destination"
+    ],
+    "expected": {
+      "operation_id": "scp.upload",
+      "permission": "scp.filesystem[path=own/source].network[path=own/destination]#upload",
+      "display": "Copy own/source to remote own/destination",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "own/source",
+      "own/destination"
+    ],
+    "expected": {
+      "operation_id": "scp.upload",
+      "permission": "scp.filesystem[path=own/source].network[path=own/destination]#upload",
+      "display": "Copy own/source to remote own/destination",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "__no_such_command__"
+    ],
+    "expected": null,
+    "note": "Unknown commands never match."
+  }
+]

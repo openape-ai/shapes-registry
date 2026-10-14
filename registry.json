@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-07-29T16:07:03.031Z",
+  "generated_at": "2026-10-14T07:00:53.192Z",
   "adapters": [
     {
       "id": "apes",
@@ -147,7 +147,7 @@
     {
       "id": "git",
       "name": "Git Version Control",
-      "description": "Shapes adapter for git — staging, committing, pushing, pulling, branching",
+      "description": "Shapes adapter for git — declared options, git -C, read-only replay, exact rebase and push",
       "category": "devtools",
       "tags": [
         "git",
@@ -157,8 +157,8 @@
       ],
       "author": "delta-mind",
       "executable": "git",
-      "min_shapes_version": "0.2.0",
-      "digest": "SHA-256:5d9962f4eec90a6dade576eb5d0cfa510c2f5b433d1a15f23d387c99d13591b5",
+      "min_shapes_version": "0.10.0",
+      "digest": "SHA-256:1b118633c934b88d8a258becf2a0fd94f4aa9ce364cc4ca800c6925418b84a79",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/git/adapter.toml"
     },
     {
@@ -321,6 +321,40 @@
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:30cc9da3ae445ef24fdba9424b4ba7b76adfe6b368702420b6cc04e7cc4c5ad4",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/o365mail/adapter.toml"
+    },
+    {
+      "id": "pod-http",
+      "name": "OpenApe Pods HTTP access",
+      "description": "Shapes adapter for OpenApe Pods HTTPS access — one origin and method per request",
+      "category": "other",
+      "tags": [
+        "openape",
+        "pods",
+        "http",
+        "network"
+      ],
+      "author": "delta-mind",
+      "executable": "pod-http",
+      "min_shapes_version": "0.10.0",
+      "digest": "SHA-256:ffbd24f7a9305386efdeae21a3985b7d17f402f59045d44b832140c8af11f444",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/pod-http/adapter.toml"
+    },
+    {
+      "id": "pod-runtime",
+      "name": "OpenApe Pods runtime",
+      "description": "Shapes adapter for the OpenApe Pods runtime authority — one grant lets a Pod run its stored script",
+      "category": "other",
+      "tags": [
+        "openape",
+        "pods",
+        "runtime",
+        "automation"
+      ],
+      "author": "delta-mind",
+      "executable": "pod-runtime",
+      "min_shapes_version": "0.10.0",
+      "digest": "SHA-256:a6d2591ce95b7ccca9ae5efecbc974379fdea2d9ee3644bf80d79a13fd450a43",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/pod-runtime/adapter.toml"
     },
     {
       "id": "rm",

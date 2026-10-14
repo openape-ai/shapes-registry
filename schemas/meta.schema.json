@@ -25,7 +25,7 @@
     },
     "category": {
       "type": "string",
-      "enum": ["devtools", "infrastructure", "mail", "cloud", "database", "monitoring", "other"],
+      "enum": ["devtools", "infrastructure", "mail", "cloud", "database", "monitoring", "security", "other"],
       "description": "Primary category"
     },
     "tags": {

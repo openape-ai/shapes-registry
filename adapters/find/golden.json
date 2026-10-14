@@ -1,0 +1,35 @@
+[
+  {
+    "argv": [
+      "--name",
+      "own/name",
+      "own/path"
+    ],
+    "expected": {
+      "operation_id": "find.by-name",
+      "permission": "find.filesystem[path=own/path]#read",
+      "display": "Find files in own/path matching name own/name",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "--type",
+      "own/type",
+      "own/path"
+    ],
+    "expected": {
+      "operation_id": "find.by-type",
+      "permission": "find.filesystem[path=own/path]#read",
+      "display": "Find files in own/path of type own/type",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "__no_such_command__"
+    ],
+    "expected": null,
+    "note": "Unknown commands never match."
+  }
+]

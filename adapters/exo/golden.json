@@ -1,0 +1,63 @@
+[
+  {
+    "argv": [
+      "dns",
+      "list"
+    ],
+    "expected": {
+      "operation_id": "dns.list",
+      "permission": "exo.account[name=current].dns-domain[*]#list",
+      "display": "List Exoscale DNS domains",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "dns",
+      "show",
+      "own/domain"
+    ],
+    "expected": {
+      "operation_id": "dns.show",
+      "permission": "exo.account[name=current].dns-domain[name=own/domain].dns-record[*]#list",
+      "display": "List DNS records in domain own/domain",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "dns",
+      "show",
+      "--name",
+      "own/name",
+      "own/domain"
+    ],
+    "expected": {
+      "operation_id": "dns.show",
+      "permission": "exo.account[name=current].dns-domain[name=own/domain].dns-record[*]#list",
+      "display": "List DNS records in domain own/domain",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "dns",
+      "remove",
+      "own/domain",
+      "own/record"
+    ],
+    "expected": {
+      "operation_id": "dns.remove",
+      "permission": "exo.account[name=current].dns-domain[name=own/domain].dns-record[name=own/record]#delete",
+      "display": "Delete DNS record own/record in domain own/domain",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "__no_such_command__"
+    ],
+    "expected": null,
+    "note": "Unknown commands never match."
+  }
+]

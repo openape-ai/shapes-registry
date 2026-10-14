@@ -1,0 +1,28 @@
+{
+  "legacy_operations": [
+    "mytasks.list",
+    "projects.list",
+    "workspaces.list",
+    "datasafe.list",
+    "datasafe.download",
+    "datasafe.file.download",
+    "datasafe.file.upload",
+    "datasafe.file.upload-version",
+    "lanes.list",
+    "tasks.list",
+    "task.add",
+    "task.show",
+    "task.edit",
+    "task.move",
+    "task.archive",
+    "task.unarchive",
+    "task.remove",
+    "task.log",
+    "task.comments.list",
+    "task.comment.add",
+    "task.attachments.list",
+    "task.attachment.add",
+    "task.attachment.remove"
+  ],
+  "legacy_reason": "Predates declared options (issue 1468): these operations still accept undeclared options until value_options/flag_options are declared."
+}

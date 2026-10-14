@@ -1,0 +1,21 @@
+{
+  "legacy_operations": [
+    "mail.list",
+    "mail.read",
+    "mail.search",
+    "mail.query",
+    "mail.attachments",
+    "mail.mark-read",
+    "mail.mark-unread",
+    "mail.move",
+    "drafts.list",
+    "drafts.create",
+    "drafts.delete",
+    "folders.list",
+    "rules.list",
+    "rules.get",
+    "rules.enable",
+    "rules.disable"
+  ],
+  "legacy_reason": "Predates declared options (issue 1468): these operations still accept undeclared options until value_options/flag_options are declared."
+}

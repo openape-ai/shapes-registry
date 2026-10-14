@@ -1,0 +1,53 @@
+[
+  {
+    "argv": [
+      "own/url"
+    ],
+    "expected": {
+      "operation_id": "curl.get",
+      "permission": "curl.network[url=own/url]#read",
+      "display": "GET request to own/url",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "-X",
+      "POST",
+      "-d",
+      "own/d",
+      "own/url"
+    ],
+    "expected": {
+      "operation_id": "curl.post",
+      "permission": "curl.network[url=own/url]#create",
+      "display": "POST request to own/url",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "-o",
+      "own/output",
+      "own/url"
+    ],
+    "expected": {
+      "operation_id": "curl.download",
+      "permission": "curl.network[url=own/url].filesystem[path=own/output]#download",
+      "display": "Download own/url to own/output",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "__no_such_command__"
+    ],
+    "expected": {
+      "operation_id": "curl.get",
+      "permission": "curl.network[url=__no_such_command__]#read",
+      "display": "GET request to __no_such_command__",
+      "exact_command": false
+    },
+    "note": "Unknown commands never match."
+  }
+]

@@ -1,0 +1,399 @@
+[
+  {
+    "argv": [
+      "mytasks"
+    ],
+    "expected": {
+      "operation_id": "mytasks.list",
+      "permission": "iurio.user[id=current].task[*]#list",
+      "display": "List my tasks",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "projects",
+      "list"
+    ],
+    "expected": {
+      "operation_id": "projects.list",
+      "permission": "iurio.project[*]#list",
+      "display": "List projects",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "project",
+      "own/project_id",
+      "workspaces",
+      "list"
+    ],
+    "expected": {
+      "operation_id": "workspaces.list",
+      "permission": "iurio.project[id=own/project_id].workspace[*]#list",
+      "display": "List workspaces in project own/project_id",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "project",
+      "own/project_id",
+      "workspace",
+      "own/workspace_id",
+      "datasafe",
+      "list"
+    ],
+    "expected": {
+      "operation_id": "datasafe.list",
+      "permission": "iurio.project[id=own/project_id].workspace[id=own/workspace_id].datasafe[*]#list",
+      "display": "List datasafe in project own/project_id / workspace own/workspace_id",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "project",
+      "own/project_id",
+      "workspace",
+      "own/workspace_id",
+      "datasafe",
+      "download",
+      "own/path"
+    ],
+    "expected": {
+      "operation_id": "datasafe.download",
+      "permission": "iurio.project[id=own/project_id].workspace[id=own/workspace_id].datasafe[*]#read",
+      "display": "Download datasafe of project own/project_id / workspace own/workspace_id to own/path",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "project",
+      "own/project_id",
+      "workspace",
+      "own/workspace_id",
+      "datasafe",
+      "file",
+      "own/file_id",
+      "download",
+      "own/path"
+    ],
+    "expected": {
+      "operation_id": "datasafe.file.download",
+      "permission": "iurio.project[id=own/project_id].workspace[id=own/workspace_id].datasafe[file=own/file_id]#read",
+      "display": "Download datasafe file own/file_id to own/path",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "project",
+      "own/project_id",
+      "workspace",
+      "own/workspace_id",
+      "datasafe",
+      "file",
+      "upload",
+      "own/folder_id",
+      "own/path"
+    ],
+    "expected": {
+      "operation_id": "datasafe.file.upload",
+      "permission": "iurio.project[id=own/project_id].workspace[id=own/workspace_id].datasafe[folder=own/folder_id]#create",
+      "display": "Upload own/path into datasafe folder own/folder_id",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "project",
+      "own/project_id",
+      "workspace",
+      "own/workspace_id",
+      "datasafe",
+      "file",
+      "upload-version",
+      "own/file_id",
+      "own/path"
+    ],
+    "expected": {
+      "operation_id": "datasafe.file.upload-version",
+      "permission": "iurio.project[id=own/project_id].workspace[id=own/workspace_id].datasafe[file=own/file_id]#edit",
+      "display": "Upload new version of datasafe file own/file_id from own/path",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "project",
+      "own/project_id",
+      "workspace",
+      "own/workspace_id",
+      "lanes",
+      "list"
+    ],
+    "expected": {
+      "operation_id": "lanes.list",
+      "permission": "iurio.project[id=own/project_id].workspace[id=own/workspace_id].lane[*]#list",
+      "display": "List lanes in project own/project_id / workspace own/workspace_id",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "project",
+      "own/project_id",
+      "workspace",
+      "own/workspace_id",
+      "tasks",
+      "list"
+    ],
+    "expected": {
+      "operation_id": "tasks.list",
+      "permission": "iurio.project[id=own/project_id].workspace[id=own/workspace_id].task[*]#list",
+      "display": "List tasks in project own/project_id / workspace own/workspace_id",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "project",
+      "own/project_id",
+      "workspace",
+      "own/workspace_id",
+      "task",
+      "add",
+      "own/lane_id",
+      "own/text"
+    ],
+    "expected": {
+      "operation_id": "task.add",
+      "permission": "iurio.project[id=own/project_id].workspace[id=own/workspace_id].lane[id=own/lane_id].task[*]#create",
+      "display": "Add task to lane own/lane_id: own/text",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "project",
+      "own/project_id",
+      "workspace",
+      "own/workspace_id",
+      "task",
+      "own/task_id",
+      "show"
+    ],
+    "expected": {
+      "operation_id": "task.show",
+      "permission": "iurio.project[id=own/project_id].workspace[id=own/workspace_id].task[id=own/task_id]#read",
+      "display": "Show task own/task_id",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "project",
+      "own/project_id",
+      "workspace",
+      "own/workspace_id",
+      "task",
+      "own/task_id",
+      "edit"
+    ],
+    "expected": {
+      "operation_id": "task.edit",
+      "permission": "iurio.project[id=own/project_id].workspace[id=own/workspace_id].task[id=own/task_id]#edit",
+      "display": "Edit task own/task_id",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "project",
+      "own/project_id",
+      "workspace",
+      "own/workspace_id",
+      "task",
+      "own/task_id",
+      "move",
+      "own/lane_id"
+    ],
+    "expected": {
+      "operation_id": "task.move",
+      "permission": "iurio.project[id=own/project_id].workspace[id=own/workspace_id].task[id=own/task_id].lane[id=own/lane_id]#edit",
+      "display": "Move task own/task_id to lane own/lane_id",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "project",
+      "own/project_id",
+      "workspace",
+      "own/workspace_id",
+      "task",
+      "own/task_id",
+      "archive"
+    ],
+    "expected": {
+      "operation_id": "task.archive",
+      "permission": "iurio.project[id=own/project_id].workspace[id=own/workspace_id].task[id=own/task_id]#edit",
+      "display": "Archive task own/task_id",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "project",
+      "own/project_id",
+      "workspace",
+      "own/workspace_id",
+      "task",
+      "own/task_id",
+      "unarchive"
+    ],
+    "expected": {
+      "operation_id": "task.unarchive",
+      "permission": "iurio.project[id=own/project_id].workspace[id=own/workspace_id].task[id=own/task_id]#edit",
+      "display": "Unarchive task own/task_id",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "project",
+      "own/project_id",
+      "workspace",
+      "own/workspace_id",
+      "task",
+      "own/task_id",
+      "remove"
+    ],
+    "expected": {
+      "operation_id": "task.remove",
+      "permission": "iurio.project[id=own/project_id].workspace[id=own/workspace_id].task[id=own/task_id]#delete",
+      "display": "Remove task own/task_id",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "project",
+      "own/project_id",
+      "workspace",
+      "own/workspace_id",
+      "task",
+      "own/task_id",
+      "log"
+    ],
+    "expected": {
+      "operation_id": "task.log",
+      "permission": "iurio.project[id=own/project_id].workspace[id=own/workspace_id].task[id=own/task_id]#read",
+      "display": "Show activity log of task own/task_id",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "project",
+      "own/project_id",
+      "workspace",
+      "own/workspace_id",
+      "task",
+      "own/task_id",
+      "comments",
+      "list"
+    ],
+    "expected": {
+      "operation_id": "task.comments.list",
+      "permission": "iurio.project[id=own/project_id].workspace[id=own/workspace_id].task[id=own/task_id].comment[*]#list",
+      "display": "List comments on task own/task_id",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "project",
+      "own/project_id",
+      "workspace",
+      "own/workspace_id",
+      "task",
+      "own/task_id",
+      "comment",
+      "add",
+      "own/text"
+    ],
+    "expected": {
+      "operation_id": "task.comment.add",
+      "permission": "iurio.project[id=own/project_id].workspace[id=own/workspace_id].task[id=own/task_id].comment[*]#create",
+      "display": "Add comment to task own/task_id: own/text",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "project",
+      "own/project_id",
+      "workspace",
+      "own/workspace_id",
+      "task",
+      "own/task_id",
+      "attachments",
+      "list"
+    ],
+    "expected": {
+      "operation_id": "task.attachments.list",
+      "permission": "iurio.project[id=own/project_id].workspace[id=own/workspace_id].task[id=own/task_id].attachment[*]#list",
+      "display": "List attachments of task own/task_id",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "project",
+      "own/project_id",
+      "workspace",
+      "own/workspace_id",
+      "task",
+      "own/task_id",
+      "attachment",
+      "add",
+      "own/url"
+    ],
+    "expected": {
+      "operation_id": "task.attachment.add",
+      "permission": "iurio.project[id=own/project_id].workspace[id=own/workspace_id].task[id=own/task_id].attachment[*]#create",
+      "display": "Attach own/url to task own/task_id",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "project",
+      "own/project_id",
+      "workspace",
+      "own/workspace_id",
+      "task",
+      "own/task_id",
+      "attachment",
+      "own/attachment_id",
+      "remove"
+    ],
+    "expected": {
+      "operation_id": "task.attachment.remove",
+      "permission": "iurio.project[id=own/project_id].workspace[id=own/workspace_id].task[id=own/task_id].attachment[id=own/attachment_id]#delete",
+      "display": "Remove attachment own/attachment_id from task own/task_id",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "__no_such_command__"
+    ],
+    "expected": null,
+    "note": "Unknown commands never match."
+  }
+]

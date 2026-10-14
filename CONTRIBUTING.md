@@ -3,12 +3,15 @@
 ## Adding a New Adapter
 
 1. Create a directory under `adapters/` with your adapter ID (lowercase, alphanumeric + hyphens)
-2. Add three files:
-   - `adapter.toml` — the Shape definition (schema `openape-shapes/v1`)
+2. Add these files:
+   - `adapter.toml` — the Shape definition (schema `openape-shapes/v1`, `schemas/adapter.schema.json`)
    - `meta.json` — metadata (must validate against `schemas/meta.schema.json`)
    - `README.md` — documentation with operation table and examples
-3. Run `node scripts/build-registry.mjs` to verify the registry builds
-4. Open a pull request
+   - `golden.json` — argv cases and the grant detail each must derive (`schemas/golden.schema.json`); every operation needs a matching case
+   - `checks.json` — optional check settings (`schemas/checks.schema.json`): the `help` arguments for the real-CLI comparison and reviewed exceptions
+3. Declare `value_options`/`flag_options` on every operation that is not bound to the exact command, and `tested_versions` with `version_command` and `version_pattern` for a real CLI
+4. Run `node scripts/build-registry.mjs` and `npm run check` (see the README)
+5. Open a pull request; the owner accepts the rules by merging it
 
 ## Adapter ID Rules
 

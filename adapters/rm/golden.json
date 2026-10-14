@@ -1,0 +1,49 @@
+[
+  {
+    "argv": [
+      "own/path"
+    ],
+    "expected": {
+      "operation_id": "rm.remove",
+      "permission": "rm.filesystem[path=own/path]#delete",
+      "display": "Remove file own/path",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "-r",
+      "own/path"
+    ],
+    "expected": {
+      "operation_id": "rm.remove-recursive",
+      "permission": "rm.filesystem[path=own/path]#delete",
+      "display": "Remove directory own/path recursively",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "-rf",
+      "own/path"
+    ],
+    "expected": {
+      "operation_id": "rm.remove-force",
+      "permission": "rm.filesystem[path=own/path]#delete",
+      "display": "Force remove own/path recursively",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "__no_such_command__"
+    ],
+    "expected": {
+      "operation_id": "rm.remove",
+      "permission": "rm.filesystem[path=__no_such_command__]#delete",
+      "display": "Remove file __no_such_command__",
+      "exact_command": true
+    },
+    "note": "Unknown commands never match."
+  }
+]

@@ -1,0 +1,34 @@
+[
+  {
+    "argv": [
+      "own/target",
+      "own/link"
+    ],
+    "expected": {
+      "operation_id": "ln.link",
+      "permission": "ln.filesystem[path=own/target].filesystem[path=own/link]#create",
+      "display": "Create hard link own/link to own/target",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "-s",
+      "own/target",
+      "own/link"
+    ],
+    "expected": {
+      "operation_id": "ln.symlink",
+      "permission": "ln.filesystem[path=own/target].filesystem[path=own/link]#create",
+      "display": "Create symbolic link own/link to own/target",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "__no_such_command__"
+    ],
+    "expected": null,
+    "note": "Unknown commands never match."
+  }
+]

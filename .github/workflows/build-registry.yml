@@ -1,17 +1,17 @@
-name: Build Registry
+name: Registry checks
 
+# The canonical repository is repos.openape.ai; Forgejo and GitHub are read-only
+# mirrors. CI therefore verifies the committed registry.json instead of
+# committing a regenerated one.
 on:
+  pull_request:
   push:
     branches: [main]
-    paths:
-      - 'adapters/**'
-      - 'scripts/build-registry.mjs'
+  workflow_dispatch:
 
 jobs:
-  build:
+  check:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -19,13 +19,11 @@ jobs:
         with:
           node-version: 22
 
-      - name: Build registry.json
-        run: node scripts/build-registry.mjs
+      - name: Install pinned check dependencies
+        run: npm ci
 
-      - name: Commit if changed
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add registry.json
-          git diff --cached --quiet || git commit -m "chore: regenerate registry.json"
-          git push
+      # Strict parsing, JSON schemas, golden argv fixtures, the hostile-option
+      # matrix and, for CLIs installed here in a tested version, their help output.
+      # A missing or untested CLI is reported as a notice, not a failure.
+      - name: Check registry.json and adapters
+        run: npm run check

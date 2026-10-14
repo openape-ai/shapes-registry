@@ -1,0 +1,34 @@
+[
+  {
+    "argv": [
+      "own/owner",
+      "own/path"
+    ],
+    "expected": {
+      "operation_id": "chown.set",
+      "permission": "chown.filesystem[path=own/path].ownership[owner=own/owner]#edit",
+      "display": "Change owner of own/path to own/owner",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "-R",
+      "own/owner",
+      "own/path"
+    ],
+    "expected": {
+      "operation_id": "chown.recursive",
+      "permission": "chown.filesystem[path=own/path].ownership[owner=own/owner]#edit",
+      "display": "Recursively change owner of own/path to own/owner",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "__no_such_command__"
+    ],
+    "expected": null,
+    "note": "Unknown commands never match."
+  }
+]

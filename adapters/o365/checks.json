@@ -1,0 +1,24 @@
+{
+  "legacy_operations": [
+    "auth.login",
+    "auth.list",
+    "auth.status",
+    "mail.list",
+    "mail.read",
+    "mail.search",
+    "mail.query",
+    "mail.attachments",
+    "mail.mark-read",
+    "mail.mark-unread",
+    "calendar.list",
+    "calendar.today",
+    "calendar.get",
+    "drafts.list",
+    "drafts.read",
+    "drafts.save",
+    "folders.list",
+    "rules.list",
+    "rules.get"
+  ],
+  "legacy_reason": "Predates declared options (issue 1468): these operations still accept undeclared options until value_options/flag_options are declared."
+}

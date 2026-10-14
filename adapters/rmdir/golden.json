@@ -1,0 +1,25 @@
+[
+  {
+    "argv": [
+      "own/path"
+    ],
+    "expected": {
+      "operation_id": "rmdir.remove",
+      "permission": "rmdir.filesystem[path=own/path]#delete",
+      "display": "Remove empty directory own/path",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "__no_such_command__"
+    ],
+    "expected": {
+      "operation_id": "rmdir.remove",
+      "permission": "rmdir.filesystem[path=__no_such_command__]#delete",
+      "display": "Remove empty directory __no_such_command__",
+      "exact_command": true
+    },
+    "note": "Unknown commands never match."
+  }
+]

@@ -1,0 +1,70 @@
+[
+  {
+    "argv": [
+      "own/command"
+    ],
+    "expected": {
+      "operation_id": "exec.run",
+      "permission": "apes.host[*].process[command=own/command]#execute",
+      "display": "Execute with elevated privileges: own/command",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "enroll",
+      "--server",
+      "own/server",
+      "--agent-email",
+      "own/agent-email",
+      "--agent-name",
+      "own/agent-name",
+      "--key",
+      "own/key"
+    ],
+    "expected": {
+      "operation_id": "agent.enroll",
+      "permission": "apes.idp[url=own/server].agent[email=own/agent-email]#create",
+      "display": "Enroll agent own/agent-name (own/agent-email) at own/server",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "update",
+      "--email",
+      "own/email"
+    ],
+    "expected": {
+      "operation_id": "agent.update",
+      "permission": "apes.agent[email=own/email]#edit",
+      "display": "Update agent own/email",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "remove",
+      "--email",
+      "own/email"
+    ],
+    "expected": {
+      "operation_id": "agent.remove",
+      "permission": "apes.agent[email=own/email]#delete",
+      "display": "Remove agent own/email",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "__no_such_command__"
+    ],
+    "expected": {
+      "operation_id": "exec.run",
+      "permission": "apes.host[*].process[command=__no_such_command__]#execute",
+      "display": "Execute with elevated privileges: __no_such_command__",
+      "exact_command": true
+    },
+    "note": "Unknown commands never match."
+  }
+]

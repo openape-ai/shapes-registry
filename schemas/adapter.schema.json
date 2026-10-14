@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/openape-ai/shapes-registry/schemas/adapter.schema.json",
+  "title": "Shapes Adapter",
+  "description": "adapter.toml read as JSON (schema openape-shapes/v1). Unknown keys are rejected at every level, as the @openape/shapes parser does.",
+  "type": "object",
+  "required": ["schema", "cli", "operation"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "openape-shapes/v1" },
+    "cli": { "$ref": "#/$defs/cli" },
+    "operation": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/operation" } }
+  },
+  "$defs": {
+    "cli": {
+      "type": "object",
+      "required": ["id", "executable"],
+      "additionalProperties": false,
+      "dependentRequired": {
+        "tested_versions": ["version_command", "version_pattern"],
+        "version_command": ["tested_versions", "version_pattern"],
+        "version_pattern": ["tested_versions", "version_command"]
+      },
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+        "executable": { "type": "string", "minLength": 1 },
+        "audience": { "type": "string" },
+        "version": { "type": "string" },
+        "global_options": {
+          "description": "Options accepted once before the command prefix, as name or name=binding (git -C <path> is C=repo).",
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[\\w-]+(=[\\w-]+)?$" }
+        },
+        "tested_versions": {
+          "description": "CLI versions the declared options were checked against; compared with the first capture group of version_pattern. Another version falls back to exact approvals.",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[\\w.+-]{1,64}$" }
+        },
+        "version_command": {
+          "description": "Arguments after the executable that print its version.",
+          "type": "array",
+          "maxItems": 8,
+          "items": { "type": "string", "pattern": "^[\\w.,:=@/+-]{1,64}$" }
+        },
+        "version_pattern": {
+          "description": "Regular expression (multiline) whose first capture group is the version.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      }
+    },
+    "operation": {
+      "type": "object",
+      "required": ["id", "command", "display", "action", "resource_chain"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "command": { "type": "array", "items": { "type": "string" } },
+        "positionals": {
+          "description": "Positional names; an entry =word is a literal that must appear at that position.",
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "required_options": { "type": "array", "items": { "type": "string" } },
+        "value_options": { "$ref": "#/$defs/optionList" },
+        "flag_options": { "$ref": "#/$defs/optionList" },
+        "display": { "type": "string" },
+        "action": { "type": "string" },
+        "risk": { "enum": ["low", "medium", "high", "critical"] },
+        "resource_chain": { "type": "array", "items": { "type": "string" } },
+        "exact_command": { "type": "boolean" },
+        "presentation": { "$ref": "#/$defs/presentation" }
+      }
+    },
+    "optionList": {
+      "description": "Declaring value_options or flag_options (even empty) makes every other option fail to match.",
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[\\w-]+$" }
+    },
+    "presentation": {
+      "description": "What the IdP grant card shows for this operation. Texts may use {binding} placeholders of positionals and required options; facts and details may name any binding and are left out when it is unbound. It never changes what the operation matches.",
+      "type": "object",
+      "required": ["title"],
+      "additionalProperties": false,
+      "properties": {
+        "title": { "$ref": "#/$defs/text" },
+        "statement": { "$ref": "#/$defs/text" },
+        "consequence": {
+          "type": "object",
+          "required": ["allows"],
+          "additionalProperties": false,
+          "properties": {
+            "allows": { "$ref": "#/$defs/text" },
+            "does_not_allow": { "$ref": "#/$defs/text" }
+          }
+        },
+        "facts": { "$ref": "#/$defs/fields" },
+        "details": { "$ref": "#/$defs/fields" },
+        "details_note": { "$ref": "#/$defs/text" }
+      }
+    },
+    "text": {
+      "type": "object",
+      "required": ["de", "en"],
+      "additionalProperties": false,
+      "properties": {
+        "de": { "$ref": "#/$defs/string" },
+        "en": { "$ref": "#/$defs/string" }
+      }
+    },
+    "string": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000,
+      "pattern": "^[^\\p{Cc}\\p{Cf}]*\\S[^\\p{Cc}\\p{Cf}]*$"
+    },
+    "fields": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "required": ["label", "binding"],
+        "additionalProperties": false,
+        "properties": {
+          "label": { "$ref": "#/$defs/text" },
+          "binding": { "type": "string", "pattern": "^[\\w-]+$" },
+          "format": { "enum": ["text", "code", "map"], "description": "code: monospaced literal; map: key/value list of a JSON object of strings." }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+[
+  {
+    "argv": [
+      "own/pid"
+    ],
+    "expected": {
+      "operation_id": "kill.signal",
+      "permission": "kill.system[process=own/pid]#signal",
+      "display": "Send signal to process own/pid",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "-15",
+      "own/pid"
+    ],
+    "expected": {
+      "operation_id": "kill.term",
+      "permission": "kill.system[process=own/pid]#signal",
+      "display": "Terminate process own/pid",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "-9",
+      "own/pid"
+    ],
+    "expected": {
+      "operation_id": "kill.force",
+      "permission": "kill.system[process=own/pid]#signal",
+      "display": "Force kill process own/pid",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "__no_such_command__"
+    ],
+    "expected": {
+      "operation_id": "kill.signal",
+      "permission": "kill.system[process=__no_such_command__]#signal",
+      "display": "Send signal to process __no_such_command__",
+      "exact_command": true
+    },
+    "note": "Unknown commands never match."
+  }
+]

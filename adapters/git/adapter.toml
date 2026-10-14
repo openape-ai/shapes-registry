@@ -1,10 +1,34 @@
 schema = "openape-shapes/v1"
 
+# Standard git adapter (issues 1468, 1473). This registry file is the single
+# source; the OpenApe monorepo keeps a byte-identical test copy in
+# apps/openape-pods/examples/git-shapes.toml, and grants bind its digest.
+#
+# Every operation that is not bound to the exact command declares its options:
+# value_options take a value, flag_options are flags, and any other option
+# makes the operation not match. git reads some options as commands to run
+# (`--upload-pack`, `--receive-pack`, `--exec`, `-c`, `--config`), so an
+# undeclared option must never pass a non-exact grant. Such an argv needs its
+# own exact-command grant.
+#
+# Write operations beyond the first adapter version use their own action
+# (rebase, push) so repo-wide "edit" grants never cover them. `git rebase
+# --abort` keeps matching the exact-command operation git.rebase.
+#
+# Declared options were checked against `git <command> -h` of the tested
+# versions below (registry CI, scripts/check-adapters.mjs). Presentation texts
+# are what the IdP shows approvers; they never change what an operation matches.
+
 [cli]
 id = "git"
 executable = "git"
 audience = "shapes"
-version = "1"
+version = "2"
+# `git -C <path> …` before the subcommand, bound as {repo}. Repeating it never matches.
+global_options = ["C=repo"]
+tested_versions = ["2.54"]
+version_command = ["--version"]
+version_pattern = '^git version (\d+\.\d+)'
 
 # ══════════════════════════════════════════════════════
 # READ Operations
@@ -13,14 +37,30 @@ version = "1"
 [[operation]]
 id = "git.status"
 command = ["status"]
+value_options = []
+flag_options = ["porcelain", "short", "s", "branch", "b", "untracked-files", "ignored", "z"]
 display = "Show working tree status"
 action = "read"
 risk = "low"
 resource_chain = ["repo:*"]
 
+[operation.presentation]
+title = { de = "Git-Status anzeigen", en = "Show the Git status" }
+
+[operation.presentation.consequence]
+allows = { de = "Liest den Zustand des Arbeitsverzeichnisses und des aktuellen Branches.", en = "Reads the state of the working tree and the current branch." }
+does_not_allow = { de = "Ändert keine Dateien, Branches oder Remotes.", en = "Does not change files, branches or remotes." }
+
+[[operation.presentation.facts]]
+label = { de = "Repository", en = "Repository" }
+binding = "repo"
+format = "code"
+
 [[operation]]
 id = "git.log"
 command = ["log"]
+value_options = ["max-count", "n", "format", "pretty", "since", "until", "author", "grep"]
+flag_options = ["oneline", "graph", "decorate", "all", "stat", "name-only", "name-status", "no-merges", "first-parent", "reverse"]
 display = "Show commit log"
 action = "read"
 risk = "low"
@@ -29,6 +69,8 @@ resource_chain = ["repo:*"]
 [[operation]]
 id = "git.diff"
 command = ["diff"]
+value_options = []
+flag_options = ["stat", "shortstat", "cached", "staged", "name-only", "name-status", "quiet", "exit-code", "no-color", "no-ext-diff", "no-textconv"]
 display = "Show changes"
 action = "read"
 risk = "low"
@@ -37,6 +79,8 @@ resource_chain = ["repo:*"]
 [[operation]]
 id = "git.branch"
 command = ["branch"]
+value_options = []
+flag_options = ["list", "a", "all", "r", "remotes", "v", "vv", "show-current", "merged", "no-merged"]
 display = "List or manage branches"
 action = "read"
 risk = "low"
@@ -45,6 +89,8 @@ resource_chain = ["repo:*"]
 [[operation]]
 id = "git.remote"
 command = ["remote"]
+value_options = []
+flag_options = ["v", "verbose"]
 display = "Show remotes"
 action = "read"
 risk = "low"
@@ -57,14 +103,30 @@ resource_chain = ["repo:*"]
 [[operation]]
 id = "git.fetch"
 command = ["fetch"]
+value_options = []
+flag_options = ["prune", "p", "tags", "no-tags", "all", "quiet", "q"]
 display = "Fetch from remote"
 action = "read"
 risk = "low"
 resource_chain = ["repo:*", "remote:*"]
 
+[operation.presentation]
+title = { de = "Von den Remotes abrufen", en = "Fetch from the remotes" }
+
+[operation.presentation.consequence]
+allows = { de = "Lädt neue Commits, Branches und Tags der Remotes und aktualisiert die Remote-Tracking-Branches.", en = "Downloads new commits, branches and tags from the remotes and updates the remote-tracking branches." }
+does_not_allow = { de = "Ändert weder lokale Branches noch das Arbeitsverzeichnis und schreibt nichts auf den Server.", en = "Does not change local branches or the working tree and writes nothing to the server." }
+
+[[operation.presentation.facts]]
+label = { de = "Repository", en = "Repository" }
+binding = "repo"
+format = "code"
+
 [[operation]]
 id = "git.pull"
 command = ["pull"]
+value_options = []
+flag_options = ["rebase", "no-rebase", "ff-only", "prune", "p", "quiet", "q"]
 display = "Pull from remote"
 action = "edit"
 risk = "medium"
@@ -78,6 +140,8 @@ resource_chain = ["repo:*", "remote:*"]
 id = "git.add"
 command = ["add"]
 positionals = ["path"]
+value_options = []
+flag_options = ["A", "all", "u", "update", "N", "intent-to-add"]
 display = "Stage changes: {path}"
 action = "edit"
 risk = "low"
@@ -91,6 +155,8 @@ resource_chain = ["repo:*", "file:path={path}"]
 id = "git.commit"
 command = ["commit"]
 required_options = ["m"]
+value_options = []
+flag_options = ["a", "all", "s", "signoff", "quiet", "q"]
 display = "Commit: {m}"
 action = "create"
 risk = "medium"
@@ -103,6 +169,8 @@ resource_chain = ["repo:*", "commit:*"]
 [[operation]]
 id = "git.push"
 command = ["push"]
+value_options = []
+flag_options = ["tags", "follow-tags", "set-upstream", "u", "quiet", "q"]
 display = "Push to remote"
 action = "edit"
 risk = "high"
@@ -116,6 +184,8 @@ resource_chain = ["repo:*", "remote:*"]
 id = "git.clone"
 command = ["clone"]
 positionals = ["url"]
+value_options = ["depth", "branch", "b"]
+flag_options = ["bare", "single-branch", "no-tags", "quiet", "q"]
 display = "Clone repository {url}"
 action = "create"
 risk = "low"
@@ -129,6 +199,8 @@ resource_chain = ["repo:url={url}"]
 id = "git.checkout"
 command = ["checkout"]
 positionals = ["ref"]
+value_options = []
+flag_options = ["b", "B", "detach", "track", "t", "quiet", "q"]
 display = "Checkout {ref}"
 action = "edit"
 risk = "medium"
@@ -138,6 +210,8 @@ resource_chain = ["repo:*", "ref:name={ref}"]
 id = "git.switch"
 command = ["switch"]
 positionals = ["branch"]
+value_options = []
+flag_options = ["c", "create", "C", "force-create", "detach", "quiet", "q"]
 display = "Switch to branch {branch}"
 action = "edit"
 risk = "medium"
@@ -147,13 +221,15 @@ resource_chain = ["repo:*", "branch:name={branch}"]
 id = "git.merge"
 command = ["merge"]
 positionals = ["branch"]
+value_options = ["m"]
+flag_options = ["no-ff", "ff-only", "squash", "no-edit", "quiet", "q"]
 display = "Merge branch {branch}"
 action = "edit"
 risk = "high"
 resource_chain = ["repo:*", "branch:name={branch}"]
 
 # ══════════════════════════════════════════════════════
-# DESTRUCTIVE
+# DESTRUCTIVE (bound to the exact command)
 # ══════════════════════════════════════════════════════
 
 [[operation]]
@@ -174,9 +250,23 @@ risk = "high"
 exact_command = true
 resource_chain = ["repo:*"]
 
+[operation.presentation]
+title = { de = "Git-Rebase ausführen", en = "Run a Git rebase" }
+
+[operation.presentation.consequence]
+allows = { de = "Führt genau diesen Rebase-Befehl aus, etwa um einen laufenden Rebase fortzusetzen oder abzubrechen; Branch und Arbeitsverzeichnis können sich ändern.", en = "Runs exactly this rebase command, for example to continue or abort a rebase in progress; the branch and the working tree may change." }
+does_not_allow = { de = "Schreibt nichts auf den Server. Gilt nur für genau diesen Befehl mit diesen Optionen; jeder andere Befehl braucht eine eigene Freigabe.", en = "Writes nothing to the server. Covers only this exact command with these options; any other command needs its own approval." }
+
+[[operation.presentation.facts]]
+label = { de = "Repository", en = "Repository" }
+binding = "repo"
+format = "code"
+
 [[operation]]
 id = "git.stash"
 command = ["stash"]
+value_options = []
+flag_options = ["include-untracked", "u", "keep-index", "k", "quiet", "q"]
 display = "Stash changes"
 action = "edit"
 risk = "medium"
@@ -186,7 +276,181 @@ resource_chain = ["repo:*"]
 id = "git.tag"
 command = ["tag"]
 positionals = ["name"]
+value_options = ["m"]
+flag_options = ["a", "annotate"]
 display = "Create tag {name}"
 action = "create"
 risk = "medium"
 resource_chain = ["repo:*", "tag:name={name}"]
+
+# ══════════════════════════════════════════════════════
+# WORKTREES AND MERGE CHECKS
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "git.worktree.list"
+command = ["worktree", "list"]
+value_options = []
+flag_options = ["porcelain", "v", "verbose", "z"]
+display = "List worktrees"
+action = "read"
+risk = "low"
+resource_chain = ["repo:*"]
+
+[[operation]]
+id = "git.fetch.remote"
+command = ["fetch"]
+positionals = ["remote"]
+value_options = []
+flag_options = ["prune", "p", "tags", "no-tags", "quiet", "q"]
+display = "Fetch from remote {remote}"
+action = "read"
+risk = "low"
+resource_chain = ["repo:*", "remote:*"]
+
+[operation.presentation]
+title = { de = "Von {remote} abrufen", en = "Fetch from {remote}" }
+
+[operation.presentation.consequence]
+allows = { de = "Lädt neue Commits, Branches und Tags der Remotes und aktualisiert die Remote-Tracking-Branches.", en = "Downloads new commits, branches and tags from the remotes and updates the remote-tracking branches." }
+does_not_allow = { de = "Ändert weder lokale Branches noch das Arbeitsverzeichnis und schreibt nichts auf den Server.", en = "Does not change local branches or the working tree and writes nothing to the server." }
+
+[[operation.presentation.facts]]
+label = { de = "Repository", en = "Repository" }
+binding = "repo"
+format = "code"
+
+[[operation]]
+id = "git.merge-base"
+command = ["merge-base"]
+positionals = ["commit", "other"]
+value_options = []
+flag_options = ["is-ancestor", "all"]
+display = "Find the merge base of {commit} and {other}"
+action = "read"
+risk = "low"
+resource_chain = ["repo:*"]
+
+[operation.presentation]
+title = { de = "Gemeinsame Basis von {commit} und {other} bestimmen", en = "Find the common base of {commit} and {other}" }
+
+[operation.presentation.consequence]
+allows = { de = "Liest die Commit-Historie, um den gemeinsamen Vorfahren zu bestimmen oder zu prüfen, ob ein Commit Vorfahre des anderen ist.", en = "Reads the commit history to find the common ancestor or to check whether one commit is an ancestor of the other." }
+does_not_allow = { de = "Ändert keine Dateien, Branches oder Remotes.", en = "Does not change files, branches or remotes." }
+
+[[operation.presentation.facts]]
+label = { de = "Repository", en = "Repository" }
+binding = "repo"
+format = "code"
+
+[[operation]]
+id = "git.merge-tree"
+command = ["merge-tree"]
+positionals = ["branch", "other"]
+value_options = ["merge-base"]
+flag_options = ["write-tree", "name-only", "no-messages", "messages", "quiet", "z"]
+display = "Test-merge {branch} with {other} without touching the worktree"
+action = "read"
+risk = "low"
+resource_chain = ["repo:*"]
+
+[[operation]]
+id = "git.replay.print"
+# `--ref-action=print` is a fixed command word: git's default mode updates refs, so any other mode, a repeated
+# mode or a missing one never matches this read operation.
+command = ["replay", "--ref-action=print"]
+positionals = ["range"]
+required_options = ["onto"]
+value_options = ["ref"]
+flag_options = []
+display = "Replay {range} onto {onto} without touching the worktree or any ref"
+action = "read"
+risk = "low"
+resource_chain = ["repo:*"]
+
+[operation.presentation]
+title = { de = "{range} auf {onto} neu anwenden (nur Ausgabe)", en = "Replay {range} onto {onto} (print only)" }
+
+[operation.presentation.consequence]
+allows = { de = "Erzeugt die neu angewendeten Commits im Objektspeicher und gibt die resultierenden Ref-Änderungen nur aus.", en = "Creates the replayed commits in the object store and only prints the resulting ref updates." }
+does_not_allow = { de = "Aktualisiert keinen Branch und keine Ref und berührt kein Arbeitsverzeichnis.", en = "Does not update any branch or ref and does not touch a working tree." }
+
+[[operation.presentation.facts]]
+label = { de = "Repository", en = "Repository" }
+binding = "repo"
+format = "code"
+
+[[operation.presentation.facts]]
+label = { de = "Ref", en = "Ref" }
+binding = "ref"
+format = "code"
+
+[[operation]]
+id = "git.rev-parse"
+command = ["rev-parse"]
+positionals = ["ref"]
+value_options = []
+flag_options = ["abbrev-ref", "symbolic-full-name", "verify", "short", "quiet", "q"]
+display = "Resolve {ref}"
+action = "read"
+risk = "low"
+resource_chain = ["repo:*"]
+
+[[operation]]
+id = "git.rebase.upstream"
+command = ["rebase"]
+positionals = ["upstream"]
+value_options = ["onto"]
+flag_options = ["autostash", "no-autostash", "update-refs", "quiet", "q"]
+display = "Rebase the current branch onto {upstream}"
+action = "rebase"
+risk = "high"
+exact_command = true
+resource_chain = ["repo:*"]
+
+[operation.presentation]
+title = { de = "Aktuellen Branch auf {upstream} rebasen", en = "Rebase the current branch onto {upstream}" }
+
+[operation.presentation.consequence]
+allows = { de = "Schreibt die Commits des aktuellen Branches lokal auf {upstream} neu; lokale Branches und das Arbeitsverzeichnis ändern sich.", en = "Rewrites the commits of the current branch locally onto {upstream}; local branches and the working tree change." }
+does_not_allow = { de = "Schreibt nichts auf den Server. Gilt nur für genau diesen Befehl mit diesen Optionen; jeder andere Befehl braucht eine eigene Freigabe.", en = "Writes nothing to the server. Covers only this exact command with these options; any other command needs its own approval." }
+
+[[operation.presentation.facts]]
+label = { de = "Repository", en = "Repository" }
+binding = "repo"
+format = "code"
+
+[[operation.presentation.facts]]
+label = { de = "Neue Basis", en = "New base" }
+binding = "onto"
+format = "code"
+
+[[operation]]
+id = "git.push.refspec"
+command = ["push"]
+positionals = ["remote", "refspec"]
+value_options = []
+flag_options = ["force-with-lease", "force", "f", "set-upstream", "u", "atomic", "quiet", "q"]
+display = "Push {refspec} to {remote}"
+action = "push"
+risk = "high"
+exact_command = true
+resource_chain = ["repo:*", "remote:name={remote}"]
+
+[operation.presentation]
+title = { de = "{refspec} nach {remote} pushen", en = "Push {refspec} to {remote}" }
+
+[operation.presentation.consequence]
+allows = { de = "Schreibt auf den Server: {remote} wird gemäß {refspec} aktualisiert, mit den angegebenen Optionen.", en = "Writes to the server: {remote} is updated as given by {refspec}, with the options shown." }
+does_not_allow = { de = "Gilt nur für genau diesen Befehl mit diesen Optionen; jeder andere Befehl braucht eine eigene Freigabe.", en = "Covers only this exact command with these options; any other command needs its own approval." }
+
+[[operation.presentation.facts]]
+label = { de = "Repository", en = "Repository" }
+binding = "repo"
+format = "code"
+
+[[operation.presentation.facts]]
+label = { de = "Refspec", en = "Refspec" }
+binding = "refspec"
+format = "code"
+

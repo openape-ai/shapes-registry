@@ -1,0 +1,11 @@
+{
+  "legacy_operations": [
+    "dns.list",
+    "dns.show"
+  ],
+  "legacy_reason": "Predates declared options (issue 1468): these operations still accept undeclared options until value_options/flag_options are declared.",
+  "unreachable_operations": [
+    "dns.show.record"
+  ],
+  "unreachable_reason": "dns.show comes first and, under the legacy option rule, also accepts --name, so `exo dns show <domain> --name <record>` always derives dns.show."
+}
