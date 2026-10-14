@@ -1,13 +1,16 @@
 name: Registry checks
 
-# The canonical repository is repos.openape.ai; Forgejo and GitHub are read-only
-# mirrors. CI therefore verifies the committed registry.json instead of
-# committing a regenerated one.
+# Manual only: Forgejo CI runs on dispatch by owner decision (October 7, 2026).
+# Run the same check locally before merging (README, "Checks"). The canonical
+# repository is repos.openape.ai; Forgejo and GitHub are read-only mirrors, so
+# CI verifies the committed registry.json instead of committing one.
 on:
-  pull_request:
-  push:
-    branches: [main]
   workflow_dispatch:
+    inputs:
+      monorepo_ref:
+        description: OpenApe monorepo ref whose @openape/shapes the check uses
+        required: true
+        default: main
 
 jobs:
   check:
@@ -15,9 +18,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/checkout@v4
+        with:
+          repository: openape-ai/openape
+          ref: ${{ inputs.monorepo_ref }}
+          path: openape-monorepo
+
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version-file: openape-monorepo/.nvmrc
+
+      - name: Build @openape/shapes from the monorepo
+        working-directory: openape-monorepo
+        run: |
+          corepack enable
+          pnpm install --frozen-lockfile --filter '@openape/shapes...'
+          pnpm --filter '@openape/shapes...' build
 
       - name: Install pinned check dependencies
         run: npm ci
@@ -26,4 +42,6 @@ jobs:
       # matrix and, for CLIs installed here in a tested version, their help output.
       # A missing or untested CLI is reported as a notice, not a failure.
       - name: Check registry.json and adapters
+        env:
+          SHAPES_MODULE: ${{ github.workspace }}/openape-monorepo/packages/shapes/dist/index.js
         run: npm run check

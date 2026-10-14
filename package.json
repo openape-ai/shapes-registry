@@ -8,7 +8,6 @@
     "check": "node scripts/build-registry.mjs --check && node scripts/check-adapters.mjs"
   },
   "devDependencies": {
-    "@openape/shapes": "0.10.0",
     "ajv": "8.17.1",
     "smol-toml": "1.7.1"
   },

@@ -5,23 +5,22 @@
 // declare only options its help output lists.
 //
 // Usage:
+//   export SHAPES_MODULE=/path/to/openape-monorepo/packages/shapes/dist/index.js
 //   npm ci && npm run check                 # all adapters
 //   node scripts/check-adapters.mjs git     # selected adapters
 //   node scripts/check-adapters.mjs --record git   # rewrite golden expectations from the adapter (review the diff)
-//   SHAPES_MODULE=/path/to/monorepo/packages/shapes/dist/index.js npm run check
-//     verifies against an unpublished @openape/shapes build.
 
 import { spawnSync } from 'node:child_process'
 import { existsSync, mkdtempSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { pathToFileURL } from 'node:url'
 import Ajv from 'ajv/dist/2020.js'
 import { parse as parseToml } from 'smol-toml'
+import { loadShapes } from './shapes-module.mjs'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const ADAPTERS = join(ROOT, 'adapters')
-const shapes = await import(process.env.SHAPES_MODULE ? pathToFileURL(process.env.SHAPES_MODULE).href : '@openape/shapes')
+const shapes = await loadShapes()
 
 // Options that make CLIs run other programs, read configuration or write files.
 const HOSTILE_OPTIONS = [

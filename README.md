@@ -22,9 +22,9 @@ Curated registry of [OpenApe Shapes](https://github.com/openape-ai/openape) adap
 ## The single adapter source
 
 This registry is the only adapter source of the OpenApe IdP and OpenApe Pods
-(issue 1473). The owner accepts a rule by merging it here; grants bind the
-SHA-256 digest of `adapter.toml`, so every change to a file, including its
-presentation texts, asks for new approvals of grants on that adapter.
+(issue 1473). The owner accepts a rule by merging it here. Grants bind the semantic
+digest of the matching rules (`grant_digest` in `registry.json`), so wording
+changes keep existing grants and only rule changes ask for new approvals.
 
 - `[cli] tested_versions`, `version_command` and `version_pattern` name the
   CLI versions the declared options were checked against. Consumers fall back
@@ -40,17 +40,32 @@ presentation texts, asks for new approvals of grants on that adapter.
 
 ## Checks
 
+The checks use the `@openape/shapes` parser and matcher of the OpenApe
+monorepo, not an npm release (none with presentation support is published yet):
+
 ```bash
+# in the OpenApe monorepo
+pnpm --filter '@openape/shapes...' build
+# here
+export SHAPES_MODULE=/path/to/openape-monorepo/packages/shapes/dist/index.js
 npm ci
 npm run check            # registry.json, schemas, golden fixtures, hostile options, real CLIs
+node scripts/build-registry.mjs                 # regenerate registry.json after adapter changes
 node scripts/check-adapters.mjs git             # one adapter
 node scripts/check-adapters.mjs --record git    # rewrite golden expectations, then review the diff
-# Before @openape/shapes with presentation support is published:
-SHAPES_MODULE=/path/to/openape-monorepo/packages/shapes/dist/index.js node scripts/check-adapters.mjs
 ```
 
+Run it locally before every merge: Forgejo CI is manual only by owner decision.
+The `Registry checks` workflow can be dispatched with a monorepo ref; it builds
+`@openape/shapes` from that ref and runs the same command.
+
+`registry.json` records two digests per adapter: `digest` hashes the file bytes
+(installers verify downloads with it) and `grant_digest` is the semantic digest
+grants bind as `adapter_digest`. Only matching rules change `grant_digest`;
+presentation, display texts, tested versions and comments do not.
+
 For every adapter the check
-1. parses `adapter.toml` with the pinned `@openape/shapes` and validates it and
+1. parses `adapter.toml` with `@openape/shapes` (`SHAPES_MODULE`) and validates it and
    `meta.json` against [schemas](schemas/);
 2. derives every `golden.json` argv and compares operation, permission,
    display and exact binding; every operation needs a matching case, and no

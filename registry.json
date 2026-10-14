@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-10-14T07:11:11.154Z",
+  "generated_at": "2026-10-14T07:29:03.156Z",
   "adapters": [
     {
       "id": "apes",
@@ -18,6 +18,7 @@
       "executable": "apes",
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:7fee8fe8bdd382234ae2eca5fde4f18fea70c82e7d9b330b27eb14e5a8a465ef",
+      "grant_digest": "SHA-256:745a68cfd0d11bf7207ae475f28de6dde512ece1666797463f4e54e590d37865",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/apes/adapter.toml"
     },
     {
@@ -35,6 +36,7 @@
       "executable": "az",
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:c62c35590440ce2ebc0de5260cb32d97de70bbb4a651348b90b1b1b45828c5cc",
+      "grant_digest": "SHA-256:fcd550a86024e59ab070a22fc3270c552791f6e5b5c29b0988b91662acfda172",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/az/adapter.toml"
     },
     {
@@ -53,6 +55,7 @@
       "executable": "chmod",
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:c6a6ff83b8b7fdbde8f31f053624014eb93997679f64f073fb4ebebc127cc3ec",
+      "grant_digest": "SHA-256:8fc14b149f1b9818eb7c6621e477704598f1e1d7f281a7013600e16f65518767",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/chmod/adapter.toml"
     },
     {
@@ -71,6 +74,7 @@
       "executable": "chown",
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:2d9e2576d80e3436e113c1b1de33b825e41330da88f21c055c34d5effb14c6e9",
+      "grant_digest": "SHA-256:3301966820f49d2c37ca18a06f5c780993df90829630d3ce8f7c5156f0371c66",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/chown/adapter.toml"
     },
     {
@@ -89,6 +93,7 @@
       "executable": "curl",
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:145fe19388ee10ce783b0e19c12f0463ea0dcef0be586803b86122b74e7e8edf",
+      "grant_digest": "SHA-256:75d89f2127ffa049f48f39bbb6ba9284009c0ed35633e9dca2b7c9420fd9ee44",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/curl/adapter.toml"
     },
     {
@@ -106,6 +111,7 @@
       "executable": "exo",
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:7536387aa2a85707d193dc60b2d6c87cb4179b88ea950b4bf2e8a778557d5c74",
+      "grant_digest": "SHA-256:0ab41a967eaed6e074eeac829d74159c0eb80e68e126f5032d71d4784a5983c4",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/exo/adapter.toml"
     },
     {
@@ -125,6 +131,7 @@
       "executable": "find",
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:ba2a5b8662c87eb4bbab871403f91774aafca2c8cc3a9fae9e806f6157196bcb",
+      "grant_digest": "SHA-256:5371530335fd2c4bafff2625765744b823a3be541fa6a2b90c0d7d9702216ec0",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/find/adapter.toml"
     },
     {
@@ -142,6 +149,7 @@
       "executable": "gh",
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:7ab96f09eb356d0afc25f212c656f8042cadec3d11a03fa2628b83084ead1a49",
+      "grant_digest": "SHA-256:59cbdc7a55fc7d36d4ec281ecf0da2c15ada4c2c62d4ada31b29bc8581fa6689",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/gh/adapter.toml"
     },
     {
@@ -158,7 +166,8 @@
       "author": "delta-mind",
       "executable": "git",
       "min_shapes_version": "0.10.0",
-      "digest": "SHA-256:1b118633c934b88d8a258becf2a0fd94f4aa9ce364cc4ca800c6925418b84a79",
+      "digest": "SHA-256:1f341971598599efce2933c527c35050be5beefc526e9338bfc1bb32478af364",
+      "grant_digest": "SHA-256:a4783820c4eebf9bf99f52c0842dcf3e0de32b8248eba40e1960c8b3c68135d5",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/git/adapter.toml"
     },
     {
@@ -177,6 +186,7 @@
       "executable": "gmail-cli",
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:5be780a32ee150a101c95d942d7073dc8355942773ddfaeae869331b8b4f7927",
+      "grant_digest": "SHA-256:62cd8718e629571e1351851fb63e093e7d64566f1bd523cc05a2bb11cba117dc",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/gmail/adapter.toml"
     },
     {
@@ -195,6 +205,7 @@
       "executable": "iurio",
       "min_shapes_version": "0.8.0",
       "digest": "SHA-256:503342f54e099550f29f6640207a823882056bc648ded71b851c143206a894f4",
+      "grant_digest": "SHA-256:eb621e39c1b5fb392701dff0ffded6100839351d36ec12e2724a305aea270b54",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/iurio/adapter.toml"
     },
     {
@@ -211,6 +222,7 @@
       "executable": "jq",
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:db266bffd82a23b9c9594961e03abf00df4f1ed940e9583e5fe55e8f43b015c6",
+      "grant_digest": "SHA-256:2c56f7d60fe526253cb6b1ccac09b04d7f3b6ccbb0c8c81d666c74c51e85906e",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/jq/adapter.toml"
     },
     {
@@ -229,6 +241,7 @@
       "executable": "kill",
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:16e1d3369ee9166637ed6766a7cff28036db396264e4cd060662fd0ce1a829ad",
+      "grant_digest": "SHA-256:c6be6c8ac00f75e19bea63c4265ca2460cee7eaa715d2832222a9ceb7958ae11",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/kill/adapter.toml"
     },
     {
@@ -248,6 +261,7 @@
       "executable": "ln",
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:9e54815e5a0f6a2342b88ef5d3df5edf4d1151b8867a5249678469ec131db28a",
+      "grant_digest": "SHA-256:0dc624e388f371f1dd86a8237efb54c7fb10ae5e35914d82eda78ed38ec8b89e",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/ln/adapter.toml"
     },
     {
@@ -265,6 +279,7 @@
       "executable": "mkdir",
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:5d0076b905215e14a7c2ef0fccb2ba6f22394863280a98cae40a62f624a07da8",
+      "grant_digest": "SHA-256:22a1090f24f77e889502f83691bcc5330e13020a2c51b620a3c9c9e304c773f0",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/mkdir/adapter.toml"
     },
     {
@@ -284,6 +299,7 @@
       "executable": "mv",
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:88486f1d4c11032baef4175d1f3247a30385a549935ff267786d0f383f08bcdc",
+      "grant_digest": "SHA-256:e4b0d6e7945fe287d2df659a008a7c9bb808aa96802a8f342f6404ec7acad8fa",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/mv/adapter.toml"
     },
     {
@@ -303,6 +319,7 @@
       "executable": "o365-cli",
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:3c6ea05d660f7b30e072397f99b7257ad6ed7b3f57095793a1246d4ca7dd71ef",
+      "grant_digest": "SHA-256:087101bf59192746e07b94c10dffd03cfb080f2e86f7ece3907bd79dd5b87868",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/o365/adapter.toml"
     },
     {
@@ -320,6 +337,7 @@
       "executable": "o365-mail-cli",
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:30cc9da3ae445ef24fdba9424b4ba7b76adfe6b368702420b6cc04e7cc4c5ad4",
+      "grant_digest": "SHA-256:b1badd111b44dd2f7892dea01b987d888eded764ed61b51c48468db6ebfb7f20",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/o365mail/adapter.toml"
     },
     {
@@ -337,6 +355,7 @@
       "executable": "pod-http",
       "min_shapes_version": "0.10.0",
       "digest": "SHA-256:ffbd24f7a9305386efdeae21a3985b7d17f402f59045d44b832140c8af11f444",
+      "grant_digest": "SHA-256:15e719afe70ed1dc888c6df91fdcfd5f34bb57aca5897c8f6c44a3011fbf64e6",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/pod-http/adapter.toml"
     },
     {
@@ -354,6 +373,7 @@
       "executable": "pod-runtime",
       "min_shapes_version": "0.10.0",
       "digest": "SHA-256:a6d2591ce95b7ccca9ae5efecbc974379fdea2d9ee3644bf80d79a13fd450a43",
+      "grant_digest": "SHA-256:3151180871015971f972b17a6f717ce35408e6393fbc0dd7d03cc5444ce31a1e",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/pod-runtime/adapter.toml"
     },
     {
@@ -373,6 +393,7 @@
       "executable": "rm",
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:07feeaa1fc759e4607c80481a18452fa631ac733cb0c3f465fccef38ed5ca831",
+      "grant_digest": "SHA-256:e78736cc41765bee489f81d2cc637fbe309589749a803fe899385481b5f1f499",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/rm/adapter.toml"
     },
     {
@@ -391,6 +412,7 @@
       "executable": "rmdir",
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:7c0892b840cda52e4d159a32bdd7b0cfb32c68731704a01e6ff53f2df63f05ba",
+      "grant_digest": "SHA-256:fe4100e2c80aba185b53ed11ca553610fd49a18037878a49b8e970234392217f",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/rmdir/adapter.toml"
     },
     {
@@ -409,6 +431,7 @@
       "executable": "scp",
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:43c3fb9c3883990660225e0b9edfaf18211afa200146be85d7c4aa7dcfa66227",
+      "grant_digest": "SHA-256:f31b1b0a59e532beaa0e30afb97dd17a72b2d58841fe940af4d41433c478d7c0",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/scp/adapter.toml"
     },
     {
@@ -427,6 +450,7 @@
       "executable": "ssh",
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:0b60b39c4e7a04b4ad025ebad822469e94a2ff60adcf38d702b4e62e0882249a",
+      "grant_digest": "SHA-256:152861f32e910fc2a6e893cd52b279959f6a6a8b9661b49461745c6633e32652",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/ssh/adapter.toml"
     },
     {
@@ -444,6 +468,7 @@
       "executable": "tar",
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:0ddb46cff384c12d55754eb623acf0d7387ea4e2c9af7605cd1e317339c12348",
+      "grant_digest": "SHA-256:7f600dc231e97981c8bdde989f73c8f4a83c501a426cd23b14f08e5d19fc6c9f",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/tar/adapter.toml"
     },
     {
@@ -463,6 +488,7 @@
       "executable": "tee",
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:9666d0b1a9de590cae250db788f476a24321b45c5f00e4a47680352e4bfe5d58",
+      "grant_digest": "SHA-256:12c4221ac75e078394870464e1f5255a05593b992d740155cfeabfe5151120b2",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/tee/adapter.toml"
     },
     {
@@ -481,6 +507,7 @@
       "executable": "touch",
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:8ef0515c56d67687796e713ddabb9e358a8deeb18f64886db99be5a32a4c0d7b",
+      "grant_digest": "SHA-256:a7256b0393dd7d42142d25a891ab644aaa2498ddd0011b11ed3142e4052efba2",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/touch/adapter.toml"
     },
     {
@@ -498,6 +525,7 @@
       "executable": "wget",
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:95db4ad08e6064ce51593e963644b3c39a47ddf557ed853ad546cfa9caa62506",
+      "grant_digest": "SHA-256:249e980f1b8946a902e4dd73eed1663473141a4aae4e11a7d09a2aa09c332759",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/wget/adapter.toml"
     },
     {
@@ -515,6 +543,7 @@
       "executable": "zip",
       "min_shapes_version": "0.2.0",
       "digest": "SHA-256:601c1b02b619d8a31feb0f7d9dac5e3f65484e0ecc0bd90ad75c3cad513c3734",
+      "grant_digest": "SHA-256:f26fd7272ec5bc74f17b92a6f213184a353bfd4db506b32c28c41ea102cd58be",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/zip/adapter.toml"
     }
   ]

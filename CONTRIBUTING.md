@@ -10,7 +10,7 @@
    - `golden.json` — argv cases and the grant detail each must derive (`schemas/golden.schema.json`); every operation needs a matching case
    - `checks.json` — optional check settings (`schemas/checks.schema.json`): the `help` arguments for the real-CLI comparison and reviewed exceptions
 3. Declare `value_options`/`flag_options` on every operation that is not bound to the exact command, and `tested_versions` with `version_command` and `version_pattern` for a real CLI
-4. Run `node scripts/build-registry.mjs` and `npm run check` (see the README)
+4. Set `SHAPES_MODULE` to a monorepo build of `@openape/shapes`, then run `node scripts/build-registry.mjs` and `npm run check` locally (see the README; CI is manual only)
 5. Open a pull request; the owner accepts the rules by merging it
 
 ## Adapter ID Rules
