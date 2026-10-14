@@ -4,8 +4,10 @@ schema = "openape-shapes/v1"
 # (v2.1.1), including the builds with the account-scoped `workflow` commands
 # that OpenApe Pods use, so the tested builds are listed by file digest.
 # Account-scoped calendar and mail reads come before the all-account forms, so
-# an argv with --account binds the account. `workflow move` is a mail move:
-# Pods run it only through the owner-approved archive service.
+# an argv with --account binds the account. `workflow move` binds the account
+# and destination folder, not the message: OpenApe Pods run it only through the
+# archive service, which also needs the owner's approval of each message
+# (mail.archive); a per-message grant would ask twice for every move.
 
 [cli]
 id = "o365"
@@ -537,13 +539,13 @@ flag_options = []
 display = "Read {folder} changes of {account}"
 action = "read"
 risk = "low"
-resource_chain = ["account:email={account}", "mail:*"]
+resource_chain = ["account:email={account}", "folder:name={folder}", "mail:*"]
 
 [operation.presentation]
 title = { de = "Änderungen in {folder} von {account} lesen", en = "Read the changes in {folder} of {account}" }
 
 [operation.presentation.consequence]
-allows = { de = "Liest neue und geänderte Nachrichten dieses Ordners seit dem letzten Stand.", en = "Reads new and changed messages of this folder since the last state." }
+allows = { de = "Liest alle neuen und geänderten Nachrichten dieses Ordners samt Inhalt, beliebig oft.", en = "Reads all new and changed messages of this folder with their content, any number of times." }
 does_not_allow = { de = "Ändert, sendet und löscht nichts.", en = "Changes, sends and deletes nothing." }
 
 [[operation.presentation.facts]]
@@ -568,10 +570,10 @@ risk = "low"
 resource_chain = ["account:email={account}", "mail:*"]
 
 [operation.presentation]
-title = { de = "Eine Nachricht von {account} lesen", en = "Read one message of {account}" }
+title = { de = "Nachrichten von {account} lesen", en = "Read messages of {account}" }
 
 [operation.presentation.consequence]
-allows = { de = "Liest eine Nachricht mit ihrer aktuellen Version.", en = "Reads one message with its current version." }
+allows = { de = "Liest jede Nachricht dieses Kontos, eine pro Aufruf, mit Inhalt und aktueller Version.", en = "Reads any message of this account, one per call, with its content and current version." }
 does_not_allow = { de = "Ändert, sendet und löscht nichts.", en = "Changes, sends and deletes nothing." }
 
 [[operation.presentation.facts]]
@@ -585,16 +587,16 @@ command = ["workflow", "categorize"]
 required_options = ["account", "message", "expected-version", "categories"]
 value_options = []
 flag_options = []
-display = "Set the categories of one message of {account}"
+display = "Set the categories of messages of {account}"
 action = "categorize"
 risk = "medium"
 resource_chain = ["account:email={account}", "mail:*"]
 
 [operation.presentation]
-title = { de = "Kategorien einer Nachricht von {account} setzen", en = "Set the categories of a message of {account}" }
+title = { de = "Kategorien von Nachrichten von {account} setzen", en = "Set the categories of messages of {account}" }
 
 [operation.presentation.consequence]
-allows = { de = "Ersetzt die Kategorien einer Nachricht, wenn sie seit dem Lesen unverändert ist.", en = "Replaces the categories of one message if it is unchanged since it was read." }
+allows = { de = "Ersetzt die Kategorien jeder Nachricht dieses Kontos, eine pro Aufruf, solange sie seit dem Lesen unverändert ist.", en = "Replaces the categories of any message of this account, one per call, while it is unchanged since it was read." }
 does_not_allow = { de = "Verschiebt, sendet und löscht keine Nachrichten.", en = "Does not move, send or delete messages." }
 
 [[operation.presentation.facts]]
@@ -631,19 +633,24 @@ command = ["workflow", "move"]
 required_options = ["account", "message", "expected-version", "source-folder", "destination"]
 value_options = []
 flag_options = []
-display = "Move one approved message of {account} into its Archive folder"
+display = "Move messages of {account} into {destination}"
 action = "move"
 risk = "high"
-resource_chain = ["account:email={account}", "mail:*"]
+resource_chain = ["account:email={account}", "destination:name={destination}", "mail:*"]
 
 [operation.presentation]
-title = { de = "Eine Nachricht von {account} archivieren", en = "Archive one message of {account}" }
+title = { de = "Nachrichten von {account} nach {destination} verschieben", en = "Move messages of {account} into {destination}" }
 
 [operation.presentation.consequence]
-allows = { de = "Verschiebt eine freigegebene Nachricht, wenn sie unverändert ist, in den Archivordner.", en = "Moves one approved message into the Archive folder if it is unchanged." }
-does_not_allow = { de = "Verschiebt keine anderen Nachrichten und löscht nichts.", en = "Moves no other messages and deletes nothing." }
+allows = { de = "Verschiebt jede Nachricht dieses Kontos, eine pro Aufruf, in genau diesen Ordner, solange sie seit dem Lesen unverändert ist.", en = "Moves any message of this account, one per call, into exactly this folder while it is unchanged since it was read." }
+does_not_allow = { de = "Verschiebt in keinen anderen Ordner und löscht nichts.", en = "Moves into no other folder and deletes nothing." }
 
 [[operation.presentation.facts]]
 label = { de = "Konto", en = "Account" }
 binding = "account"
+format = "code"
+
+[[operation.presentation.facts]]
+label = { de = "Zielordner", en = "Destination folder" }
+binding = "destination"
 format = "code"

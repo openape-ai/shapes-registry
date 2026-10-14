@@ -673,7 +673,7 @@
     ],
     "expected": {
       "operation_id": "workflow.delta",
-      "permission": "o365.account[email=user@example.test].mail[*]#read",
+      "permission": "o365.account[email=user@example.test].folder[name=inbox].mail[*]#read",
       "display": "Read inbox changes of user@example.test",
       "exact_command": false
     }
@@ -710,7 +710,7 @@
     "expected": {
       "operation_id": "workflow.categorize",
       "permission": "o365.account[email=user@example.test].mail[*]#categorize",
-      "display": "Set the categories of one message of user@example.test",
+      "display": "Set the categories of messages of user@example.test",
       "exact_command": false
     }
   },
@@ -747,8 +747,8 @@
     ],
     "expected": {
       "operation_id": "workflow.move",
-      "permission": "o365.account[email=user@example.test].mail[*]#move",
-      "display": "Move one approved message of user@example.test into its Archive folder",
+      "permission": "o365.account[email=user@example.test].destination[name=archive].mail[*]#move",
+      "display": "Move messages of user@example.test into archive",
       "exact_command": false
     }
   },
@@ -770,5 +770,101 @@
       "admin"
     ],
     "expected": null
+  },
+  {
+    "argv": [
+      "workflow",
+      "delta",
+      "--account",
+      "user@example.test",
+      "--folder",
+      "sentitems"
+    ],
+    "expected": {
+      "operation_id": "workflow.delta",
+      "permission": "o365.account[email=user@example.test].folder[name=sentitems].mail[*]#read",
+      "display": "Read sentitems changes of user@example.test",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "workflow",
+      "read",
+      "--account",
+      "user@example.test",
+      "--message",
+      "AAMk2"
+    ],
+    "expected": {
+      "operation_id": "workflow.read",
+      "permission": "o365.account[email=user@example.test].mail[*]#read",
+      "display": "Read one provider-versioned message of user@example.test",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "workflow",
+      "categorize",
+      "--account",
+      "user@example.test",
+      "--message",
+      "AAMk2",
+      "--expected-version",
+      "CQ2",
+      "--categories",
+      "[]"
+    ],
+    "expected": {
+      "operation_id": "workflow.categorize",
+      "permission": "o365.account[email=user@example.test].mail[*]#categorize",
+      "display": "Set the categories of messages of user@example.test",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "workflow",
+      "move",
+      "--account",
+      "user@example.test",
+      "--message",
+      "AAMk1",
+      "--expected-version",
+      "CQ1",
+      "--source-folder",
+      "AQMk1",
+      "--destination",
+      "inbox"
+    ],
+    "expected": {
+      "operation_id": "workflow.move",
+      "permission": "o365.account[email=user@example.test].destination[name=inbox].mail[*]#move",
+      "display": "Move messages of user@example.test into inbox",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "workflow",
+      "move",
+      "--account",
+      "user@example.test",
+      "--message",
+      "AAMk2",
+      "--expected-version",
+      "CQ2",
+      "--source-folder",
+      "AQMk2",
+      "--destination",
+      "archive"
+    ],
+    "expected": {
+      "operation_id": "workflow.move",
+      "permission": "o365.account[email=user@example.test].destination[name=archive].mail[*]#move",
+      "display": "Move messages of user@example.test into archive",
+      "exact_command": false
+    }
   }
 ]

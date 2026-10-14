@@ -34,4 +34,7 @@ holds the Homebrew azure-cli 2.83.0 launcher, a shell script that starts the
 bundled Python and therefore cannot run inside the isolated version probe of
 OpenApe Pods. The operations used by Pods declare their options; `rest` is
 split by method, so a GET grant never covers a POST, and `--output-file`,
-`--headers` and other options are refused.
+`--headers` and other options are refused. Both bind `--url`: the CLI attaches
+an access token of `--resource`, so a grant names the address that receives it.
+For an automation that reads many addresses below one API, the owner widens the
+URL at the IdP to a host and path prefix (`https://dev.azure.com/<org>/<project>/_apis/*`).

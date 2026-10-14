@@ -49,10 +49,10 @@ risk = "low"
 resource_chain = ["mailbox:id={account}", "message:*"]
 
 [operation.presentation]
-title = { de = "Eine E-Mail von {account} lesen", en = "Read one message of {account}" }
+title = { de = "E-Mails von {account} lesen", en = "Read messages of {account}" }
 
 [operation.presentation.consequence]
-allows = { de = "Liest eine Nachricht mit Inhalt und Anhangsliste.", en = "Reads one message with its body and attachment list." }
+allows = { de = "Liest jede Nachricht dieses Postfachs, eine pro Aufruf, mit Inhalt und Anhangsliste.", en = "Reads any message of this mailbox, one per call, with its body and attachment list." }
 does_not_allow = { de = "Ändert, verschiebt und sendet nichts.", en = "Changes, moves and sends nothing." }
 
 [[operation.presentation.facts]]
@@ -72,10 +72,10 @@ risk = "low"
 resource_chain = ["mailbox:id={account}", "conversation:*"]
 
 [operation.presentation]
-title = { de = "Einen E-Mail-Verlauf von {account} lesen", en = "Read one conversation of {account}" }
+title = { de = "E-Mail-Verläufe von {account} lesen", en = "Read conversations of {account}" }
 
 [operation.presentation.consequence]
-allows = { de = "Liest die Nachrichten eines Verlaufs.", en = "Reads the messages of one conversation." }
+allows = { de = "Liest die Nachrichten jedes Verlaufs dieses Postfachs, einen pro Aufruf.", en = "Reads the messages of any conversation of this mailbox, one per call." }
 does_not_allow = { de = "Ändert, verschiebt und sendet nichts.", en = "Changes, moves and sends nothing." }
 
 [[operation.presentation.facts]]
