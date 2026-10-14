@@ -1,0 +1,233 @@
+[
+  {
+    "argv": [
+      "mail",
+      "list"
+    ],
+    "expected": {
+      "operation_id": "mail.list",
+      "permission": "gmail.account[name=*].mail[*]#list",
+      "display": "List emails",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "read",
+      "own/message_id"
+    ],
+    "expected": {
+      "operation_id": "mail.read",
+      "permission": "gmail.account[name=*].mail[id=own/message_id]#read",
+      "display": "Read email own/message_id",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "search"
+    ],
+    "expected": {
+      "operation_id": "mail.search",
+      "permission": "gmail.account[name=*].mail[*]#search",
+      "display": "Search emails",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "archive",
+      "own/message_id"
+    ],
+    "expected": {
+      "operation_id": "mail.archive",
+      "permission": "gmail.account[name=*].mail[id=own/message_id]#edit",
+      "display": "Archive email own/message_id",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "move",
+      "--to",
+      "own/to",
+      "own/message_id"
+    ],
+    "expected": {
+      "operation_id": "mail.move",
+      "permission": "gmail.account[name=*].mail[id=own/message_id]#edit",
+      "display": "Move email own/message_id to folder own/to",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "send",
+      "--to",
+      "own/to",
+      "--subject",
+      "own/subject"
+    ],
+    "expected": {
+      "operation_id": "mail.send",
+      "permission": "gmail.account[name=*].mail[*]#send",
+      "display": "Send email to own/to",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "reply",
+      "own/message_id"
+    ],
+    "expected": {
+      "operation_id": "mail.reply",
+      "permission": "gmail.account[name=*].mail[id=own/message_id]#send",
+      "display": "Reply to email own/message_id",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "folders",
+      "list"
+    ],
+    "expected": {
+      "operation_id": "folders.list",
+      "permission": "gmail.account[name=*].folder[*]#list",
+      "display": "List mail folders",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "calendar",
+      "list"
+    ],
+    "expected": {
+      "operation_id": "calendar.list",
+      "permission": "gmail.account[name=*].calendar[*]#list",
+      "display": "List upcoming events",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "calendar",
+      "today"
+    ],
+    "expected": {
+      "operation_id": "calendar.today",
+      "permission": "gmail.account[name=*].calendar[*]#list",
+      "display": "List today's events",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "calendar",
+      "get",
+      "own/event_id"
+    ],
+    "expected": {
+      "operation_id": "calendar.get",
+      "permission": "gmail.account[name=*].calendar[id=own/event_id]#read",
+      "display": "Get event details own/event_id",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "calendar",
+      "create",
+      "--subject",
+      "own/subject",
+      "--start",
+      "own/start"
+    ],
+    "expected": {
+      "operation_id": "calendar.create",
+      "permission": "gmail.account[name=*].calendar[*]#create",
+      "display": "Create event 'own/subject'",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "calendar",
+      "update",
+      "own/event_id"
+    ],
+    "expected": {
+      "operation_id": "calendar.update",
+      "permission": "gmail.account[name=*].calendar[id=own/event_id]#edit",
+      "display": "Update event own/event_id",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "calendar",
+      "delete",
+      "own/event_id"
+    ],
+    "expected": {
+      "operation_id": "calendar.delete",
+      "permission": "gmail.account[name=*].calendar[id=own/event_id]#delete",
+      "display": "Delete event own/event_id",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "calendar",
+      "accept",
+      "own/event_id"
+    ],
+    "expected": {
+      "operation_id": "calendar.accept",
+      "permission": "gmail.account[name=*].calendar[id=own/event_id]#send",
+      "display": "Accept event invitation own/event_id",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "calendar",
+      "decline",
+      "own/event_id"
+    ],
+    "expected": {
+      "operation_id": "calendar.decline",
+      "permission": "gmail.account[name=*].calendar[id=own/event_id]#send",
+      "display": "Decline event invitation own/event_id",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "calendar",
+      "tentative",
+      "own/event_id"
+    ],
+    "expected": {
+      "operation_id": "calendar.tentative",
+      "permission": "gmail.account[name=*].calendar[id=own/event_id]#send",
+      "display": "Tentatively accept event own/event_id",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "__no_such_command__"
+    ],
+    "expected": null,
+    "note": "Unknown commands never match."
+  }
+]

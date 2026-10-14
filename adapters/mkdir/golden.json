@@ -1,0 +1,37 @@
+[
+  {
+    "argv": [
+      "own/path"
+    ],
+    "expected": {
+      "operation_id": "mkdir.create",
+      "permission": "mkdir.filesystem[path=own/path]#create",
+      "display": "Create directory own/path",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "-p",
+      "own/path"
+    ],
+    "expected": {
+      "operation_id": "mkdir.create-parents",
+      "permission": "mkdir.filesystem[path=own/path]#create",
+      "display": "Create directory own/path with parents",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "__no_such_command__"
+    ],
+    "expected": {
+      "operation_id": "mkdir.create",
+      "permission": "mkdir.filesystem[path=__no_such_command__]#create",
+      "display": "Create directory __no_such_command__",
+      "exact_command": false
+    },
+    "note": "Unknown commands never match."
+  }
+]

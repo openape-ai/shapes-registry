@@ -1,0 +1,66 @@
+[
+  {
+    "argv": [
+      "run",
+      "--pod",
+      "0b6f3c7e-5d2a-4c1b-9e8f-7a6b5c4d3e2f",
+      "--name",
+      "Synthetic Pod",
+      "--script",
+      "run.mjs",
+      "--workspace",
+      "workspace"
+    ],
+    "expected": {
+      "operation_id": "run",
+      "permission": "pod-runtime.pod[id=0b6f3c7e-5d2a-4c1b-9e8f-7a6b5c4d3e2f]#run",
+      "display": "Run the stored script of Synthetic Pod",
+      "exact_command": false
+    },
+    "note": "The grant request Pods builds for a Pod (runtimeSpec)."
+  },
+  {
+    "argv": [
+      "run",
+      "--pod",
+      "0b6f3c7e-5d2a-4c1b-9e8f-7a6b5c4d3e2f",
+      "--name",
+      "Synthetic Pod",
+      "--script",
+      "/Pods/runs/r1/run.mjs",
+      "--workspace",
+      "/Pods/pods/p1/workspace",
+      "--home",
+      "/Pods/pods/p1/home",
+      "--environment",
+      "{\"HOME\":\"/Pods/pods/p1/home\",\"LANG\":\"en_US.UTF-8\"}"
+    ],
+    "expected": {
+      "operation_id": "run",
+      "permission": "pod-runtime.pod[id=0b6f3c7e-5d2a-4c1b-9e8f-7a6b5c4d3e2f]#run",
+      "display": "Run the stored script of Synthetic Pod",
+      "exact_command": false
+    },
+    "note": "The command of one run; --home and --environment are bound under the legacy option rule."
+  },
+  {
+    "argv": [
+      "run",
+      "--pod",
+      "0b6f3c7e-5d2a-4c1b-9e8f-7a6b5c4d3e2f",
+      "--name",
+      "Synthetic Pod",
+      "--script",
+      "run.mjs"
+    ],
+    "expected": null,
+    "note": "A missing required option never matches."
+  },
+  {
+    "argv": [
+      "__no_such_command__"
+    ],
+    "expected": null,
+    "note": "Unknown commands never match."
+  }
+]

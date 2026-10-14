@@ -1,0 +1,428 @@
+[
+  {
+    "argv": [
+      "mail",
+      "list",
+      "--account",
+      "own/account"
+    ],
+    "expected": {
+      "operation_id": "mail.list",
+      "permission": "o365mail.account[email=own/account].mail[*]#list",
+      "display": "List emails in mailbox own/account",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "read",
+      "--account",
+      "own/account",
+      "own/message_id"
+    ],
+    "expected": {
+      "operation_id": "mail.read",
+      "permission": "o365mail.account[email=own/account].mail[id=own/message_id]#read",
+      "display": "Read email own/message_id in mailbox own/account",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "search",
+      "--account",
+      "own/account"
+    ],
+    "expected": {
+      "operation_id": "mail.search",
+      "permission": "o365mail.account[email=own/account].mail[*]#search",
+      "display": "Search emails in mailbox own/account",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "query",
+      "--account",
+      "own/account",
+      "own/search_text"
+    ],
+    "expected": {
+      "operation_id": "mail.query",
+      "permission": "o365mail.account[email=own/account].mail[*]#search",
+      "display": "Full-text search 'own/search_text' in mailbox own/account",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "attachments",
+      "--account",
+      "own/account",
+      "own/message_id"
+    ],
+    "expected": {
+      "operation_id": "mail.attachments",
+      "permission": "o365mail.account[email=own/account].mail[id=own/message_id]#read",
+      "display": "Download attachments from email own/message_id in mailbox own/account",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "mark-read",
+      "--account",
+      "own/account",
+      "own/message_id"
+    ],
+    "expected": {
+      "operation_id": "mail.mark-read",
+      "permission": "o365mail.account[email=own/account].mail[id=own/message_id]#edit",
+      "display": "Mark email own/message_id as read in mailbox own/account",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "mark-unread",
+      "--account",
+      "own/account",
+      "own/message_id"
+    ],
+    "expected": {
+      "operation_id": "mail.mark-unread",
+      "permission": "o365mail.account[email=own/account].mail[id=own/message_id]#edit",
+      "display": "Mark email own/message_id as unread in mailbox own/account",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "move",
+      "--to",
+      "own/to",
+      "--account",
+      "own/account",
+      "own/message_id"
+    ],
+    "expected": {
+      "operation_id": "mail.move",
+      "permission": "o365mail.account[email=own/account].mail[id=own/message_id]#edit",
+      "display": "Move email own/message_id to folder own/to in mailbox own/account",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "trash",
+      "--account",
+      "own/account",
+      "own/message_id"
+    ],
+    "expected": {
+      "operation_id": "mail.trash",
+      "permission": "o365mail.account[email=own/account].mail[id=own/message_id]#delete",
+      "display": "Trash email own/message_id in mailbox own/account",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "archive-from",
+      "--account",
+      "own/account",
+      "own/senders"
+    ],
+    "expected": {
+      "operation_id": "mail.archive-from",
+      "permission": "o365mail.account[email=own/account].mail[*]#edit",
+      "display": "Archive emails from own/senders in mailbox own/account",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "send",
+      "--to",
+      "own/to",
+      "--subject",
+      "own/subject",
+      "--body",
+      "own/body",
+      "--account",
+      "own/account"
+    ],
+    "expected": {
+      "operation_id": "mail.send",
+      "permission": "o365mail.account[email=own/account].mail[*]#send",
+      "display": "Send email to own/to from mailbox own/account",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "reply",
+      "--account",
+      "own/account",
+      "own/message_id"
+    ],
+    "expected": {
+      "operation_id": "mail.reply",
+      "permission": "o365mail.account[email=own/account].mail[id=own/message_id]#send",
+      "display": "Reply to email own/message_id in mailbox own/account",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "forward",
+      "--to",
+      "own/to",
+      "--account",
+      "own/account",
+      "own/message_id"
+    ],
+    "expected": {
+      "operation_id": "mail.forward",
+      "permission": "o365mail.account[email=own/account].mail[id=own/message_id]#send",
+      "display": "Forward email own/message_id to own/to from mailbox own/account",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "drafts",
+      "list",
+      "--account",
+      "own/account"
+    ],
+    "expected": {
+      "operation_id": "drafts.list",
+      "permission": "o365mail.account[email=own/account].draft[*]#list",
+      "display": "List drafts in mailbox own/account",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "drafts",
+      "create",
+      "--to",
+      "own/to",
+      "--subject",
+      "own/subject",
+      "--body",
+      "own/body",
+      "--account",
+      "own/account"
+    ],
+    "expected": {
+      "operation_id": "drafts.create",
+      "permission": "o365mail.account[email=own/account].draft[*]#draft",
+      "display": "Create draft to own/to in mailbox own/account",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "drafts",
+      "send",
+      "--account",
+      "own/account",
+      "own/message_id"
+    ],
+    "expected": {
+      "operation_id": "drafts.send",
+      "permission": "o365mail.account[email=own/account].draft[id=own/message_id]#send",
+      "display": "Send draft own/message_id from mailbox own/account",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "drafts",
+      "delete",
+      "--account",
+      "own/account",
+      "own/message_id"
+    ],
+    "expected": {
+      "operation_id": "drafts.delete",
+      "permission": "o365mail.account[email=own/account].draft[id=own/message_id]#delete",
+      "display": "Delete draft own/message_id in mailbox own/account",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "folders",
+      "list",
+      "--account",
+      "own/account"
+    ],
+    "expected": {
+      "operation_id": "folders.list",
+      "permission": "o365mail.account[email=own/account].folder[*]#list",
+      "display": "List folders in mailbox own/account",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "folders",
+      "create",
+      "--account",
+      "own/account",
+      "own/name"
+    ],
+    "expected": {
+      "operation_id": "folders.create",
+      "permission": "o365mail.account[email=own/account].folder[name=own/name]#create",
+      "display": "Create folder 'own/name' in mailbox own/account",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "folders",
+      "delete",
+      "--account",
+      "own/account",
+      "own/name"
+    ],
+    "expected": {
+      "operation_id": "folders.delete",
+      "permission": "o365mail.account[email=own/account].folder[name=own/name]#delete",
+      "display": "Delete folder 'own/name' in mailbox own/account",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "rules",
+      "list",
+      "--account",
+      "own/account"
+    ],
+    "expected": {
+      "operation_id": "rules.list",
+      "permission": "o365mail.account[email=own/account].rule[*]#list",
+      "display": "List inbox rules for mailbox own/account",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "rules",
+      "get",
+      "--account",
+      "own/account",
+      "own/rule_id"
+    ],
+    "expected": {
+      "operation_id": "rules.get",
+      "permission": "o365mail.account[email=own/account].rule[id=own/rule_id]#read",
+      "display": "Get details of inbox rule own/rule_id in mailbox own/account",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "rules",
+      "create",
+      "--name",
+      "own/name",
+      "--account",
+      "own/account"
+    ],
+    "expected": {
+      "operation_id": "rules.create",
+      "permission": "o365mail.account[email=own/account].rule[*]#create",
+      "display": "Create inbox rule 'own/name' in mailbox own/account",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "rules",
+      "update",
+      "--account",
+      "own/account",
+      "own/rule_id"
+    ],
+    "expected": {
+      "operation_id": "rules.update",
+      "permission": "o365mail.account[email=own/account].rule[id=own/rule_id]#edit",
+      "display": "Update inbox rule own/rule_id in mailbox own/account",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "rules",
+      "delete",
+      "--account",
+      "own/account",
+      "own/rule_id"
+    ],
+    "expected": {
+      "operation_id": "rules.delete",
+      "permission": "o365mail.account[email=own/account].rule[id=own/rule_id]#delete",
+      "display": "Delete inbox rule own/rule_id in mailbox own/account",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "rules",
+      "enable",
+      "--account",
+      "own/account",
+      "own/rule_id"
+    ],
+    "expected": {
+      "operation_id": "rules.enable",
+      "permission": "o365mail.account[email=own/account].rule[id=own/rule_id]#edit",
+      "display": "Enable inbox rule own/rule_id in mailbox own/account",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "rules",
+      "disable",
+      "--account",
+      "own/account",
+      "own/rule_id"
+    ],
+    "expected": {
+      "operation_id": "rules.disable",
+      "permission": "o365mail.account[email=own/account].rule[id=own/rule_id]#edit",
+      "display": "Disable inbox rule own/rule_id in mailbox own/account",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "__no_such_command__"
+    ],
+    "expected": null,
+    "note": "Unknown commands never match."
+  }
+]

@@ -1,0 +1,49 @@
+[
+  {
+    "argv": [
+      "request",
+      "--origin",
+      "https://hooks.example.test",
+      "--method",
+      "POST"
+    ],
+    "expected": {
+      "operation_id": "request",
+      "permission": "pod-http.https-origin[url=https://hooks.example.test].http-method[name=POST]#request",
+      "display": "HTTP POST to https://hooks.example.test",
+      "exact_command": false
+    },
+    "note": "One request Pods builds (httpArgv)."
+  },
+  {
+    "argv": [
+      "request",
+      "--origin",
+      "https://api.example.test:8443",
+      "--method",
+      "GET"
+    ],
+    "expected": {
+      "operation_id": "request",
+      "permission": "pod-http.https-origin[url=https://api.example.test:8443].http-method[name=GET]#request",
+      "display": "HTTP GET to https://api.example.test:8443",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "request",
+      "--origin",
+      "https://hooks.example.test"
+    ],
+    "expected": null,
+    "note": "A missing method never matches."
+  },
+  {
+    "argv": [
+      "__no_such_command__"
+    ],
+    "expected": null,
+    "note": "Unknown commands never match."
+  }
+]

@@ -1,0 +1,25 @@
+[
+  {
+    "argv": [
+      "own/path"
+    ],
+    "expected": {
+      "operation_id": "touch.create",
+      "permission": "touch.filesystem[path=own/path]#create",
+      "display": "Create file or update timestamp of own/path",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "__no_such_command__"
+    ],
+    "expected": {
+      "operation_id": "touch.create",
+      "permission": "touch.filesystem[path=__no_such_command__]#create",
+      "display": "Create file or update timestamp of __no_such_command__",
+      "exact_command": false
+    },
+    "note": "Unknown commands never match."
+  }
+]

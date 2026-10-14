@@ -1,0 +1,157 @@
+[
+  {
+    "argv": [
+      "repos",
+      "list",
+      "--org",
+      "own/org",
+      "--project",
+      "own/project"
+    ],
+    "expected": {
+      "operation_id": "repos.list",
+      "permission": "az.organization[url=own/org].project[name=own/project].repo[*]#list",
+      "display": "List repositories in Azure DevOps project own/project",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "repos",
+      "show",
+      "--org",
+      "own/org",
+      "--project",
+      "own/project",
+      "--repository",
+      "own/repository"
+    ],
+    "expected": {
+      "operation_id": "repos.show",
+      "permission": "az.organization[url=own/org].project[name=own/project].repo[name=own/repository]#read",
+      "display": "Read Azure DevOps repository own/repository in project own/project",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "repos",
+      "create",
+      "--org",
+      "own/org",
+      "--project",
+      "own/project",
+      "--name",
+      "own/name"
+    ],
+    "expected": {
+      "operation_id": "repos.create",
+      "permission": "az.organization[url=own/org].project[name=own/project].repo[name=own/name]#create",
+      "display": "Create Azure DevOps repository own/name in project own/project",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "repos",
+      "pr",
+      "list",
+      "--org",
+      "own/org",
+      "--project",
+      "own/project",
+      "--repository",
+      "own/repository"
+    ],
+    "expected": {
+      "operation_id": "repos.pr.list",
+      "permission": "az.organization[url=own/org].project[name=own/project].repo[name=own/repository].pull-request[*]#list",
+      "display": "List pull requests for repository own/repository in project own/project",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "repos",
+      "pr",
+      "show",
+      "--org",
+      "own/org",
+      "--id",
+      "own/id"
+    ],
+    "expected": {
+      "operation_id": "repos.pr.show",
+      "permission": "az.organization[url=own/org].pull-request[id=own/id]#read",
+      "display": "Read pull request own/id in organization own/org",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "repos",
+      "pr",
+      "create",
+      "--org",
+      "own/org",
+      "--project",
+      "own/project",
+      "--repository",
+      "own/repository",
+      "--source-branch",
+      "own/source-branch",
+      "--target-branch",
+      "own/target-branch"
+    ],
+    "expected": {
+      "operation_id": "repos.pr.create",
+      "permission": "az.organization[url=own/org].project[name=own/project].repo[name=own/repository].pull-request[*]#create",
+      "display": "Create pull request in repository own/repository from own/source-branch to own/target-branch",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "repos",
+      "pr",
+      "reviewer",
+      "add",
+      "--org",
+      "own/org",
+      "--id",
+      "own/id",
+      "--reviewers",
+      "own/reviewers"
+    ],
+    "expected": {
+      "operation_id": "repos.pr.reviewer.add",
+      "permission": "az.organization[url=own/org].pull-request[id=own/id]#reviewer-add",
+      "display": "Add reviewers own/reviewers to pull request own/id",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "repos",
+      "pr",
+      "update",
+      "--org",
+      "own/org",
+      "--id",
+      "own/id"
+    ],
+    "expected": {
+      "operation_id": "repos.pr.update",
+      "permission": "az.organization[url=own/org].pull-request[id=own/id]#update",
+      "display": "Update pull request own/id in organization own/org",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "__no_such_command__"
+    ],
+    "expected": null,
+    "note": "Unknown commands never match."
+  }
+]

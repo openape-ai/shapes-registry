@@ -1,0 +1,25 @@
+[
+  {
+    "argv": [
+      "own/filter"
+    ],
+    "expected": {
+      "operation_id": "filter.stdin",
+      "permission": "jq.stdin[*]#read",
+      "display": "Filter JSON from stdin: jq own/filter",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "__no_such_command__"
+    ],
+    "expected": {
+      "operation_id": "filter.stdin",
+      "permission": "jq.stdin[*]#read",
+      "display": "Filter JSON from stdin: jq __no_such_command__",
+      "exact_command": false
+    },
+    "note": "Unknown commands never match."
+  }
+]

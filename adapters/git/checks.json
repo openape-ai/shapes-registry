@@ -1,0 +1,10 @@
+{
+  "help": ["-h"],
+  "unlisted_options": {
+    "git.log": ["max-count", "n", "format", "pretty", "since", "until", "author", "grep", "oneline", "graph", "all", "stat", "name-only", "name-status", "no-merges", "first-parent", "reverse"],
+    "git.diff": ["shortstat", "staged", "quiet", "exit-code", "no-color", "no-ext-diff", "no-textconv"],
+    "git.branch": ["vv"],
+    "git.rev-parse": ["abbrev-ref", "symbolic-full-name", "verify", "short", "quiet", "q"]
+  },
+  "unlisted_reason": "git -h prints only parse-options flags; revision, diff and rev-parse options and the -vv/--staged forms are documented in git-log(1), git-diff(1), git-branch(1) and git-rev-parse(1) of git 2.54 (checked October 14, 2026)."
+}

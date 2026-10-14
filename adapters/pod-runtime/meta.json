@@ -1,0 +1,12 @@
+{
+  "id": "pod-runtime",
+  "name": "OpenApe Pods runtime",
+  "description": "Shapes adapter for the OpenApe Pods runtime authority — one grant lets a Pod run its stored script",
+  "author": "delta-mind",
+  "category": "other",
+  "tags": ["openape", "pods", "runtime", "automation"],
+  "executable": "pod-runtime",
+  "risk_summary": "One high-risk run operation per Pod. The Pods desktop builds the argv itself; scripts stay within the Pod's separately assigned permissions.",
+  "homepage": "https://openape.ai",
+  "min_shapes_version": "0.10.0"
+}

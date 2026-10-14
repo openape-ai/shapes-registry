@@ -1,31 +1,47 @@
-name: Build Registry
+name: Registry checks
 
+# Manual only: Forgejo CI runs on dispatch by owner decision (October 7, 2026).
+# Run the same check locally before merging (README, "Checks"). The canonical
+# repository is repos.openape.ai; Forgejo and GitHub are read-only mirrors, so
+# CI verifies the committed registry.json instead of committing one.
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'adapters/**'
-      - 'scripts/build-registry.mjs'
+  workflow_dispatch:
+    inputs:
+      monorepo_ref:
+        description: OpenApe monorepo ref whose @openape/shapes the check uses
+        required: true
+        default: main
 
 jobs:
-  build:
+  check:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/checkout@v4
+        with:
+          repository: openape-ai/openape
+          ref: ${{ inputs.monorepo_ref }}
+          path: openape-monorepo
+
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version-file: openape-monorepo/.nvmrc
 
-      - name: Build registry.json
-        run: node scripts/build-registry.mjs
-
-      - name: Commit if changed
+      - name: Build @openape/shapes from the monorepo
+        working-directory: openape-monorepo
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add registry.json
-          git diff --cached --quiet || git commit -m "chore: regenerate registry.json"
-          git push
+          corepack enable
+          pnpm install --frozen-lockfile --filter '@openape/shapes...'
+          pnpm --filter '@openape/shapes...' build
+
+      - name: Install pinned check dependencies
+        run: npm ci
+
+      # Strict parsing, JSON schemas, golden argv fixtures, the hostile-option
+      # matrix and, for CLIs installed here in a tested version, their help output.
+      # A missing or untested CLI is reported as a notice, not a failure.
+      - name: Check registry.json and adapters
+        env:
+          SHAPES_MODULE: ${{ github.workspace }}/openape-monorepo/packages/shapes/dist/index.js
+        run: npm run check

@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/openape-ai/shapes-registry/schemas/checks.schema.json",
+  "title": "Shapes Adapter Check Settings",
+  "description": "Optional adapters/<id>/checks.json for scripts/check-adapters.mjs.",
+  "type": "object",
+  "additionalProperties": false,
+  "dependentRequired": {
+    "legacy_operations": [
+      "legacy_reason"
+    ],
+    "unlisted_options": [
+      "unlisted_reason",
+      "help"
+    ],
+    "unreachable_operations": [
+      "unreachable_reason"
+    ]
+  },
+  "properties": {
+    "legacy_operations": {
+      "description": "Non-exact operations that still accept undeclared options and are therefore exempt from the hostile-option matrix. Every entry is reviewed debt.",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "legacy_reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "help": {
+      "description": "Arguments appended to the executable and the command words to print the options of a command (git: [\"-h\"]). Required with tested_versions.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "unlisted_options": {
+      "description": "Declared options, per operation id, that exist in the CLI but are not printed by its help output.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "minItems": 1,
+        "uniqueItems": true,
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "unlisted_reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "unreachable_operations": {
+      "description": "Operations no argv can reach because an earlier operation always matches first. Reviewed debt: the check fails once such an operation becomes reachable.",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "unreachable_reason": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

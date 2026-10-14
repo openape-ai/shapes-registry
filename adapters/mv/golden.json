@@ -1,0 +1,21 @@
+[
+  {
+    "argv": [
+      "own/source",
+      "own/dest"
+    ],
+    "expected": {
+      "operation_id": "mv.move",
+      "permission": "mv.filesystem[path=own/source].filesystem[path=own/dest]#edit",
+      "display": "Move own/source to own/dest",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "__no_such_command__"
+    ],
+    "expected": null,
+    "note": "Unknown commands never match."
+  }
+]

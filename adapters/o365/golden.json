@@ -1,0 +1,593 @@
+[
+  {
+    "argv": [
+      "auth",
+      "login"
+    ],
+    "expected": {
+      "operation_id": "auth.login",
+      "permission": "o365.auth[*]#create",
+      "display": "Login to Microsoft 365 account",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "auth",
+      "logout",
+      "own/email"
+    ],
+    "expected": {
+      "operation_id": "auth.logout",
+      "permission": "o365.auth[email=own/email]#delete",
+      "display": "Logout from account own/email",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "auth",
+      "logout",
+      "--all"
+    ],
+    "expected": {
+      "operation_id": "auth.logout-all",
+      "permission": "o365.auth[*]#delete",
+      "display": "Logout from all accounts",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "auth",
+      "list"
+    ],
+    "expected": {
+      "operation_id": "auth.list",
+      "permission": "o365.auth[*]#list",
+      "display": "List logged-in accounts",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "auth",
+      "status"
+    ],
+    "expected": {
+      "operation_id": "auth.status",
+      "permission": "o365.auth[*]#read",
+      "display": "Show auth token status",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "list"
+    ],
+    "expected": {
+      "operation_id": "mail.list",
+      "permission": "o365.account[email=*].mail[*]#list",
+      "display": "List emails (all accounts)",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "read",
+      "--account",
+      "own/account",
+      "own/message_id"
+    ],
+    "expected": {
+      "operation_id": "mail.read",
+      "permission": "o365.account[email=own/account].mail[id=own/message_id]#read",
+      "display": "Read email own/message_id from account own/account",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "search"
+    ],
+    "expected": {
+      "operation_id": "mail.search",
+      "permission": "o365.account[email=*].mail[*]#search",
+      "display": "Search emails (all accounts)",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "query",
+      "own/search_text"
+    ],
+    "expected": {
+      "operation_id": "mail.query",
+      "permission": "o365.account[email=*].mail[*]#search",
+      "display": "Search emails via KQL: own/search_text",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "attachments",
+      "--account",
+      "own/account",
+      "own/message_id"
+    ],
+    "expected": {
+      "operation_id": "mail.attachments",
+      "permission": "o365.account[email=own/account].mail[id=own/message_id]#read",
+      "display": "Download attachments from email own/message_id",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "mark-read",
+      "--account",
+      "own/account",
+      "own/message_id"
+    ],
+    "expected": {
+      "operation_id": "mail.mark-read",
+      "permission": "o365.account[email=own/account].mail[id=own/message_id]#edit",
+      "display": "Mark email own/message_id as read",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "mark-unread",
+      "--account",
+      "own/account",
+      "own/message_id"
+    ],
+    "expected": {
+      "operation_id": "mail.mark-unread",
+      "permission": "o365.account[email=own/account].mail[id=own/message_id]#edit",
+      "display": "Mark email own/message_id as unread",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "move",
+      "--account",
+      "own/account",
+      "--to",
+      "own/to",
+      "own/message_id"
+    ],
+    "expected": {
+      "operation_id": "mail.move",
+      "permission": "o365.account[email=own/account].mail[id=own/message_id]#edit",
+      "display": "Move email own/message_id to folder own/to",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "trash",
+      "--account",
+      "own/account",
+      "own/message_id"
+    ],
+    "expected": {
+      "operation_id": "mail.trash",
+      "permission": "o365.account[email=own/account].mail[id=own/message_id]#delete",
+      "display": "Trash email own/message_id",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "archive-from",
+      "--account",
+      "own/account",
+      "own/email_addresses"
+    ],
+    "expected": {
+      "operation_id": "mail.archive-from",
+      "permission": "o365.account[email=own/account].mail[*]#edit",
+      "display": "Archive all emails from own/email_addresses",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "send",
+      "--account",
+      "own/account",
+      "--to",
+      "own/to",
+      "--subject",
+      "own/subject",
+      "--body",
+      "own/body"
+    ],
+    "expected": {
+      "operation_id": "mail.send",
+      "permission": "o365.account[email=own/account].mail[*]#send",
+      "display": "Send email to own/to from own/account",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "reply",
+      "--account",
+      "own/account",
+      "own/message_id"
+    ],
+    "expected": {
+      "operation_id": "mail.reply",
+      "permission": "o365.account[email=own/account].mail[id=own/message_id]#send",
+      "display": "Reply to email own/message_id from own/account",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "mail",
+      "forward",
+      "--account",
+      "own/account",
+      "--to",
+      "own/to",
+      "own/message_id"
+    ],
+    "expected": {
+      "operation_id": "mail.forward",
+      "permission": "o365.account[email=own/account].mail[id=own/message_id]#send",
+      "display": "Forward email own/message_id to own/to from own/account",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "calendar",
+      "list"
+    ],
+    "expected": {
+      "operation_id": "calendar.list",
+      "permission": "o365.account[email=*].calendar[*]#list",
+      "display": "List upcoming events (all accounts)",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "calendar",
+      "today"
+    ],
+    "expected": {
+      "operation_id": "calendar.today",
+      "permission": "o365.account[email=*].calendar[*]#list",
+      "display": "List today's events (all accounts)",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "calendar",
+      "get",
+      "--account",
+      "own/account",
+      "own/event_id"
+    ],
+    "expected": {
+      "operation_id": "calendar.get",
+      "permission": "o365.account[email=own/account].calendar[id=own/event_id]#read",
+      "display": "Get event details own/event_id",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "calendar",
+      "create",
+      "--account",
+      "own/account",
+      "--subject",
+      "own/subject",
+      "--start",
+      "own/start",
+      "--end",
+      "own/end"
+    ],
+    "expected": {
+      "operation_id": "calendar.create",
+      "permission": "o365.account[email=own/account].calendar[*]#create",
+      "display": "Create event 'own/subject' on own/account",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "calendar",
+      "update",
+      "--account",
+      "own/account",
+      "own/event_id"
+    ],
+    "expected": {
+      "operation_id": "calendar.update",
+      "permission": "o365.account[email=own/account].calendar[id=own/event_id]#edit",
+      "display": "Update event own/event_id on own/account",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "calendar",
+      "delete",
+      "--account",
+      "own/account",
+      "own/event_id"
+    ],
+    "expected": {
+      "operation_id": "calendar.delete",
+      "permission": "o365.account[email=own/account].calendar[id=own/event_id]#delete",
+      "display": "Delete event own/event_id on own/account",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "calendar",
+      "accept",
+      "--account",
+      "own/account",
+      "own/event_id"
+    ],
+    "expected": {
+      "operation_id": "calendar.accept",
+      "permission": "o365.account[email=own/account].calendar[id=own/event_id]#send",
+      "display": "Accept event invitation own/event_id",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "calendar",
+      "decline",
+      "--account",
+      "own/account",
+      "own/event_id"
+    ],
+    "expected": {
+      "operation_id": "calendar.decline",
+      "permission": "o365.account[email=own/account].calendar[id=own/event_id]#send",
+      "display": "Decline event invitation own/event_id",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "calendar",
+      "tentative",
+      "--account",
+      "own/account",
+      "own/event_id"
+    ],
+    "expected": {
+      "operation_id": "calendar.tentative",
+      "permission": "o365.account[email=own/account].calendar[id=own/event_id]#send",
+      "display": "Tentatively accept event own/event_id",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "drafts",
+      "list"
+    ],
+    "expected": {
+      "operation_id": "drafts.list",
+      "permission": "o365.account[email=*].draft[*]#list",
+      "display": "List drafts (all accounts)",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "drafts",
+      "read",
+      "--account",
+      "own/account",
+      "own/draft_id"
+    ],
+    "expected": {
+      "operation_id": "drafts.read",
+      "permission": "o365.account[email=own/account].draft[id=own/draft_id]#read",
+      "display": "Read draft own/draft_id",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "drafts",
+      "save",
+      "--account",
+      "own/account",
+      "--to",
+      "own/to",
+      "--subject",
+      "own/subject",
+      "--body",
+      "own/body"
+    ],
+    "expected": {
+      "operation_id": "drafts.save",
+      "permission": "o365.account[email=own/account].draft[*]#create",
+      "display": "Save draft to own/to from own/account",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "drafts",
+      "send",
+      "--account",
+      "own/account",
+      "own/draft_id"
+    ],
+    "expected": {
+      "operation_id": "drafts.send",
+      "permission": "o365.account[email=own/account].draft[id=own/draft_id]#send",
+      "display": "Send draft own/draft_id from own/account",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "drafts",
+      "delete",
+      "--account",
+      "own/account",
+      "own/draft_id"
+    ],
+    "expected": {
+      "operation_id": "drafts.delete",
+      "permission": "o365.account[email=own/account].draft[id=own/draft_id]#delete",
+      "display": "Delete draft own/draft_id",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "folders",
+      "list"
+    ],
+    "expected": {
+      "operation_id": "folders.list",
+      "permission": "o365.account[email=*].folder[*]#list",
+      "display": "List mail folders (all accounts)",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "folders",
+      "create",
+      "--account",
+      "own/account",
+      "own/name"
+    ],
+    "expected": {
+      "operation_id": "folders.create",
+      "permission": "o365.account[email=own/account].folder[name=own/name]#create",
+      "display": "Create folder 'own/name' on own/account",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "folders",
+      "delete",
+      "--account",
+      "own/account",
+      "own/name"
+    ],
+    "expected": {
+      "operation_id": "folders.delete",
+      "permission": "o365.account[email=own/account].folder[name=own/name]#delete",
+      "display": "Delete folder 'own/name' on own/account",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "rules",
+      "list"
+    ],
+    "expected": {
+      "operation_id": "rules.list",
+      "permission": "o365.account[email=*].rule[*]#list",
+      "display": "List inbox rules (all accounts)",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "rules",
+      "get",
+      "--account",
+      "own/account",
+      "own/rule_id"
+    ],
+    "expected": {
+      "operation_id": "rules.get",
+      "permission": "o365.account[email=own/account].rule[id=own/rule_id]#read",
+      "display": "Get inbox rule own/rule_id",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "rules",
+      "create",
+      "--account",
+      "own/account",
+      "--name",
+      "own/name"
+    ],
+    "expected": {
+      "operation_id": "rules.create",
+      "permission": "o365.account[email=own/account].rule[*]#create",
+      "display": "Create inbox rule 'own/name' on own/account",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "rules",
+      "update",
+      "--account",
+      "own/account",
+      "own/rule_id"
+    ],
+    "expected": {
+      "operation_id": "rules.update",
+      "permission": "o365.account[email=own/account].rule[id=own/rule_id]#edit",
+      "display": "Update inbox rule own/rule_id on own/account",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "rules",
+      "delete",
+      "--account",
+      "own/account",
+      "own/rule_id"
+    ],
+    "expected": {
+      "operation_id": "rules.delete",
+      "permission": "o365.account[email=own/account].rule[id=own/rule_id]#delete",
+      "display": "Delete inbox rule own/rule_id on own/account",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "__no_such_command__"
+    ],
+    "expected": null,
+    "note": "Unknown commands never match."
+  }
+]

@@ -1,0 +1,37 @@
+[
+  {
+    "argv": [
+      "own/destination"
+    ],
+    "expected": {
+      "operation_id": "ssh.connect",
+      "permission": "ssh.network[host=own/destination]#connect",
+      "display": "SSH connect to own/destination",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "own/destination",
+      "own/command"
+    ],
+    "expected": {
+      "operation_id": "ssh.command",
+      "permission": "ssh.network[host=own/destination]#execute",
+      "display": "Execute command on own/destination",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "__no_such_command__"
+    ],
+    "expected": {
+      "operation_id": "ssh.connect",
+      "permission": "ssh.network[host=__no_such_command__]#connect",
+      "display": "SSH connect to __no_such_command__",
+      "exact_command": true
+    },
+    "note": "Unknown commands never match."
+  }
+]

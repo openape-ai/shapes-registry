@@ -1,0 +1,13 @@
+{
+  "legacy_operations": [
+    "mail.list",
+    "mail.read",
+    "mail.search",
+    "mail.archive",
+    "folders.list",
+    "calendar.list",
+    "calendar.today",
+    "calendar.get"
+  ],
+  "legacy_reason": "Predates declared options (issue 1468): these operations still accept undeclared options until value_options/flag_options are declared."
+}

@@ -1,0 +1,46 @@
+[
+  {
+    "argv": [
+      "-cf",
+      "own/archive",
+      "own/path"
+    ],
+    "expected": {
+      "operation_id": "tar.create",
+      "permission": "tar.filesystem[path=own/path].filesystem[path=own/archive]#create",
+      "display": "Create tar archive own/archive from own/path",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "-xf",
+      "own/archive"
+    ],
+    "expected": {
+      "operation_id": "tar.extract",
+      "permission": "tar.filesystem[path=own/archive]#extract",
+      "display": "Extract tar archive own/archive",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "-tf",
+      "own/archive"
+    ],
+    "expected": {
+      "operation_id": "tar.list",
+      "permission": "tar.filesystem[path=own/archive]#list",
+      "display": "List contents of tar archive own/archive",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "__no_such_command__"
+    ],
+    "expected": null,
+    "note": "Unknown commands never match."
+  }
+]

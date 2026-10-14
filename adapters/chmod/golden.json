@@ -1,0 +1,34 @@
+[
+  {
+    "argv": [
+      "own/mode",
+      "own/path"
+    ],
+    "expected": {
+      "operation_id": "chmod.set",
+      "permission": "chmod.filesystem[path=own/path].permissions[mode=own/mode]#edit",
+      "display": "Change permissions of own/path to own/mode",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "-R",
+      "own/mode",
+      "own/path"
+    ],
+    "expected": {
+      "operation_id": "chmod.recursive",
+      "permission": "chmod.filesystem[path=own/path].permissions[mode=own/mode]#edit",
+      "display": "Recursively change permissions of own/path to own/mode",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "__no_such_command__"
+    ],
+    "expected": null,
+    "note": "Unknown commands never match."
+  }
+]

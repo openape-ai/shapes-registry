@@ -1,0 +1,37 @@
+[
+  {
+    "argv": [
+      "own/path"
+    ],
+    "expected": {
+      "operation_id": "tee.write",
+      "permission": "tee.filesystem[path=own/path]#create",
+      "display": "Copy stdin to own/path and stdout",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "-a",
+      "own/path"
+    ],
+    "expected": {
+      "operation_id": "tee.append",
+      "permission": "tee.filesystem[path=own/path]#edit",
+      "display": "Append stdin to own/path and stdout",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "__no_such_command__"
+    ],
+    "expected": {
+      "operation_id": "tee.write",
+      "permission": "tee.filesystem[path=__no_such_command__]#create",
+      "display": "Copy stdin to __no_such_command__ and stdout",
+      "exact_command": false
+    },
+    "note": "Unknown commands never match."
+  }
+]

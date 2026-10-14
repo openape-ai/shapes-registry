@@ -1,0 +1,12 @@
+{
+  "id": "pod-http",
+  "name": "OpenApe Pods HTTP access",
+  "description": "Shapes adapter for OpenApe Pods HTTPS access — one origin and method per request",
+  "author": "delta-mind",
+  "category": "other",
+  "tags": ["openape", "pods", "http", "network"],
+  "executable": "pod-http",
+  "risk_summary": "One high-risk request operation bound to an HTTPS origin and method. The Pods proxy enforces the granted origins and methods.",
+  "homepage": "https://openape.ai",
+  "min_shapes_version": "0.10.0"
+}

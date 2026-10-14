@@ -1,0 +1,1054 @@
+[
+  {
+    "argv": [
+      "status"
+    ],
+    "expected": {
+      "operation_id": "git.status",
+      "permission": "git.repo[*]#read",
+      "display": "Show working tree status",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "status",
+      "--json"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.status (git.repo[*]#read). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "status",
+      "--limit",
+      "10"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.status (git.repo[*]#read). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "status",
+      "--verbose"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.status (git.repo[*]#read). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "log"
+    ],
+    "expected": {
+      "operation_id": "git.log",
+      "permission": "git.repo[*]#read",
+      "display": "Show commit log",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "log",
+      "--json"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.log (git.repo[*]#read). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "log",
+      "--limit",
+      "10"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.log (git.repo[*]#read). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "log",
+      "--verbose"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.log (git.repo[*]#read). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "diff"
+    ],
+    "expected": {
+      "operation_id": "git.diff",
+      "permission": "git.repo[*]#read",
+      "display": "Show changes",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "diff",
+      "--json"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.diff (git.repo[*]#read). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "diff",
+      "--limit",
+      "10"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.diff (git.repo[*]#read). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "diff",
+      "--verbose"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.diff (git.repo[*]#read). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "branch"
+    ],
+    "expected": {
+      "operation_id": "git.branch",
+      "permission": "git.repo[*]#read",
+      "display": "List or manage branches",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "branch",
+      "--json"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.branch (git.repo[*]#read). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "branch",
+      "--limit",
+      "10"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.branch (git.repo[*]#read). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "branch",
+      "--verbose"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.branch (git.repo[*]#read). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "remote"
+    ],
+    "expected": {
+      "operation_id": "git.remote",
+      "permission": "git.repo[*]#read",
+      "display": "Show remotes",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "remote",
+      "--json"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.remote (git.repo[*]#read). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "remote",
+      "--limit",
+      "10"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.remote (git.repo[*]#read). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "remote",
+      "--verbose"
+    ],
+    "expected": {
+      "operation_id": "git.remote",
+      "permission": "git.repo[*]#read",
+      "display": "Show remotes",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "fetch"
+    ],
+    "expected": {
+      "operation_id": "git.fetch",
+      "permission": "git.repo[*].remote[*]#read",
+      "display": "Fetch from remote",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "fetch",
+      "--json"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.fetch (git.repo[*].remote[*]#read). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "fetch",
+      "--limit",
+      "10"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.fetch (git.repo[*].remote[*]#read). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "fetch",
+      "--verbose"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.fetch (git.repo[*].remote[*]#read). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "pull"
+    ],
+    "expected": {
+      "operation_id": "git.pull",
+      "permission": "git.repo[*].remote[*]#edit",
+      "display": "Pull from remote",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "pull",
+      "--json"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.pull (git.repo[*].remote[*]#edit). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "pull",
+      "--limit",
+      "10"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.pull (git.repo[*].remote[*]#edit). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "pull",
+      "--verbose"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.pull (git.repo[*].remote[*]#edit). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "add",
+      "own/path"
+    ],
+    "expected": {
+      "operation_id": "git.add",
+      "permission": "git.repo[*].file[path=own/path]#edit",
+      "display": "Stage changes: own/path",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "add",
+      "own/path",
+      "--json"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.add (git.repo[*].file[path=own/path]#edit). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "add",
+      "own/path",
+      "--limit",
+      "10"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.add (git.repo[*].file[path=own/path]#edit). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "commit",
+      "-m",
+      "own/m"
+    ],
+    "expected": {
+      "operation_id": "git.commit",
+      "permission": "git.repo[*].commit[*]#create",
+      "display": "Commit: own/m",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "commit",
+      "-m",
+      "own/m",
+      "--json"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.commit (git.repo[*].commit[*]#create). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "commit",
+      "-m",
+      "own/m",
+      "--limit",
+      "10"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.commit (git.repo[*].commit[*]#create). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "commit",
+      "--verbose",
+      "-m",
+      "own/m"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.commit (git.repo[*].commit[*]#create). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "push"
+    ],
+    "expected": {
+      "operation_id": "git.push",
+      "permission": "git.repo[*].remote[*]#edit",
+      "display": "Push to remote",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "push",
+      "--json"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.push (git.repo[*].remote[*]#edit). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "push",
+      "--limit",
+      "10"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.push (git.repo[*].remote[*]#edit). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "push",
+      "--verbose"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.push (git.repo[*].remote[*]#edit). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "clone",
+      "own/url"
+    ],
+    "expected": {
+      "operation_id": "git.clone",
+      "permission": "git.repo[url=own/url]#create",
+      "display": "Clone repository own/url",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "clone",
+      "own/url",
+      "--json"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.clone (git.repo[url=own/url]#create). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "clone",
+      "own/url",
+      "--limit",
+      "10"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.clone (git.repo[url=own/url]#create). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "checkout",
+      "own/ref"
+    ],
+    "expected": {
+      "operation_id": "git.checkout",
+      "permission": "git.repo[*].ref[name=own/ref]#edit",
+      "display": "Checkout own/ref",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "checkout",
+      "own/ref",
+      "--json"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.checkout (git.repo[*].ref[name=own/ref]#edit). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "checkout",
+      "own/ref",
+      "--limit",
+      "10"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.checkout (git.repo[*].ref[name=own/ref]#edit). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "switch",
+      "own/branch"
+    ],
+    "expected": {
+      "operation_id": "git.switch",
+      "permission": "git.repo[*].branch[name=own/branch]#edit",
+      "display": "Switch to branch own/branch",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "switch",
+      "own/branch",
+      "--json"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.switch (git.repo[*].branch[name=own/branch]#edit). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "switch",
+      "own/branch",
+      "--limit",
+      "10"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.switch (git.repo[*].branch[name=own/branch]#edit). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "merge",
+      "own/branch"
+    ],
+    "expected": {
+      "operation_id": "git.merge",
+      "permission": "git.repo[*].branch[name=own/branch]#edit",
+      "display": "Merge branch own/branch",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "merge",
+      "own/branch",
+      "--json"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.merge (git.repo[*].branch[name=own/branch]#edit). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "merge",
+      "own/branch",
+      "--limit",
+      "10"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.merge (git.repo[*].branch[name=own/branch]#edit). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "reset"
+    ],
+    "expected": {
+      "operation_id": "git.reset",
+      "permission": "git.repo[*]#delete",
+      "display": "Reset current HEAD",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "reset",
+      "--json"
+    ],
+    "expected": {
+      "operation_id": "git.reset",
+      "permission": "git.repo[*]#delete",
+      "display": "Reset current HEAD",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "reset",
+      "--limit",
+      "10"
+    ],
+    "expected": {
+      "operation_id": "git.reset",
+      "permission": "git.repo[*]#delete",
+      "display": "Reset current HEAD",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "reset",
+      "--verbose"
+    ],
+    "expected": {
+      "operation_id": "git.reset",
+      "permission": "git.repo[*]#delete",
+      "display": "Reset current HEAD",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "rebase"
+    ],
+    "expected": {
+      "operation_id": "git.rebase",
+      "permission": "git.repo[*]#edit",
+      "display": "Rebase current branch",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "rebase",
+      "--json"
+    ],
+    "expected": {
+      "operation_id": "git.rebase",
+      "permission": "git.repo[*]#edit",
+      "display": "Rebase current branch",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "rebase",
+      "--limit",
+      "10"
+    ],
+    "expected": {
+      "operation_id": "git.rebase",
+      "permission": "git.repo[*]#edit",
+      "display": "Rebase current branch",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "rebase",
+      "--verbose"
+    ],
+    "expected": {
+      "operation_id": "git.rebase",
+      "permission": "git.repo[*]#edit",
+      "display": "Rebase current branch",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "stash"
+    ],
+    "expected": {
+      "operation_id": "git.stash",
+      "permission": "git.repo[*]#edit",
+      "display": "Stash changes",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "stash",
+      "--json"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.stash (git.repo[*]#edit). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "stash",
+      "--limit",
+      "10"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.stash (git.repo[*]#edit). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "stash",
+      "--verbose"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.stash (git.repo[*]#edit). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "tag",
+      "own/name"
+    ],
+    "expected": {
+      "operation_id": "git.tag",
+      "permission": "git.repo[*].tag[name=own/name]#create",
+      "display": "Create tag own/name",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "tag",
+      "own/name",
+      "--json"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.tag (git.repo[*].tag[name=own/name]#create). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "tag",
+      "own/name",
+      "--limit",
+      "10"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.tag (git.repo[*].tag[name=own/name]#create). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "status",
+      "--short"
+    ],
+    "expected": {
+      "operation_id": "git.status",
+      "permission": "git.repo[*]#read",
+      "display": "Show working tree status",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "log",
+      "--oneline"
+    ],
+    "expected": {
+      "operation_id": "git.log",
+      "permission": "git.repo[*]#read",
+      "display": "Show commit log",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "diff",
+      "--stat"
+    ],
+    "expected": {
+      "operation_id": "git.diff",
+      "permission": "git.repo[*]#read",
+      "display": "Show changes",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "fetch",
+      "--prune",
+      "origin"
+    ],
+    "expected": {
+      "operation_id": "git.fetch.remote",
+      "permission": "git.repo[*].remote[*]#read",
+      "display": "Fetch from remote origin",
+      "exact_command": false
+    },
+    "note": "Previous registry adapter: git.fetch, same permission."
+  },
+  {
+    "argv": [
+      "push",
+      "--force",
+      "origin"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.push (git.repo[*].remote[*]#edit). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "commit",
+      "-m",
+      "msg"
+    ],
+    "expected": {
+      "operation_id": "git.commit",
+      "permission": "git.repo[*].commit[*]#create",
+      "display": "Commit: msg",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "commit",
+      "-am",
+      "msg"
+    ],
+    "expected": null,
+    "note": "Previous registry adapter: git.commit (git.repo[*].commit[*]#create). The option is not declared, so it no longer matches (issue 1468)."
+  },
+  {
+    "argv": [
+      "checkout",
+      "-b",
+      "feat"
+    ],
+    "expected": {
+      "operation_id": "git.checkout",
+      "permission": "git.repo[*].ref[name=feat]#edit",
+      "display": "Checkout feat",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "rebase",
+      "--abort"
+    ],
+    "expected": {
+      "operation_id": "git.rebase",
+      "permission": "git.repo[*]#edit",
+      "display": "Rebase current branch",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "reset",
+      "--hard",
+      "HEAD"
+    ],
+    "expected": {
+      "operation_id": "git.reset",
+      "permission": "git.repo[*]#delete",
+      "display": "Reset current HEAD",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "-C",
+      "/work/repo",
+      "status",
+      "--porcelain"
+    ],
+    "expected": {
+      "operation_id": "git.status",
+      "permission": "git.repo[*]#read",
+      "display": "Show working tree status",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "-C",
+      "/work/repo",
+      "worktree",
+      "list",
+      "--porcelain"
+    ],
+    "expected": {
+      "operation_id": "git.worktree.list",
+      "permission": "git.repo[*]#read",
+      "display": "List worktrees",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "-C",
+      "/work/repo",
+      "fetch",
+      "origin"
+    ],
+    "expected": {
+      "operation_id": "git.fetch.remote",
+      "permission": "git.repo[*].remote[*]#read",
+      "display": "Fetch from remote origin",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "-C",
+      "/work/repo",
+      "merge-base",
+      "--is-ancestor",
+      "A",
+      "B"
+    ],
+    "expected": {
+      "operation_id": "git.merge-base",
+      "permission": "git.repo[*]#read",
+      "display": "Find the merge base of A and B",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "-C",
+      "/work/repo",
+      "merge-tree",
+      "--write-tree",
+      "main",
+      "feature"
+    ],
+    "expected": {
+      "operation_id": "git.merge-tree",
+      "permission": "git.repo[*]#read",
+      "display": "Test-merge main with feature without touching the worktree",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "-C",
+      "/work/repo",
+      "rev-parse",
+      "--abbrev-ref",
+      "HEAD"
+    ],
+    "expected": {
+      "operation_id": "git.rev-parse",
+      "permission": "git.repo[*]#read",
+      "display": "Resolve HEAD",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "-C",
+      "/work/repo",
+      "replay",
+      "--ref-action=print",
+      "--onto",
+      "origin/development",
+      "--ref",
+      "refs/remotes/origin/feature",
+      "origin/development..origin/feature"
+    ],
+    "expected": {
+      "operation_id": "git.replay.print",
+      "permission": "git.repo[*]#read",
+      "display": "Replay origin/development..origin/feature onto origin/development without touching the worktree or any ref",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "-C",
+      "/work/repo",
+      "rebase",
+      "origin/main"
+    ],
+    "expected": {
+      "operation_id": "git.rebase.upstream",
+      "permission": "git.repo[*]#rebase",
+      "display": "Rebase the current branch onto origin/main",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "-C",
+      "/work/repo",
+      "rebase",
+      "--abort"
+    ],
+    "expected": {
+      "operation_id": "git.rebase",
+      "permission": "git.repo[*]#edit",
+      "display": "Rebase current branch",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "-C",
+      "/work/repo",
+      "push",
+      "--force-with-lease",
+      "origin",
+      "HEAD:refs/heads/topic"
+    ],
+    "expected": {
+      "operation_id": "git.push.refspec",
+      "permission": "git.repo[*].remote[name=origin]#push",
+      "display": "Push HEAD:refs/heads/topic to origin",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "-C",
+      "/work/repo",
+      "replay",
+      "--onto",
+      "A",
+      "A..B"
+    ],
+    "expected": null,
+    "note": "Without --ref-action=print git updates refs."
+  },
+  {
+    "argv": [
+      "-C",
+      "/work/repo",
+      "replay",
+      "--ref-action=update",
+      "--onto",
+      "A",
+      "A..B"
+    ],
+    "expected": null,
+    "note": "Ref-updating mode."
+  },
+  {
+    "argv": [
+      "-C",
+      "/work/repo",
+      "replay",
+      "--ref-action=print",
+      "--ref-action=update",
+      "--onto",
+      "A",
+      "A..B"
+    ],
+    "expected": null,
+    "note": "A repeated mode; git uses the last one."
+  },
+  {
+    "argv": [
+      "-C",
+      "/work/repo",
+      "replay",
+      "--ref-action=print",
+      "--onto",
+      "A",
+      "--ref-action",
+      "update",
+      "A..B"
+    ],
+    "expected": null,
+    "note": "A second mode after the command word."
+  },
+  {
+    "argv": [
+      "-C",
+      "/work/repo",
+      "replay",
+      "--onto",
+      "A",
+      "--ref-action=print",
+      "A..B"
+    ],
+    "expected": null,
+    "note": "The mode must be the fixed command word."
+  },
+  {
+    "argv": [
+      "-C",
+      "/work",
+      "-C",
+      "repo",
+      "status"
+    ],
+    "expected": null,
+    "note": "git combines repeated -C into another path."
+  },
+  {
+    "argv": [
+      "-C",
+      "/work",
+      "-C",
+      "repo",
+      "push",
+      "origin",
+      "main"
+    ],
+    "expected": null,
+    "note": "git combines repeated -C into another path."
+  },
+  {
+    "argv": [
+      "-c",
+      "core.sshCommand=touch /tmp/x",
+      "fetch",
+      "origin"
+    ],
+    "expected": null,
+    "note": "-c runs configuration-defined commands."
+  },
+  {
+    "argv": [
+      "fetch",
+      "--upload-pack=touch /tmp/x",
+      "origin"
+    ],
+    "expected": null,
+    "note": "--upload-pack runs a command."
+  },
+  {
+    "argv": [
+      "push",
+      "--receive-pack=touch /tmp/x",
+      "origin",
+      "main"
+    ],
+    "expected": null
+  },
+  {
+    "argv": [
+      "__no_such_command__"
+    ],
+    "expected": null,
+    "note": "Unknown commands never match."
+  }
+]

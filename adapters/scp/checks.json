@@ -1,0 +1,6 @@
+{
+  "unreachable_operations": [
+    "scp.download"
+  ],
+  "unreachable_reason": "scp.upload has the same command and positionals and comes first, so every argv derives scp.upload."
+}
