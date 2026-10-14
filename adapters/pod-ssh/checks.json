@@ -1,0 +1,6 @@
+{
+  "legacy_operations": [
+    "inventory"
+  ],
+  "legacy_reason": "The Pods desktop builds the argv itself; no shell or real program reads it."
+}

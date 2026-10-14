@@ -1,10 +1,24 @@
 schema = "openape-shapes/v1"
 
+# o365-cli (issue 1473). Every o365-cli build prints the same version text
+# (v2.1.1), including the builds with the account-scoped `workflow` commands
+# that OpenApe Pods use, so the tested builds are listed by file digest.
+# Account-scoped calendar and mail reads come before the all-account forms, so
+# an argv with --account binds the account. `workflow move` binds the account
+# and destination folder, not the message: OpenApe Pods run it only through the
+# archive service, which also needs the owner's approval of each message
+# (mail.archive); a per-message grant would ask twice for every move.
+
 [cli]
 id = "o365"
 executable = "o365-cli"
 audience = "shapes"
-version = "2"
+version = "3"
+tested_digests = [
+  "SHA-256:d613908473cf1de0f34521d047e197fd77991afb2fbef5155bd66ffa658dfb40",
+  "SHA-256:4f95ecf9526552582b2138d1bc2bbcfef5c6b6e7d76a125b2bbd497e6c78d978",
+  "SHA-256:a15382986e464bb2fee3588391f35bbb52020e520398754ea2876d011b11c88b",
+]
 
 # ══════════════════════════════════════════════════════
 # AUTH
@@ -13,6 +27,8 @@ version = "2"
 [[operation]]
 id = "auth.login"
 command = ["auth", "login"]
+value_options = ["account"]
+flag_options = []
 display = "Login to Microsoft 365 account"
 action = "create"
 risk = "medium"
@@ -58,8 +74,33 @@ resource_chain = ["auth:*"]
 # ══════════════════════════════════════════════════════
 
 [[operation]]
+id = "mail.list.account"
+command = ["mail", "list"]
+required_options = ["account"]
+value_options = ["folder", "limit"]
+flag_options = ["json", "oldest-first", "unread", "with-body"]
+display = "List emails of {account}"
+action = "list"
+risk = "low"
+resource_chain = ["account:email={account}", "mail:*"]
+
+[operation.presentation]
+title = { de = "E-Mails von {account} auflisten", en = "List the mail of {account}" }
+
+[operation.presentation.consequence]
+allows = { de = "Liest die Liste der E-Mails eines Ordners dieses Kontos.", en = "Reads the mail list of a folder of this account." }
+does_not_allow = { de = "Ändert, sendet und löscht nichts.", en = "Changes, sends and deletes nothing." }
+
+[[operation.presentation.facts]]
+label = { de = "Konto", en = "Account" }
+binding = "account"
+format = "code"
+
+[[operation]]
 id = "mail.list"
 command = ["mail", "list"]
+value_options = ["folder", "limit"]
+flag_options = ["json", "oldest-first", "unread", "with-body"]
 display = "List emails (all accounts)"
 action = "list"
 risk = "low"
@@ -200,16 +241,66 @@ resource_chain = ["account:email={account}", "mail:id={message_id}"]
 # ══════════════════════════════════════════════════════
 
 [[operation]]
+id = "calendar.list.account"
+command = ["calendar", "list"]
+required_options = ["account"]
+value_options = ["days", "limit"]
+flag_options = ["json"]
+display = "List upcoming events of {account}"
+action = "list"
+risk = "low"
+resource_chain = ["account:email={account}", "calendar:*"]
+
+[operation.presentation]
+title = { de = "Kommende Termine von {account} lesen", en = "Read the upcoming events of {account}" }
+
+[operation.presentation.consequence]
+allows = { de = "Liest die kommenden Kalendertermine dieses Kontos.", en = "Reads the upcoming calendar events of this account." }
+does_not_allow = { de = "Ändert, sendet und löscht nichts.", en = "Changes, sends and deletes nothing." }
+
+[[operation.presentation.facts]]
+label = { de = "Konto", en = "Account" }
+binding = "account"
+format = "code"
+
+[[operation]]
 id = "calendar.list"
 command = ["calendar", "list"]
+value_options = ["days", "limit"]
+flag_options = ["json"]
 display = "List upcoming events (all accounts)"
 action = "list"
 risk = "low"
 resource_chain = ["account:email=*", "calendar:*"]
 
 [[operation]]
+id = "calendar.today.account"
+command = ["calendar", "today"]
+required_options = ["account"]
+value_options = []
+flag_options = ["json"]
+display = "List today's events of {account}"
+action = "list"
+risk = "low"
+resource_chain = ["account:email={account}", "calendar:*"]
+
+[operation.presentation]
+title = { de = "Heutige Termine von {account} lesen", en = "Read today's events of {account}" }
+
+[operation.presentation.consequence]
+allows = { de = "Liest die heutigen Kalendertermine dieses Kontos.", en = "Reads today's calendar events of this account." }
+does_not_allow = { de = "Ändert, sendet und löscht nichts.", en = "Changes, sends and deletes nothing." }
+
+[[operation.presentation.facts]]
+label = { de = "Konto", en = "Account" }
+binding = "account"
+format = "code"
+
+[[operation]]
 id = "calendar.today"
 command = ["calendar", "today"]
+value_options = []
+flag_options = ["json"]
 display = "List today's events (all accounts)"
 action = "list"
 risk = "low"
@@ -434,3 +525,132 @@ action = "delete"
 risk = "high"
 exact_command = true
 resource_chain = ["account:email={account}", "rule:id={rule_id}"]
+
+# ══════════════════════════════════════════════════════
+# WORKFLOW — account-scoped JSON transport for OpenApe Pods
+# ══════════════════════════════════════════════════════
+
+[[operation]]
+id = "workflow.delta"
+command = ["workflow", "delta"]
+required_options = ["account", "folder"]
+value_options = ["cursor"]
+flag_options = []
+display = "Read {folder} changes of {account}"
+action = "read"
+risk = "low"
+resource_chain = ["account:email={account}", "folder:name={folder}", "mail:*"]
+
+[operation.presentation]
+title = { de = "Änderungen in {folder} von {account} lesen", en = "Read the changes in {folder} of {account}" }
+
+[operation.presentation.consequence]
+allows = { de = "Liest alle neuen und geänderten Nachrichten dieses Ordners samt Inhalt, beliebig oft.", en = "Reads all new and changed messages of this folder with their content, any number of times." }
+does_not_allow = { de = "Ändert, sendet und löscht nichts.", en = "Changes, sends and deletes nothing." }
+
+[[operation.presentation.facts]]
+label = { de = "Konto", en = "Account" }
+binding = "account"
+format = "code"
+
+[[operation.presentation.facts]]
+label = { de = "Ordner", en = "Folder" }
+binding = "folder"
+format = "code"
+
+[[operation]]
+id = "workflow.read"
+command = ["workflow", "read"]
+required_options = ["account", "message"]
+value_options = []
+flag_options = []
+display = "Read one provider-versioned message of {account}"
+action = "read"
+risk = "low"
+resource_chain = ["account:email={account}", "mail:*"]
+
+[operation.presentation]
+title = { de = "Nachrichten von {account} lesen", en = "Read messages of {account}" }
+
+[operation.presentation.consequence]
+allows = { de = "Liest jede Nachricht dieses Kontos, eine pro Aufruf, mit Inhalt und aktueller Version.", en = "Reads any message of this account, one per call, with its content and current version." }
+does_not_allow = { de = "Ändert, sendet und löscht nichts.", en = "Changes, sends and deletes nothing." }
+
+[[operation.presentation.facts]]
+label = { de = "Konto", en = "Account" }
+binding = "account"
+format = "code"
+
+[[operation]]
+id = "workflow.categorize"
+command = ["workflow", "categorize"]
+required_options = ["account", "message", "expected-version", "categories"]
+value_options = []
+flag_options = []
+display = "Set the categories of messages of {account}"
+action = "categorize"
+risk = "medium"
+resource_chain = ["account:email={account}", "mail:*"]
+
+[operation.presentation]
+title = { de = "Kategorien von Nachrichten von {account} setzen", en = "Set the categories of messages of {account}" }
+
+[operation.presentation.consequence]
+allows = { de = "Ersetzt die Kategorien jeder Nachricht dieses Kontos, eine pro Aufruf, solange sie seit dem Lesen unverändert ist.", en = "Replaces the categories of any message of this account, one per call, while it is unchanged since it was read." }
+does_not_allow = { de = "Verschiebt, sendet und löscht keine Nachrichten.", en = "Does not move, send or delete messages." }
+
+[[operation.presentation.facts]]
+label = { de = "Konto", en = "Account" }
+binding = "account"
+format = "code"
+
+[[operation]]
+id = "workflow.ensure-categories"
+command = ["workflow", "ensure-categories"]
+required_options = ["account", "categories"]
+value_options = []
+flag_options = []
+display = "Add missing names to the Outlook category list of {account}"
+action = "configure"
+risk = "medium"
+resource_chain = ["account:email={account}", "mailbox-settings:*"]
+
+[operation.presentation]
+title = { de = "Outlook-Kategorien von {account} ergänzen", en = "Add Outlook categories of {account}" }
+
+[operation.presentation.consequence]
+allows = { de = "Ergänzt fehlende Namen in der Kategorienliste des Postfachs.", en = "Adds missing names to the category list of the mailbox." }
+does_not_allow = { de = "Entfernt oder ändert keine bestehenden Kategorien und Nachrichten.", en = "Does not remove or change existing categories or messages." }
+
+[[operation.presentation.facts]]
+label = { de = "Konto", en = "Account" }
+binding = "account"
+format = "code"
+
+[[operation]]
+id = "workflow.move"
+command = ["workflow", "move"]
+required_options = ["account", "message", "expected-version", "source-folder", "destination"]
+value_options = []
+flag_options = []
+display = "Move messages of {account} into {destination}"
+action = "move"
+risk = "high"
+resource_chain = ["account:email={account}", "destination:name={destination}", "mail:*"]
+
+[operation.presentation]
+title = { de = "Nachrichten von {account} nach {destination} verschieben", en = "Move messages of {account} into {destination}" }
+
+[operation.presentation.consequence]
+allows = { de = "Verschiebt jede Nachricht dieses Kontos, eine pro Aufruf, in genau diesen Ordner, solange sie seit dem Lesen unverändert ist.", en = "Moves any message of this account, one per call, into exactly this folder while it is unchanged since it was read." }
+does_not_allow = { de = "Verschiebt in keinen anderen Ordner und löscht nichts.", en = "Moves into no other folder and deletes nothing." }
+
+[[operation.presentation.facts]]
+label = { de = "Konto", en = "Account" }
+binding = "account"
+format = "code"
+
+[[operation.presentation.facts]]
+label = { de = "Zielordner", en = "Destination folder" }
+binding = "destination"
+format = "code"

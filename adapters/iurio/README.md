@@ -71,3 +71,10 @@ The iurio CLI itself reads:
 - `IURIO_INSTALLATION` — server URL (e.g., `https://office.iurio.com`)
 - `IURIO_USERNAME`, `IURIO_PASSWORD` — credentials
 - `SKIP_CERT_CHECK` — optional, skip SSL validation
+
+## Tested versions
+
+The tested iurio CLI is the single-file bundle of the OpenApe Pods task
+monitor, listed by file digest (`tested_digests`); it has no version command.
+`tasks.list` declares `--lane`, `--tag` and `--archived`; the other operations
+are still legacy (`checks.json`).

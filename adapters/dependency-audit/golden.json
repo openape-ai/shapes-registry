@@ -1,0 +1,24 @@
+[
+  {
+    "argv": [
+      "own-project"
+    ],
+    "expected": {
+      "operation_id": "dependency-audit.project",
+      "permission": "dependency-audit.repository[name=own-project]#read",
+      "display": "Check dependency vulnerabilities in own-project",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "own-project",
+      "--fix"
+    ],
+    "expected": null
+  },
+  {
+    "argv": [],
+    "expected": null
+  }
+]

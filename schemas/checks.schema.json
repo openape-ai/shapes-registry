@@ -15,6 +15,9 @@
     ],
     "unreachable_operations": [
       "unreachable_reason"
+    ],
+    "absent_operations": [
+      "absent_reason"
     ]
   },
   "properties": {
@@ -31,7 +34,7 @@
       "minLength": 1
     },
     "help": {
-      "description": "Arguments appended to the executable and the command words to print the options of a command (git: [\"-h\"]). Required with tested_versions.",
+      "description": "Arguments appended to the executable and the command words to print the options of a command (git: [\"-h\"]). Required with tested_versions or tested_digests.",
       "type": "array",
       "minItems": 1,
       "items": {
@@ -63,6 +66,18 @@
       }
     },
     "unreachable_reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "absent_operations": {
+      "description": "Operations that not every tested executable provides (builds differ). When the help output of the executable on the runner does not show the command, the real-CLI option check notes it and skips the operation; the CLI refuses such a command at run time.",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "absent_reason": {
       "type": "string",
       "minLength": 1
     }

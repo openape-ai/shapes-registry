@@ -118,3 +118,12 @@ shapes request --reason "check schedule" -- o365-cli calendar today
 # Create event
 shapes request --reason "schedule meeting" -- o365-cli calendar create --account me@example.com --subject "Standup" --start "2026-04-01T09:00:00+02:00" --end "2026-04-01T09:30:00+02:00"
 ```
+
+## Tested versions
+
+Every o365-cli build prints `o365-cli v2.1.1`, including the OpenApe Pods
+builds with the account-scoped `workflow` commands, so `tested_digests` lists
+the reviewed builds. Calendar and mail reads with `--account` bind that
+account; `workflow move` is a mail move that OpenApe Pods run only through the
+owner-approved archive service. `checks.json` `absent_operations` lists the
+commands some tested builds do not provide.

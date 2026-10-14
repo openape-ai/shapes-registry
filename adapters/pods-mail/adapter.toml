@@ -1,0 +1,134 @@
+schema = "openape-shapes/v1"
+
+# pods-mail (issue 1473): the single-file Microsoft Graph mail reader of the
+# OpenApe Pods mail review (openape-pods pods/mail-triage/programs/review-v6/
+# microsoft-mail.mjs). It has no version command, so the tested script is
+# listed by file digest; another file falls back to exact approvals. Every
+# operation declares its options; archive is a mail move that Pods run only
+# through the owner-approved archive service.
+
+[cli]
+id = "pods-mail"
+executable = "pods-mail"
+audience = "shapes"
+version = "1"
+tested_digests = ["SHA-256:642a03d64e3128f9bf2a46c1243550afea93f9909e476d317df2dfc7a1816e2a"]
+
+[[operation]]
+id = "list"
+command = ["list"]
+required_options = ["account"]
+value_options = ["cursor"]
+flag_options = []
+display = "List reviewed mail for {account}"
+action = "list"
+risk = "low"
+resource_chain = ["mailbox:id={account}", "messages:*"]
+
+[operation.presentation]
+title = { de = "Neue E-Mails von {account} auflisten", en = "List new mail of {account}" }
+
+[operation.presentation.consequence]
+allows = { de = "Liest die Liste neuer und geänderter Nachrichten des Postfachs.", en = "Reads the list of new and changed messages of the mailbox." }
+does_not_allow = { de = "Ändert, verschiebt und sendet nichts.", en = "Changes, moves and sends nothing." }
+
+[[operation.presentation.facts]]
+label = { de = "Postfach", en = "Mailbox" }
+binding = "account"
+format = "code"
+
+[[operation]]
+id = "read"
+command = ["read"]
+required_options = ["account", "message"]
+value_options = []
+flag_options = []
+display = "Read reviewed mail for {account}"
+action = "read"
+risk = "low"
+resource_chain = ["mailbox:id={account}", "message:*"]
+
+[operation.presentation]
+title = { de = "E-Mails von {account} lesen", en = "Read messages of {account}" }
+
+[operation.presentation.consequence]
+allows = { de = "Liest jede Nachricht dieses Postfachs, eine pro Aufruf, mit Inhalt und Anhangsliste.", en = "Reads any message of this mailbox, one per call, with its body and attachment list." }
+does_not_allow = { de = "Ändert, verschiebt und sendet nichts.", en = "Changes, moves and sends nothing." }
+
+[[operation.presentation.facts]]
+label = { de = "Postfach", en = "Mailbox" }
+binding = "account"
+format = "code"
+
+[[operation]]
+id = "thread"
+command = ["thread"]
+required_options = ["account", "conversation"]
+value_options = []
+flag_options = []
+display = "Thread reviewed mail for {account}"
+action = "read"
+risk = "low"
+resource_chain = ["mailbox:id={account}", "conversation:*"]
+
+[operation.presentation]
+title = { de = "E-Mail-Verläufe von {account} lesen", en = "Read conversations of {account}" }
+
+[operation.presentation.consequence]
+allows = { de = "Liest die Nachrichten jedes Verlaufs dieses Postfachs, einen pro Aufruf.", en = "Reads the messages of any conversation of this mailbox, one per call." }
+does_not_allow = { de = "Ändert, verschiebt und sendet nichts.", en = "Changes, moves and sends nothing." }
+
+[[operation.presentation.facts]]
+label = { de = "Postfach", en = "Mailbox" }
+binding = "account"
+format = "code"
+
+[[operation]]
+id = "archive"
+command = ["archive"]
+required_options = ["account", "message", "version", "folder"]
+display = "Archive reviewed mail for {account}"
+action = "archive"
+risk = "high"
+exact_command = true
+resource_chain = ["mailbox:id={account}", "message:id={message}"]
+
+[operation.presentation]
+title = { de = "Eine E-Mail von {account} archivieren", en = "Archive one message of {account}" }
+
+[operation.presentation.consequence]
+allows = { de = "Verschiebt genau diese Nachricht, wenn sie unverändert ist, in den Archivordner.", en = "Moves exactly this message into the Archive folder if it is unchanged." }
+does_not_allow = { de = "Verschiebt keine anderen Nachrichten und löscht nichts.", en = "Moves no other messages and deletes nothing." }
+
+[[operation.presentation.facts]]
+label = { de = "Postfach", en = "Mailbox" }
+binding = "account"
+format = "code"
+
+[[operation.presentation.facts]]
+label = { de = "Nachricht", en = "Message" }
+binding = "message"
+format = "code"
+
+[[operation]]
+id = "protection"
+command = ["protection"]
+required_options = ["account"]
+value_options = []
+flag_options = []
+display = "Synchronize sent recipient protection for {account}"
+action = "read"
+risk = "low"
+resource_chain = ["mailbox:id={account}", "sentRecipients:*"]
+
+[operation.presentation]
+title = { de = "Gesendete Empfänger von {account} abgleichen", en = "Sync the sent recipients of {account}" }
+
+[operation.presentation.consequence]
+allows = { de = "Liest die Empfänger gesendeter Nachrichten, um bekannte Kontakte zu schützen.", en = "Reads the recipients of sent messages to protect known contacts." }
+does_not_allow = { de = "Ändert, verschiebt und sendet nichts.", en = "Changes, moves and sends nothing." }
+
+[[operation.presentation.facts]]
+label = { de = "Postfach", en = "Mailbox" }
+binding = "account"
+format = "code"

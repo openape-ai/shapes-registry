@@ -1,0 +1,17 @@
+{
+  "id": "pods-mail",
+  "name": "OpenApe Pods mail reader",
+  "description": "Shapes adapter for the OpenApe Pods Microsoft Graph mail reader — list, read, thread, sent-recipient protection and approved archive moves",
+  "author": "delta-mind",
+  "category": "mail",
+  "tags": [
+    "openape",
+    "pods",
+    "mail",
+    "microsoft-graph"
+  ],
+  "executable": "pods-mail",
+  "risk_summary": "Reads are low-risk. archive moves one approved message, bound to the exact command and run only by the Pods archive service.",
+  "homepage": "https://openape.ai",
+  "min_shapes_version": "0.10.0"
+}

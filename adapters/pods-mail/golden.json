@@ -1,0 +1,102 @@
+[
+  {
+    "argv": [
+      "list",
+      "--account",
+      "user@example.test"
+    ],
+    "expected": {
+      "operation_id": "list",
+      "permission": "pods-mail.mailbox[id=user@example.test].messages[*]#list",
+      "display": "List reviewed mail for user@example.test",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "list",
+      "--account",
+      "user@example.test",
+      "--cursor",
+      "opaque"
+    ],
+    "expected": {
+      "operation_id": "list",
+      "permission": "pods-mail.mailbox[id=user@example.test].messages[*]#list",
+      "display": "List reviewed mail for user@example.test",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "read",
+      "--account",
+      "user@example.test",
+      "--message",
+      "AAMk1"
+    ],
+    "expected": {
+      "operation_id": "read",
+      "permission": "pods-mail.mailbox[id=user@example.test].message[*]#read",
+      "display": "Read reviewed mail for user@example.test",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "thread",
+      "--account",
+      "user@example.test",
+      "--conversation",
+      "AAQk1"
+    ],
+    "expected": {
+      "operation_id": "thread",
+      "permission": "pods-mail.mailbox[id=user@example.test].conversation[*]#read",
+      "display": "Thread reviewed mail for user@example.test",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "archive",
+      "--account",
+      "user@example.test",
+      "--message",
+      "AAMk1",
+      "--version",
+      "CQ1",
+      "--folder",
+      "AQMk1"
+    ],
+    "expected": {
+      "operation_id": "archive",
+      "permission": "pods-mail.mailbox[id=user@example.test].message[id=AAMk1]#archive",
+      "display": "Archive reviewed mail for user@example.test",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "protection",
+      "--account",
+      "user@example.test"
+    ],
+    "expected": {
+      "operation_id": "protection",
+      "permission": "pods-mail.mailbox[id=user@example.test].sentRecipients[*]#read",
+      "display": "Synchronize sent recipient protection for user@example.test",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "list",
+      "--account",
+      "user@example.test",
+      "--token",
+      "x"
+    ],
+    "expected": null
+  }
+]
