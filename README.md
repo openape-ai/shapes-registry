@@ -38,8 +38,11 @@ changes keep existing grants and only rule changes ask for new approvals.
   grant card: `title`, `statement`, `consequence` (`allows`,
   `does_not_allow`), `facts`, `details` and `details_note`. Texts may only use
   `{binding}` placeholders that every match binds; facts and details name a
-  binding and are left out when it is unbound. Presentation never changes
-  what an operation matches.
+  binding and are left out when it is unbound. `requires.target_host` is a
+  template the request's `target_host` must equal for the IdP to use the
+  presentation. The IdP marks values that are not selectors of the permission
+  (and not part of an exact command) as "as requested". Presentation never
+  changes what an operation matches.
 - Unknown keys fail closed in `@openape/shapes` and in
   [schemas/adapter.schema.json](schemas/adapter.schema.json).
 
