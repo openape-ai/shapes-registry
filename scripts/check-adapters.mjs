@@ -77,6 +77,8 @@ async function checkGolden(id, loaded, cases, record, unreachable) {
   for (const entry of cases) {
     const actual = await outcome(loaded, entry.argv)
     if (actual && 'operation_id' in actual) covered.add(actual.operation_id)
+    // A permission must never contain a template: an unbound {binding} would match every value.
+    if (actual?.permission && /[{}]/.test(actual.permission)) fail(id, `golden ${JSON.stringify(entry.argv)} derives ${actual.permission}, which contains an unresolved template`)
     recorded.push({ ...entry, expected: actual })
     if (!record && JSON.stringify(actual) !== JSON.stringify(entry.expected))
       fail(id, `golden ${JSON.stringify(entry.argv)} expected ${JSON.stringify(entry.expected)}, got ${JSON.stringify(actual)}`)

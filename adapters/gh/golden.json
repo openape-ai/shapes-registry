@@ -20,7 +20,7 @@
     ],
     "expected": {
       "operation_id": "repo.view",
-      "permission": "gh.repo[owner=own].name={repo|name}[*]#read",
+      "permission": "gh.owner[login=own].repo[name=repo]#read",
       "display": "View repository own/repo",
       "exact_command": false
     }
@@ -33,7 +33,7 @@
     ],
     "expected": {
       "operation_id": "repo.clone",
-      "permission": "gh.repo[owner=own].name={repo|name}[*]#read",
+      "permission": "gh.owner[login=own].repo[name=repo]#read",
       "display": "Clone repository own/repo",
       "exact_command": false
     }
@@ -61,7 +61,7 @@
     ],
     "expected": {
       "operation_id": "repo.rename",
-      "permission": "gh.repo[owner=own].name={repo|name}[*]#rename",
+      "permission": "gh.owner[login=own].repo[name=repo]#rename",
       "display": "Rename repository own/repo to own/new_name",
       "exact_command": true
     }
@@ -74,7 +74,7 @@
     ],
     "expected": {
       "operation_id": "repo.delete",
-      "permission": "gh.repo[owner=own].name={repo|name}[*]#delete",
+      "permission": "gh.owner[login=own].repo[name=repo]#delete",
       "display": "Delete repository own/repo",
       "exact_command": true
     }
@@ -88,7 +88,7 @@
     ],
     "expected": {
       "operation_id": "issue.list",
-      "permission": "gh.repo[owner=own].name={repo|name}[*].issue[*]#list",
+      "permission": "gh.owner[login=own].repo[name=repo].issue[*]#list",
       "display": "List issues in own/repo",
       "exact_command": false
     }
@@ -103,7 +103,7 @@
     ],
     "expected": {
       "operation_id": "issue.view",
-      "permission": "gh.repo[owner=own].name={repo|name}[*].issue[number=own/number]#read",
+      "permission": "gh.owner[login=own].repo[name=repo].issue[number=own/number]#read",
       "display": "View issue #own/number in own/repo",
       "exact_command": false
     }
@@ -119,7 +119,7 @@
     ],
     "expected": {
       "operation_id": "issue.create",
-      "permission": "gh.repo[owner=own].name={repo|name}[*].issue[*]#create",
+      "permission": "gh.owner[login=own].repo[name=repo].issue[*]#create",
       "display": "Create issue in own/repo: own/title",
       "exact_command": false
     }
@@ -134,7 +134,7 @@
     ],
     "expected": {
       "operation_id": "issue.edit",
-      "permission": "gh.repo[owner=own].name={repo|name}[*].issue[number=own/number]#edit",
+      "permission": "gh.owner[login=own].repo[name=repo].issue[number=own/number]#edit",
       "display": "Edit issue #own/number in own/repo",
       "exact_command": false
     }
@@ -149,7 +149,7 @@
     ],
     "expected": {
       "operation_id": "issue.close",
-      "permission": "gh.repo[owner=own].name={repo|name}[*].issue[number=own/number]#edit",
+      "permission": "gh.owner[login=own].repo[name=repo].issue[number=own/number]#edit",
       "display": "Close issue #own/number in own/repo",
       "exact_command": false
     }
@@ -164,7 +164,7 @@
     ],
     "expected": {
       "operation_id": "issue.reopen",
-      "permission": "gh.repo[owner=own].name={repo|name}[*].issue[number=own/number]#edit",
+      "permission": "gh.owner[login=own].repo[name=repo].issue[number=own/number]#edit",
       "display": "Reopen issue #own/number in own/repo",
       "exact_command": false
     }
@@ -181,7 +181,7 @@
     ],
     "expected": {
       "operation_id": "issue.comment",
-      "permission": "gh.repo[owner=own].name={repo|name}[*].issue[number=own/number].comment[*]#create",
+      "permission": "gh.owner[login=own].repo[name=repo].issue[number=own/number].comment[*]#create",
       "display": "Comment on issue #own/number in own/repo",
       "exact_command": false
     }
@@ -195,7 +195,7 @@
     ],
     "expected": {
       "operation_id": "pr.list",
-      "permission": "gh.repo[owner=own].name={repo|name}[*].pr[*]#list",
+      "permission": "gh.owner[login=own].repo[name=repo].pr[*]#list",
       "display": "List pull requests in own/repo",
       "exact_command": false
     }
@@ -210,7 +210,7 @@
     ],
     "expected": {
       "operation_id": "pr.view",
-      "permission": "gh.repo[owner=own].name={repo|name}[*].pr[number=own/number]#read",
+      "permission": "gh.owner[login=own].repo[name=repo].pr[number=own/number]#read",
       "display": "View PR #own/number in own/repo",
       "exact_command": false
     }
@@ -226,7 +226,7 @@
     ],
     "expected": {
       "operation_id": "pr.create",
-      "permission": "gh.repo[owner=own].name={repo|name}[*].pr[*]#create",
+      "permission": "gh.owner[login=own].repo[name=repo].pr[*]#create",
       "display": "Create pull request in own/repo: own/title",
       "exact_command": false
     }
@@ -241,7 +241,7 @@
     ],
     "expected": {
       "operation_id": "pr.merge",
-      "permission": "gh.repo[owner=own].name={repo|name}[*].pr[number=own/number]#edit",
+      "permission": "gh.owner[login=own].repo[name=repo].pr[number=own/number]#edit",
       "display": "Merge PR #own/number in own/repo",
       "exact_command": true
     }
@@ -256,7 +256,7 @@
     ],
     "expected": {
       "operation_id": "pr.close",
-      "permission": "gh.repo[owner=own].name={repo|name}[*].pr[number=own/number]#edit",
+      "permission": "gh.owner[login=own].repo[name=repo].pr[number=own/number]#edit",
       "display": "Close PR #own/number in own/repo",
       "exact_command": false
     }
@@ -273,7 +273,7 @@
     ],
     "expected": {
       "operation_id": "pr.comment",
-      "permission": "gh.repo[owner=own].name={repo|name}[*].pr[number=own/number].comment[*]#create",
+      "permission": "gh.owner[login=own].repo[name=repo].pr[number=own/number].comment[*]#create",
       "display": "Comment on PR #own/number in own/repo",
       "exact_command": false
     }
@@ -287,7 +287,7 @@
     ],
     "expected": {
       "operation_id": "run.list",
-      "permission": "gh.repo[owner=own].name={repo|name}[*].run[*]#list",
+      "permission": "gh.owner[login=own].repo[name=repo].run[*]#list",
       "display": "List workflow runs in own/repo",
       "exact_command": false
     }
@@ -302,7 +302,7 @@
     ],
     "expected": {
       "operation_id": "run.view",
-      "permission": "gh.repo[owner=own].name={repo|name}[*].run[id=own/run_id]#read",
+      "permission": "gh.owner[login=own].repo[name=repo].run[id=own/run_id]#read",
       "display": "View run own/run_id in own/repo",
       "exact_command": false
     }
@@ -317,7 +317,7 @@
     ],
     "expected": {
       "operation_id": "run.rerun",
-      "permission": "gh.repo[owner=own].name={repo|name}[*].run[id=own/run_id]#edit",
+      "permission": "gh.owner[login=own].repo[name=repo].run[id=own/run_id]#edit",
       "display": "Rerun workflow own/run_id in own/repo",
       "exact_command": false
     }
@@ -331,7 +331,7 @@
     ],
     "expected": {
       "operation_id": "release.list",
-      "permission": "gh.repo[owner=own].name={repo|name}[*].release[*]#list",
+      "permission": "gh.owner[login=own].repo[name=repo].release[*]#list",
       "display": "List releases in own/repo",
       "exact_command": false
     }
@@ -346,7 +346,7 @@
     ],
     "expected": {
       "operation_id": "release.view",
-      "permission": "gh.repo[owner=own].name={repo|name}[*].release[tag=own/tag]#read",
+      "permission": "gh.owner[login=own].repo[name=repo].release[tag=own/tag]#read",
       "display": "View release own/tag in own/repo",
       "exact_command": false
     }
@@ -361,9 +361,67 @@
     ],
     "expected": {
       "operation_id": "release.create",
-      "permission": "gh.repo[owner=own].name={repo|name}[*].release[tag=own/tag]#create",
+      "permission": "gh.owner[login=own].repo[name=repo].release[tag=own/tag]#create",
       "display": "Create release own/tag in own/repo",
       "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "repo",
+      "delete",
+      "openape-ai/openape"
+    ],
+    "expected": {
+      "operation_id": "repo.delete",
+      "permission": "gh.owner[login=openape-ai].repo[name=openape]#delete",
+      "display": "Delete repository openape-ai/openape",
+      "exact_command": true
+    },
+    "note": "Owner and name are both bound (issue 1473)."
+  },
+  {
+    "argv": [
+      "repo",
+      "delete",
+      "openape-ai/other"
+    ],
+    "expected": {
+      "operation_id": "repo.delete",
+      "permission": "gh.owner[login=openape-ai].repo[name=other]#delete",
+      "display": "Delete repository openape-ai/other",
+      "exact_command": true
+    },
+    "note": "Another repository of the same owner derives a different permission."
+  },
+  {
+    "argv": [
+      "pr",
+      "view",
+      "7",
+      "--repo",
+      "openape-ai/openape"
+    ],
+    "expected": {
+      "operation_id": "pr.view",
+      "permission": "gh.owner[login=openape-ai].repo[name=openape].pr[number=7]#read",
+      "display": "View PR #7 in openape-ai/openape",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "pr",
+      "view",
+      "7",
+      "--repo",
+      "openape-ai/other"
+    ],
+    "expected": {
+      "operation_id": "pr.view",
+      "permission": "gh.owner[login=openape-ai].repo[name=other].pr[number=7]#read",
+      "display": "View PR #7 in openape-ai/other",
+      "exact_command": false
     }
   },
   {

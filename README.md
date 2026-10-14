@@ -53,7 +53,11 @@ For every adapter the check
 1. parses `adapter.toml` with the pinned `@openape/shapes` and validates it and
    `meta.json` against [schemas](schemas/);
 2. derives every `golden.json` argv and compares operation, permission,
-   display and exact binding; every operation needs a matching case;
+   display and exact binding; every operation needs a matching case, and no
+   derived permission may contain an unresolved `{template}`. Resource chain
+   entries never contain a comma (parsers split array strings there), so bind
+   each value as its own resource, e.g. `owner:login={repo|owner}`,
+   `repo:name={repo|name}`;
 3. inserts hostile options (`--upload-pack`, `-c`, `--exec`, `--config`,
    `--output`, …) into every golden argv of a non-exact operation; they must
    never match a non-exact operation that does not declare them. Operations
