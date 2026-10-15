@@ -5,7 +5,8 @@ schema = "openape-shapes/v1"
 # microsoft-mail.mjs). It has no version command, so the tested script is
 # listed by file digest; another file falls back to exact approvals. Every
 # operation declares its options; archive is a mail move that Pods run only
-# through the owner-approved archive service.
+# through the owner-approved archive service. That legacy mutation is now
+# denied at the IdP; migrate to o365-cli workflow archive before cutover.
 
 [cli]
 id = "pods-mail"
@@ -85,6 +86,7 @@ format = "code"
 
 [[operation]]
 id = "archive"
+decision = "deny"
 command = ["archive"]
 required_options = ["account", "message", "version", "folder"]
 display = "Archive reviewed mail for {account}"

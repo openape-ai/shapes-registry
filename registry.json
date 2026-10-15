@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-10-14T08:51:46.520Z",
+  "generated_at": "2026-10-15T17:08:37.233Z",
   "adapters": [
     {
       "id": "apes",
@@ -336,8 +336,8 @@
       "author": "delta-mind",
       "executable": "o365-cli",
       "min_shapes_version": "0.2.0",
-      "digest": "SHA-256:58b5f2b62c1f12ebf9b790c70af68b7949b57891f00d0f30d3c913ac5cd9d749",
-      "grant_digest": "SHA-256:b5d8ba7656439ecafb59fdd6d1a735aeed8a67b71c6e9c47bf74683ac8f6b56a",
+      "digest": "SHA-256:ac65ab2b9d3b5a93af4dd60605880bf5980f5d15399a9222dfa0d05b7fc2ea9b",
+      "grant_digest": "SHA-256:98ca7605ef9f9bf9ee8b7a4207c7dc4e0462917d4f32cc44739aba4a1cc0be58",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/o365/adapter.toml"
     },
     {
@@ -426,8 +426,8 @@
       "author": "delta-mind",
       "executable": "pods-mail",
       "min_shapes_version": "0.10.0",
-      "digest": "SHA-256:72ef5d9a1b307706a703a1618747e578a76406911d6e571dda4294cb7390e682",
-      "grant_digest": "SHA-256:3eddba878169953ec2f61776600d3ed11e4d131dd6bc4ea3ac35396ec7c1700a",
+      "digest": "SHA-256:d5224d8e703ca2da87691d979578a0e3250b9efaaaf9c7527d1a17bdf1a200ab",
+      "grant_digest": "SHA-256:f366332ac70c8274f506e0fc502ef3bca5082654b1aefe1c068b8cad1d5fc4bc",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/pods-mail/adapter.toml"
     },
     {

@@ -1,20 +1,16 @@
 schema = "openape-shapes/v1"
 
-# o365-cli (issue 1473). Every o365-cli build prints the same version text
-# (v2.1.1), including the builds with the account-scoped `workflow` commands
-# that OpenApe Pods use, so the tested builds are listed by file digest.
-# Account-scoped calendar and mail reads come before the all-account forms, so
-# an argv with --account binds the account. `workflow move` binds the account
-# and destination folder, not the message: OpenApe Pods run it only through the
-# archive service, which also needs the owner's approval of each message
-# (mail.archive); a per-message grant would ask twice for every move.
+# The IdP enforces protected mail operations. Ordinary move commands are
+# retired for agent execution; workflow archive owns preflight and durable
+# mailbox-wide reconciliation. Other writes need a new exact human decision.
 
 [cli]
 id = "o365"
 executable = "o365-cli"
 audience = "shapes"
-version = "3"
+version = "4"
 tested_digests = [
+  "SHA-256:879064c86353465fe577bca6d6bf4e8162cbaced04e61cd9359a40d35a2923d6",
   "SHA-256:d613908473cf1de0f34521d047e197fd77991afb2fbef5155bd66ffa658dfb40",
   "SHA-256:4f95ecf9526552582b2138d1bc2bbcfef5c6b6e7d76a125b2bbd497e6c78d978",
   "SHA-256:a15382986e464bb2fee3588391f35bbb52020e520398754ea2876d011b11c88b",
@@ -31,7 +27,9 @@ value_options = ["account"]
 flag_options = []
 display = "Login to Microsoft 365 account"
 action = "create"
+decision = "once"
 risk = "medium"
+exact_command = true
 resource_chain = ["auth:*"]
 
 [[operation]]
@@ -40,6 +38,7 @@ command = ["auth", "logout"]
 positionals = ["email"]
 display = "Logout from account {email}"
 action = "delete"
+decision = "once"
 risk = "medium"
 exact_command = true
 resource_chain = ["auth:email={email}"]
@@ -49,6 +48,7 @@ id = "auth.logout-all"
 command = ["auth", "logout", "--all"]
 display = "Logout from all accounts"
 action = "delete"
+decision = "once"
 risk = "high"
 exact_command = true
 resource_chain = ["auth:*"]
@@ -154,7 +154,9 @@ positionals = ["message_id"]
 required_options = ["account"]
 display = "Mark email {message_id} as read"
 action = "edit"
+decision = "once"
 risk = "medium"
+exact_command = true
 resource_chain = ["account:email={account}", "mail:id={message_id}"]
 
 [[operation]]
@@ -164,7 +166,9 @@ positionals = ["message_id"]
 required_options = ["account"]
 display = "Mark email {message_id} as unread"
 action = "edit"
+decision = "once"
 risk = "medium"
+exact_command = true
 resource_chain = ["account:email={account}", "mail:id={message_id}"]
 
 [[operation]]
@@ -174,6 +178,7 @@ positionals = ["message_id"]
 required_options = ["account", "to"]
 display = "Move email {message_id} to folder {to}"
 action = "edit"
+decision = "deny"
 risk = "medium"
 exact_command = true
 resource_chain = ["account:email={account}", "mail:id={message_id}"]
@@ -185,6 +190,7 @@ positionals = ["message_id"]
 required_options = ["account"]
 display = "Trash email {message_id}"
 action = "delete"
+decision = "once"
 risk = "high"
 exact_command = true
 resource_chain = ["account:email={account}", "mail:id={message_id}"]
@@ -196,6 +202,7 @@ positionals = ["email_addresses"]
 required_options = ["account"]
 display = "Archive all emails from {email_addresses}"
 action = "edit"
+decision = "once"
 risk = "high"
 exact_command = true
 resource_chain = ["account:email={account}", "mail:*"]
@@ -210,6 +217,7 @@ command = ["mail", "send"]
 required_options = ["account", "to", "subject", "body"]
 display = "Send email to {to} from {account}"
 action = "send"
+decision = "once"
 risk = "high"
 exact_command = true
 resource_chain = ["account:email={account}", "mail:*"]
@@ -221,6 +229,7 @@ positionals = ["message_id"]
 required_options = ["account"]
 display = "Reply to email {message_id} from {account}"
 action = "send"
+decision = "once"
 risk = "high"
 exact_command = true
 resource_chain = ["account:email={account}", "mail:id={message_id}"]
@@ -232,6 +241,7 @@ positionals = ["message_id"]
 required_options = ["account", "to"]
 display = "Forward email {message_id} to {to} from {account}"
 action = "send"
+decision = "once"
 risk = "high"
 exact_command = true
 resource_chain = ["account:email={account}", "mail:id={message_id}"]
@@ -326,6 +336,7 @@ command = ["calendar", "create"]
 required_options = ["account", "subject", "start", "end"]
 display = "Create event '{subject}' on {account}"
 action = "create"
+decision = "once"
 risk = "high"
 exact_command = true
 resource_chain = ["account:email={account}", "calendar:*"]
@@ -337,6 +348,7 @@ positionals = ["event_id"]
 required_options = ["account"]
 display = "Update event {event_id} on {account}"
 action = "edit"
+decision = "once"
 risk = "high"
 exact_command = true
 resource_chain = ["account:email={account}", "calendar:id={event_id}"]
@@ -348,6 +360,7 @@ positionals = ["event_id"]
 required_options = ["account"]
 display = "Delete event {event_id} on {account}"
 action = "delete"
+decision = "once"
 risk = "critical"
 exact_command = true
 resource_chain = ["account:email={account}", "calendar:id={event_id}"]
@@ -359,6 +372,7 @@ positionals = ["event_id"]
 required_options = ["account"]
 display = "Accept event invitation {event_id}"
 action = "send"
+decision = "once"
 risk = "high"
 exact_command = true
 resource_chain = ["account:email={account}", "calendar:id={event_id}"]
@@ -370,6 +384,7 @@ positionals = ["event_id"]
 required_options = ["account"]
 display = "Decline event invitation {event_id}"
 action = "send"
+decision = "once"
 risk = "high"
 exact_command = true
 resource_chain = ["account:email={account}", "calendar:id={event_id}"]
@@ -381,6 +396,7 @@ positionals = ["event_id"]
 required_options = ["account"]
 display = "Tentatively accept event {event_id}"
 action = "send"
+decision = "once"
 risk = "high"
 exact_command = true
 resource_chain = ["account:email={account}", "calendar:id={event_id}"]
@@ -413,7 +429,9 @@ command = ["drafts", "save"]
 required_options = ["account", "to", "subject", "body"]
 display = "Save draft to {to} from {account}"
 action = "create"
+decision = "once"
 risk = "medium"
+exact_command = true
 resource_chain = ["account:email={account}", "draft:*"]
 
 [[operation]]
@@ -423,6 +441,7 @@ positionals = ["draft_id"]
 required_options = ["account"]
 display = "Send draft {draft_id} from {account}"
 action = "send"
+decision = "once"
 risk = "high"
 exact_command = true
 resource_chain = ["account:email={account}", "draft:id={draft_id}"]
@@ -434,6 +453,7 @@ positionals = ["draft_id"]
 required_options = ["account"]
 display = "Delete draft {draft_id}"
 action = "delete"
+decision = "once"
 risk = "high"
 exact_command = true
 resource_chain = ["account:email={account}", "draft:id={draft_id}"]
@@ -457,6 +477,7 @@ positionals = ["name"]
 required_options = ["account"]
 display = "Create folder '{name}' on {account}"
 action = "create"
+decision = "once"
 risk = "medium"
 exact_command = true
 resource_chain = ["account:email={account}", "folder:name={name}"]
@@ -468,6 +489,7 @@ positionals = ["name"]
 required_options = ["account"]
 display = "Delete folder '{name}' on {account}"
 action = "delete"
+decision = "once"
 risk = "critical"
 exact_command = true
 resource_chain = ["account:email={account}", "folder:name={name}"]
@@ -500,6 +522,7 @@ command = ["rules", "create"]
 required_options = ["account", "name"]
 display = "Create inbox rule '{name}' on {account}"
 action = "create"
+decision = "once"
 risk = "high"
 exact_command = true
 resource_chain = ["account:email={account}", "rule:*"]
@@ -511,6 +534,7 @@ positionals = ["rule_id"]
 required_options = ["account"]
 display = "Update inbox rule {rule_id} on {account}"
 action = "edit"
+decision = "once"
 risk = "high"
 exact_command = true
 resource_chain = ["account:email={account}", "rule:id={rule_id}"]
@@ -522,6 +546,7 @@ positionals = ["rule_id"]
 required_options = ["account"]
 display = "Delete inbox rule {rule_id} on {account}"
 action = "delete"
+decision = "once"
 risk = "high"
 exact_command = true
 resource_chain = ["account:email={account}", "rule:id={rule_id}"]
@@ -635,6 +660,7 @@ value_options = []
 flag_options = []
 display = "Move messages of {account} into {destination}"
 action = "move"
+decision = "deny"
 risk = "high"
 resource_chain = ["account:email={account}", "destination:name={destination}", "mail:*"]
 
@@ -653,4 +679,135 @@ format = "code"
 [[operation.presentation.facts]]
 label = { de = "Zielordner", en = "Destination folder" }
 binding = "destination"
+format = "code"
+
+
+[[operation]]
+id = "workflow.review-archive"
+command = ["workflow", "review-archive"]
+required_options = ["account", "message", "operation"]
+value_options = []
+flag_options = []
+display = "Read the complete message for archival review in {account}"
+action = "read"
+risk = "low"
+resource_chain = ["account:email={account}", "mail:id={message}"]
+
+[[operation]]
+id = "workflow.archive"
+command = ["workflow", "archive"]
+required_options = ["account", "message", "operation", "content-version", "sender", "subject", "source-folder", "destination", "journal"]
+value_options = []
+flag_options = []
+display = "Archive the reviewed message from {sender}: {subject}"
+action = "archive"
+risk = "high"
+exact_command = true
+decision = "once"
+resource_chain = ["account:email={account}", "mail:id={message}", "content:version={content-version}", "destination:folder={destination}", "journal:path={journal}"]
+
+[operation.presentation]
+title = { de = "Diese E-Mail archivieren", en = "Archive this message" }
+
+[operation.presentation.consequence]
+allows = { de = "Verschiebt genau die geprüfte Nachricht einmal in den Archivordner. Geänderter Inhalt oder ein unklares früheres Ergebnis verhindern die Verschiebung.", en = "Moves this reviewed message into Archive once. Changed content or an uncertain earlier outcome prevents the move." }
+does_not_allow = { de = "Erlaubt keine anderen Nachrichten, Ziele oder erneuten Versuche nach einem unklaren Ergebnis.", en = "Does not authorize other messages, destinations or retries after an uncertain outcome." }
+
+[[operation.presentation.facts]]
+label = { de = "Postfach", en = "Mailbox" }
+binding = "account"
+format = "code"
+
+[[operation.presentation.facts]]
+label = { de = "Absender", en = "Sender" }
+binding = "sender"
+
+[[operation.presentation.facts]]
+label = { de = "Betreff", en = "Subject" }
+binding = "subject"
+
+[[operation.presentation.details]]
+label = { de = "Nachrichten-ID", en = "Message ID" }
+binding = "message"
+format = "code"
+
+[[operation.presentation.details]]
+label = { de = "Inhaltsversion", en = "Content version" }
+binding = "content-version"
+format = "code"
+
+[[operation.presentation.details]]
+label = { de = "Gemeinsames Journal", en = "Shared journal" }
+binding = "journal"
+format = "code"
+
+[[operation]]
+id = "workflow.archive-import"
+command = ["workflow", "archive-import"]
+required_options = ["account", "source", "source-sha256", "journal"]
+value_options = []
+flag_options = []
+display = "Import historical archive receipts and replay holds for {account}"
+action = "configure"
+risk = "high"
+exact_command = true
+decision = "once"
+resource_chain = ["account:email={account}", "journal:path={journal}", "history:sha256={source-sha256}"]
+
+[operation.presentation]
+title = { de = "Archivierungsverlauf übernehmen", en = "Import archive history" }
+
+[operation.presentation.consequence]
+allows = { de = "Übernimmt genau die geprüften historischen Belege. Verbrauchte und unklare Vorgänge sperren erneute Archivierungen derselben Nachricht.", en = "Imports exactly the reviewed historical receipts. Consumed and uncertain operations hold further archival of the same message." }
+does_not_allow = { de = "Verschiebt keine Nachricht und übernimmt keine alte Freigabe als neue Ausführungserlaubnis.", en = "Moves no messages and does not turn historical approval into new execution authority." }
+
+[[operation.presentation.facts]]
+label = { de = "Postfach", en = "Mailbox" }
+binding = "account"
+format = "code"
+
+[[operation.presentation.details]]
+label = { de = "Export-Prüfsumme", en = "Export digest" }
+binding = "source-sha256"
+format = "code"
+
+[[operation]]
+id = "workflow.archive-inspect"
+command = ["workflow", "archive-inspect"]
+exact_command = true
+required_options = ["account", "journal"]
+display = "Inspect archive receipts for {account}"
+action = "read"
+risk = "low"
+resource_chain = ["account:email={account}", "journal:path={journal}"]
+
+[[operation]]
+id = "workflow.archive-reconcile"
+command = ["workflow", "archive-reconcile"]
+required_options = ["account", "journal", "message", "source", "operation", "receipt-sha256", "outcome", "evidence"]
+display = "Record the observed archive outcome {outcome} for {message} in {account}"
+action = "configure"
+risk = "high"
+exact_command = true
+decision = "once"
+resource_chain = ["account:email={account}", "journal:path={journal}", "receipt:sha256={receipt-sha256}"]
+
+[operation.presentation]
+title = { de = "Archivierung abgleichen", en = "Reconcile archive outcome" }
+
+[operation.presentation.consequence]
+allows = { de = "Hält die genaue Beobachtung für den geprüften Beleg fest. Eine nachweislich nicht erfolgte Archivierung kann die Sperre für einen neuen, gesondert freizugebenden Vorgang lösen.", en = "Records the exact observation for the reviewed receipt. Confirmed non-application may release its hold for a new, separately authorized operation." }
+does_not_allow = { de = "Führt keine Mailaktion aus, verändert keinen ursprünglichen Beleg und erneuert keine alte Freigabe.", en = "Does not execute mail, change the original receipt or renew historical authority." }
+
+[[operation.presentation.facts]]
+label = { de = "Beobachtetes Ergebnis", en = "Observed outcome" }
+binding = "outcome"
+
+[[operation.presentation.facts]]
+label = { de = "Beobachtung", en = "Observation" }
+binding = "evidence"
+
+[[operation.presentation.details]]
+label = { de = "Beleg-Prüfsumme", en = "Receipt digest" }
+binding = "receipt-sha256"
 format = "code"

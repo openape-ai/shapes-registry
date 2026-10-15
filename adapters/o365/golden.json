@@ -8,7 +8,7 @@
       "operation_id": "auth.login",
       "permission": "o365.auth[*]#create",
       "display": "Login to Microsoft 365 account",
-      "exact_command": false
+      "exact_command": true
     }
   },
   {
@@ -140,7 +140,7 @@
       "operation_id": "mail.mark-read",
       "permission": "o365.account[email=own/account].mail[id=own/message_id]#edit",
       "display": "Mark email own/message_id as read",
-      "exact_command": false
+      "exact_command": true
     }
   },
   {
@@ -155,7 +155,7 @@
       "operation_id": "mail.mark-unread",
       "permission": "o365.account[email=own/account].mail[id=own/message_id]#edit",
       "display": "Mark email own/message_id as unread",
-      "exact_command": false
+      "exact_command": true
     }
   },
   {
@@ -435,7 +435,7 @@
       "operation_id": "drafts.save",
       "permission": "o365.account[email=own/account].draft[*]#create",
       "display": "Save draft to own/to from own/account",
-      "exact_command": false
+      "exact_command": true
     }
   },
   {
@@ -601,7 +601,7 @@
       "operation_id": "auth.login",
       "permission": "o365.auth[*]#create",
       "display": "Login to Microsoft 365 account",
-      "exact_command": false
+      "exact_command": true
     }
   },
   {
@@ -865,6 +865,118 @@
       "permission": "o365.account[email=user@example.test].destination[name=archive].mail[*]#move",
       "display": "Move messages of user@example.test into archive",
       "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "workflow",
+      "review-archive",
+      "--account",
+      "pod@example.invalid",
+      "--message",
+      "message-1",
+      "--operation",
+      "archive-1"
+    ],
+    "expected": {
+      "operation_id": "workflow.review-archive",
+      "permission": "o365.account[email=pod@example.invalid].mail[id=message-1]#read",
+      "display": "Read the complete message for archival review in pod@example.invalid",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "workflow",
+      "archive",
+      "--account",
+      "pod@example.invalid",
+      "--message",
+      "message-1",
+      "--operation",
+      "archive-1",
+      "--content-version",
+      "content-v2:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "--sender",
+      "sender@example.invalid",
+      "--subject",
+      "Reviewed message",
+      "--source-folder",
+      "inbox-id",
+      "--destination",
+      "archive",
+      "--journal",
+      "/assigned/shared-mail-journal"
+    ],
+    "expected": {
+      "operation_id": "workflow.archive",
+      "permission": "o365.account[email=pod@example.invalid].mail[id=message-1].content[version=content-v2:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa].destination[folder=archive].journal[path=/assigned/shared-mail-journal]#archive",
+      "display": "Archive the reviewed message from sender@example.invalid: Reviewed message",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "workflow",
+      "archive-import",
+      "--account",
+      "pod@example.invalid",
+      "--source",
+      "/reviewed/history.json",
+      "--source-sha256",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "--journal",
+      "/assigned/shared-mail-journal"
+    ],
+    "expected": {
+      "operation_id": "workflow.archive-import",
+      "permission": "o365.account[email=pod@example.invalid].journal[path=/assigned/shared-mail-journal].history[sha256=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa]#configure",
+      "display": "Import historical archive receipts and replay holds for pod@example.invalid",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "workflow",
+      "archive-reconcile",
+      "--account",
+      "pod@example.invalid",
+      "--journal",
+      "/assigned/journal",
+      "--message",
+      "m1",
+      "--source",
+      "current",
+      "--operation",
+      "op1",
+      "--receipt-sha256",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "--outcome",
+      "notApplied",
+      "--evidence",
+      "Observed in Inbox"
+    ],
+    "expected": {
+      "operation_id": "workflow.archive-reconcile",
+      "permission": "o365.account[email=pod@example.invalid].journal[path=/assigned/journal].receipt[sha256=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa]#configure",
+      "display": "Record the observed archive outcome notApplied for m1 in pod@example.invalid",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "workflow",
+      "archive-inspect",
+      "--account",
+      "pod@example.invalid",
+      "--journal",
+      "/assigned/journal"
+    ],
+    "expected": {
+      "operation_id": "workflow.archive-inspect",
+      "permission": "o365.account[email=pod@example.invalid].journal[path=/assigned/journal]#read",
+      "display": "Inspect archive receipts for pod@example.invalid",
+      "exact_command": true
     }
   }
 ]
