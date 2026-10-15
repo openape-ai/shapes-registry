@@ -43,6 +43,12 @@ changes keep existing grants and only rule changes ask for new approvals.
   presentation. The IdP marks values that are not selectors of the permission
   (and not part of an exact command) as "as requested". Presentation never
   changes what an operation matches.
+- `decision = "once"` requires `exact_command = true` and a fresh human
+  single-use decision. Broad grants, standing policies and approval widening
+  cannot cover it. `decision = "deny"` retires an unsafe operation. A CLI with
+  any decision policy refuses unmatched calls instead of falling back to a
+  generic command approval. Deploy compatible IdP/shapes consumers before
+  seeding these policies; older strict parsers refuse them.
 - Unknown keys fail closed in `@openape/shapes` and in
   [schemas/adapter.schema.json](schemas/adapter.schema.json).
 

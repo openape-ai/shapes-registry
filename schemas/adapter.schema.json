@@ -175,6 +175,13 @@
         },
         "presentation": {
           "$ref": "#/$defs/presentation"
+        },
+        "decision": {
+          "enum": [
+            "once",
+            "deny"
+          ],
+          "description": "Registry enforcement: once requires an exact human decision; deny refuses the operation. Any decision policy disables unmatched-command fallback for this CLI."
         }
       }
     },

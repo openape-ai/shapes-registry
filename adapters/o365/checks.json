@@ -6,12 +6,9 @@
     "mail.search",
     "mail.query",
     "mail.attachments",
-    "mail.mark-read",
-    "mail.mark-unread",
     "calendar.get",
     "drafts.list",
     "drafts.read",
-    "drafts.save",
     "folders.list",
     "rules.list",
     "rules.get"
@@ -30,7 +27,10 @@
     "workflow.read",
     "workflow.categorize",
     "workflow.ensure-categories",
-    "workflow.move"
+    "workflow.move",
+    "workflow.archive",
+    "workflow.review-archive",
+    "workflow.archive-import"
   ],
   "absent_reason": "The tested o365-cli builds differ: the drafts commands exist in none of them, the workflow commands only in the OpenApe Pods builds (ensure-categories only in the newest). Each build is checked for the commands it provides."
 }
