@@ -8,7 +8,7 @@ schema = "openape-shapes/v1"
 id = "o365"
 executable = "o365-cli"
 audience = "shapes"
-version = "4"
+version = "5"
 tested_digests = [
   "SHA-256:879064c86353465fe577bca6d6bf4e8162cbaced04e61cd9359a40d35a2923d6",
   "SHA-256:d613908473cf1de0f34521d047e197fd77991afb2fbef5155bd66ffa658dfb40",
@@ -686,7 +686,7 @@ format = "code"
 id = "workflow.review-archive"
 command = ["workflow", "review-archive"]
 required_options = ["account", "message", "operation"]
-value_options = []
+value_options = ["gate"]
 flag_options = []
 display = "Read the complete message for archival review in {account}"
 action = "read"
@@ -697,7 +697,7 @@ resource_chain = ["account:email={account}", "mail:id={message}"]
 id = "workflow.archive"
 command = ["workflow", "archive"]
 required_options = ["account", "message", "operation", "content-version", "sender", "subject", "source-folder", "destination", "journal"]
-value_options = []
+value_options = ["gate"]
 flag_options = []
 display = "Archive the reviewed message from {sender}: {subject}"
 action = "archive"
@@ -811,3 +811,117 @@ binding = "evidence"
 label = { de = "Beleg-Prüfsumme", en = "Receipt digest" }
 binding = "receipt-sha256"
 format = "code"
+
+[[operation]]
+id = "workflow.label-snapshot"
+command = ["workflow", "label-snapshot"]
+required_options = ["account", "message"]
+value_options = []
+flag_options = []
+display = "Read a label-decision snapshot of one message of {account}"
+action = "read"
+risk = "low"
+resource_chain = ["account:email={account}", "mail:*"]
+
+[operation.presentation]
+title = { de = "Nachrichten für Labelentscheidungen von {account} lesen", en = "Read label-decision snapshots of messages of {account}" }
+
+[operation.presentation.consequence]
+allows = { de = "Liest Inhalt, Ordner, Lesestatus und Kategorien einer Nachricht dieses Kontos pro Aufruf.", en = "Reads the content, folder, read status and categories of one message of this account per call." }
+does_not_allow = { de = "Ändert keine Nachricht und verschiebt, sendet oder löscht nichts.", en = "Does not change messages, move, send or delete anything." }
+
+[[operation.presentation.facts]]
+label = { de = "Postfach", en = "Mailbox" }
+binding = "account"
+format = "code"
+
+[[operation]]
+id = "workflow.thread-evidence"
+command = ["workflow", "thread-evidence"]
+required_options = ["account", "message"]
+value_options = ["cursor"]
+flag_options = []
+display = "Read paginated conversation evidence of {account}"
+action = "read"
+risk = "low"
+resource_chain = ["account:email={account}", "mail:*"]
+
+[operation.presentation]
+title = { de = "Gesprächsverlauf von {account} lesen", en = "Read conversation evidence of {account}" }
+
+[operation.presentation.consequence]
+allows = { de = "Liest den Gesprächsverlauf einer ausgewählten Nachricht dieses Kontos in begrenzten Seiten.", en = "Reads bounded pages of the conversation of one selected message of this account." }
+does_not_allow = { de = "Ändert keine Nachricht und verschiebt, sendet oder löscht nichts.", en = "Does not change messages, move, send or delete anything." }
+
+[[operation.presentation.facts]]
+label = { de = "Postfach", en = "Mailbox" }
+binding = "account"
+format = "code"
+
+[[operation]]
+id = "workflow.decide-label"
+command = ["workflow", "decide-label"]
+required_options = ["account", "request", "journal"]
+value_options = []
+flag_options = []
+display = "Apply checked label decisions to messages of {account}"
+action = "categorize"
+risk = "medium"
+resource_chain = ["account:email={account}", "mail:*"]
+
+[operation.presentation]
+title = { de = "Geprüfte Labelentscheidungen für {account} anwenden", en = "Apply checked label decisions for {account}" }
+
+[operation.presentation.consequence]
+allows = { de = "Prüft die Nachricht unter einer gemeinsamen Postfachsperre erneut und ergänzt ausschließlich die eigene Labeldimension. Bereits entschiedene oder inzwischen unpassende Nachrichten werden übersprungen; unklare Ergebnisse sperren eine Wiederholung.", en = "Rechecks the message under a shared mailbox lock and merges only the requested label dimension. Already decided or no longer eligible messages are skipped; uncertain outcomes block replay." }
+does_not_allow = { de = "Erlaubt keine anderen Konten und verschiebt, sendet oder löscht keine Nachricht.", en = "Does not authorize other accounts or move, send or delete messages." }
+
+[[operation.presentation.facts]]
+label = { de = "Postfach", en = "Mailbox" }
+binding = "account"
+format = "code"
+
+[[operation]]
+id = "workflow.label-inspect"
+command = ["workflow", "label-inspect"]
+required_options = ["account", "journal"]
+value_options = ["operation"]
+flag_options = []
+display = "Inspect retained label-decision receipts of {account}"
+action = "read"
+risk = "low"
+exact_command = true
+resource_chain = ["account:email={account}", "journal:path={journal}"]
+
+[[operation]]
+id = "workflow.label-reconcile"
+command = ["workflow", "label-reconcile"]
+required_options = ["account", "journal", "message", "operation", "receipt-sha256", "outcome", "evidence"]
+value_options = []
+flag_options = []
+display = "Record the observed label outcome {outcome} for {message} in {account}"
+action = "configure"
+risk = "high"
+exact_command = true
+decision = "once"
+resource_chain = ["account:email={account}", "journal:path={journal}", "receipt:sha256={receipt-sha256}"]
+
+[operation.presentation]
+title = { de = "Labelentscheidung abgleichen", en = "Reconcile a label-decision outcome" }
+
+[operation.presentation.consequence]
+allows = { de = "Hält die genaue Beobachtung für den geprüften Beleg fest. Eine nachweislich nicht angewandte Entscheidung kann ihre Sperre für einen neuen Vorgang lösen.", en = "Records the exact observation for the reviewed receipt. Confirmed non-application may release its hold for a new operation." }
+does_not_allow = { de = "Ändert keine Nachricht, verändert keinen ursprünglichen Beleg und wiederholt keine alte Entscheidung.", en = "Does not change messages, alter an original receipt or repeat an old decision." }
+
+[[operation.presentation.facts]]
+label = { de = "Postfach", en = "Mailbox" }
+binding = "account"
+format = "code"
+
+[[operation.presentation.facts]]
+label = { de = "Beobachtetes Ergebnis", en = "Observed outcome" }
+binding = "outcome"
+
+[[operation.presentation.facts]]
+label = { de = "Beobachtung", en = "Observation" }
+binding = "evidence"

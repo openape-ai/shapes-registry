@@ -30,7 +30,12 @@
     "workflow.move",
     "workflow.archive",
     "workflow.review-archive",
-    "workflow.archive-import"
+    "workflow.archive-import",
+    "workflow.label-snapshot",
+    "workflow.thread-evidence",
+    "workflow.decide-label",
+    "workflow.label-inspect",
+    "workflow.label-reconcile"
   ],
   "absent_reason": "The tested o365-cli builds differ: the drafts commands exist in none of them, the workflow commands only in the OpenApe Pods builds (ensure-categories only in the newest). Each build is checked for the commands it provides."
 }
