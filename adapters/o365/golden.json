@@ -1036,7 +1036,7 @@
       "--account",
       "pod@example.invalid",
       "--request",
-      "{\"message\":\"message-1\",\"dimension\":\"topic\"}",
+      "{\"message\":\"message-1\",\"contentVersion\":\"assessment-v1:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"operationId\":\"label-1\",\"dimension\":[\"Choice A\",\"Choice B\"],\"category\":\"Choice A\",\"gate\":{\"requireUnread\":true}}",
       "--journal",
       "/assigned/shared-mail-journal"
     ],
@@ -1187,7 +1187,7 @@
       "--journal",
       "/assigned/shared-mail-journal",
       "--gate",
-      "{\"requireUnread\":true,\"vetoLabels\":[\"Keep\"]}"
+      "{\"requireUnread\":true,\"forbid\":[\"Keep\"]}"
     ],
     "expected": {
       "operation_id": "workflow.archive",
@@ -1207,7 +1207,7 @@
       "--operation",
       "archive-1",
       "--gate",
-      "{\"requireUnread\":true,\"vetoLabels\":[\"Keep\"]}"
+      "{\"requireUnread\":true,\"forbid\":[\"Keep\"]}"
     ],
     "expected": {
       "operation_id": "workflow.review-archive",

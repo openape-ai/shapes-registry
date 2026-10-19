@@ -10,6 +10,7 @@ executable = "o365-cli"
 audience = "shapes"
 version = "5"
 tested_digests = [
+  "SHA-256:46ddc0fd85c0c1f9fbd964c55f5e530964f13d461124ec11c7d344938cce373c",
   "SHA-256:879064c86353465fe577bca6d6bf4e8162cbaced04e61cd9359a40d35a2923d6",
   "SHA-256:d613908473cf1de0f34521d047e197fd77991afb2fbef5155bd66ffa658dfb40",
   "SHA-256:4f95ecf9526552582b2138d1bc2bbcfef5c6b6e7d76a125b2bbd497e6c78d978",
