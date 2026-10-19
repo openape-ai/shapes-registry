@@ -978,5 +978,242 @@
       "display": "Inspect archive receipts for pod@example.invalid",
       "exact_command": true
     }
+  },
+  {
+    "argv": [
+      "workflow",
+      "label-snapshot",
+      "--account",
+      "pod@example.invalid",
+      "--message",
+      "message-1"
+    ],
+    "expected": {
+      "operation_id": "workflow.label-snapshot",
+      "permission": "o365.account[email=pod@example.invalid].mail[*]#read",
+      "display": "Read a label-decision snapshot of one message of pod@example.invalid",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "workflow",
+      "thread-evidence",
+      "--account",
+      "pod@example.invalid",
+      "--message",
+      "message-1"
+    ],
+    "expected": {
+      "operation_id": "workflow.thread-evidence",
+      "permission": "o365.account[email=pod@example.invalid].mail[*]#read",
+      "display": "Read paginated conversation evidence of pod@example.invalid",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "workflow",
+      "thread-evidence",
+      "--account",
+      "pod@example.invalid",
+      "--message",
+      "message-1",
+      "--cursor",
+      "cursor-1"
+    ],
+    "expected": {
+      "operation_id": "workflow.thread-evidence",
+      "permission": "o365.account[email=pod@example.invalid].mail[*]#read",
+      "display": "Read paginated conversation evidence of pod@example.invalid",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "workflow",
+      "decide-label",
+      "--account",
+      "pod@example.invalid",
+      "--request",
+      "{\"message\":\"message-1\",\"contentVersion\":\"assessment-v1:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"operationId\":\"label-1\",\"dimension\":[\"Choice A\",\"Choice B\"],\"category\":\"Choice A\",\"gate\":{\"requireUnread\":true}}",
+      "--journal",
+      "/assigned/shared-mail-journal"
+    ],
+    "expected": {
+      "operation_id": "workflow.decide-label",
+      "permission": "o365.account[email=pod@example.invalid].mail[*]#categorize",
+      "display": "Apply checked label decisions to messages of pod@example.invalid",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "workflow",
+      "label-inspect",
+      "--account",
+      "pod@example.invalid",
+      "--journal",
+      "/assigned/shared-mail-journal"
+    ],
+    "expected": {
+      "operation_id": "workflow.label-inspect",
+      "permission": "o365.account[email=pod@example.invalid].journal[path=/assigned/shared-mail-journal]#read",
+      "display": "Inspect retained label-decision receipts of pod@example.invalid",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "workflow",
+      "label-inspect",
+      "--account",
+      "pod@example.invalid",
+      "--journal",
+      "/assigned/shared-mail-journal",
+      "--operation",
+      "label-1"
+    ],
+    "expected": {
+      "operation_id": "workflow.label-inspect",
+      "permission": "o365.account[email=pod@example.invalid].journal[path=/assigned/shared-mail-journal]#read",
+      "display": "Inspect retained label-decision receipts of pod@example.invalid",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "workflow",
+      "label-reconcile",
+      "--account",
+      "pod@example.invalid",
+      "--journal",
+      "/assigned/shared-mail-journal",
+      "--message",
+      "message-1",
+      "--operation",
+      "label-1",
+      "--receipt-sha256",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "--outcome",
+      "notApplied",
+      "--evidence",
+      "Synthetic provider readback"
+    ],
+    "expected": {
+      "operation_id": "workflow.label-reconcile",
+      "permission": "o365.account[email=pod@example.invalid].journal[path=/assigned/shared-mail-journal].receipt[sha256=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa]#configure",
+      "display": "Record the observed label outcome notApplied for message-1 in pod@example.invalid",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "workflow",
+      "label-snapshot",
+      "--message",
+      "message-1"
+    ],
+    "expected": null
+  },
+  {
+    "argv": [
+      "workflow",
+      "thread-evidence",
+      "--message",
+      "message-1"
+    ],
+    "expected": null
+  },
+  {
+    "argv": [
+      "workflow",
+      "decide-label",
+      "--request",
+      "{}",
+      "--journal",
+      "/assigned/shared-mail-journal"
+    ],
+    "expected": null
+  },
+  {
+    "argv": [
+      "workflow",
+      "label-inspect",
+      "--journal",
+      "/assigned/shared-mail-journal"
+    ],
+    "expected": null
+  },
+  {
+    "argv": [
+      "workflow",
+      "label-reconcile",
+      "--journal",
+      "/assigned/shared-mail-journal",
+      "--message",
+      "message-1",
+      "--operation",
+      "label-1",
+      "--receipt-sha256",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "--outcome",
+      "notApplied",
+      "--evidence",
+      "Synthetic provider readback"
+    ],
+    "expected": null
+  },
+  {
+    "argv": [
+      "workflow",
+      "archive",
+      "--account",
+      "pod@example.invalid",
+      "--message",
+      "message-1",
+      "--operation",
+      "archive-1",
+      "--content-version",
+      "content-v2:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "--sender",
+      "sender@example.invalid",
+      "--subject",
+      "Reviewed message",
+      "--source-folder",
+      "inbox-id",
+      "--destination",
+      "archive",
+      "--journal",
+      "/assigned/shared-mail-journal",
+      "--gate",
+      "{\"requireUnread\":true,\"forbid\":[\"Keep\"]}"
+    ],
+    "expected": {
+      "operation_id": "workflow.archive",
+      "permission": "o365.account[email=pod@example.invalid].mail[id=message-1].content[version=content-v2:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa].destination[folder=archive].journal[path=/assigned/shared-mail-journal]#archive",
+      "display": "Archive the reviewed message from sender@example.invalid: Reviewed message",
+      "exact_command": true
+    }
+  },
+  {
+    "argv": [
+      "workflow",
+      "review-archive",
+      "--account",
+      "pod@example.invalid",
+      "--message",
+      "message-1",
+      "--operation",
+      "archive-1",
+      "--gate",
+      "{\"requireUnread\":true,\"forbid\":[\"Keep\"]}"
+    ],
+    "expected": {
+      "operation_id": "workflow.review-archive",
+      "permission": "o365.account[email=pod@example.invalid].mail[id=message-1]#read",
+      "display": "Read the complete message for archival review in pod@example.invalid",
+      "exact_command": false
+    }
   }
 ]
