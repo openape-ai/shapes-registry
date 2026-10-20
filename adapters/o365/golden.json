@@ -1215,5 +1215,23 @@
       "display": "Read the complete message for archival review in pod@example.invalid",
       "exact_command": false
     }
+  },
+  {
+    "argv": [
+      "workflow",
+      "add-category",
+      "--account",
+      "owner@example.com",
+      "--message",
+      "immutable-1",
+      "--category",
+      "Example label"
+    ],
+    "expected": {
+      "operation_id": "workflow.add-category",
+      "permission": "o365.account[email=owner@example.com].mail[*]#categorize",
+      "display": "Add one category to messages of owner@example.com",
+      "exact_command": false
+    }
   }
 ]

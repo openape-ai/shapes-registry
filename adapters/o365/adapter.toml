@@ -10,6 +10,7 @@ executable = "o365-cli"
 audience = "shapes"
 version = "5"
 tested_digests = [
+  "SHA-256:c9def7088b8d0adc85a5b4c28f62b481ab02c3211f0191f12c4b546498ccafb9",
   "SHA-256:e58571770226e9e3041e852887d5dcf12e705f71cbef953125503a8f2bfaf659",
   "SHA-256:879064c86353465fe577bca6d6bf4e8162cbaced04e61cd9359a40d35a2923d6",
   "SHA-256:d613908473cf1de0f34521d047e197fd77991afb2fbef5155bd66ffa658dfb40",
@@ -926,3 +927,26 @@ binding = "outcome"
 [[operation.presentation.facts]]
 label = { de = "Beobachtung", en = "Observation" }
 binding = "evidence"
+
+[[operation]]
+id = "workflow.add-category"
+command = ["workflow", "add-category"]
+required_options = ["account", "message", "category"]
+value_options = []
+flag_options = []
+display = "Add one category to messages of {account}"
+action = "categorize"
+risk = "medium"
+resource_chain = ["account:email={account}", "mail:*"]
+
+[operation.presentation]
+title = { de = "Nachrichten von {account} markieren", en = "Tag messages of {account}" }
+
+[operation.presentation.consequence]
+allows = { de = "Ergänzt eine Kategorie pro Aufruf und erhält vorhandene Kategorien. Bereits vorhandene Kategorien werden nicht erneut geschrieben.", en = "Adds one category per call while preserving existing categories. An already present category is not written again." }
+does_not_allow = { de = "Verschiebt, sendet und löscht keine Nachrichten.", en = "Does not move, send or delete messages." }
+
+[[operation.presentation.facts]]
+label = { de = "Konto", en = "Account" }
+binding = "account"
+format = "code"
