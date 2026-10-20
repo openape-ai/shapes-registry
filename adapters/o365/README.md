@@ -152,3 +152,10 @@ operation. `workflow label-reconcile` records an observed outcome under a fresh
 exact once-only operator decision. It does not mutate mail or replay an old
 operation and should not be assigned to a classification Pod. Unknown outcomes
 must be inspected and reconciled before any new attempt.
+
+## Simple category additions
+
+`workflow add-category --account ADDRESS --message IMMUTABLE_ID --category NAME`
+adds one category without a journal. It maps to the existing account-scoped
+`categorize` permission and preserves existing categories. It neither moves nor
+sends mail. The O365 CLI owns category merging and skips an already present tag.
