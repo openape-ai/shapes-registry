@@ -159,3 +159,15 @@ must be inspected and reconciled before any new attempt.
 adds one category without a journal. It maps to the existing account-scoped
 `categorize` permission and preserves existing categories. It neither moves nor
 sends mail. The O365 CLI owns category merging and skips an already present tag.
+
+`--lock DIRECTORY` optionally names the shared mailbox lock directory; without it
+the CLI uses `lock_dir` from its config.
+
+## Label updates
+
+`workflow update-labels --account ADDRESS --message IMMUTABLE_ID --remove NAME ...
+--add NAME ... [--content-version DIGEST] [--lock DIRECTORY]` removes and adds named
+categories in one write under the shared mailbox lock and keeps all other
+categories. It maps to the same account-scoped `categorize` permission as
+`add-category`. An already reached state is not written again. It neither moves
+nor sends mail.
