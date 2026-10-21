@@ -36,7 +36,8 @@
     "workflow.decide-label",
     "workflow.label-inspect",
     "workflow.label-reconcile",
-    "workflow.add-category"
+    "workflow.add-category",
+    "workflow.update-labels"
   ],
-  "absent_reason": "The tested o365-cli builds differ: the drafts commands exist in none of them, the workflow commands only in the OpenApe Pods builds (ensure-categories only in the newest). Each build is checked for the commands it provides."
+  "absent_reason": "The tested o365-cli builds differ: the drafts commands exist in none of them, the workflow commands only in the OpenApe Pods builds (ensure-categories and update-labels only in the newest). Each build is checked for the commands it provides."
 }

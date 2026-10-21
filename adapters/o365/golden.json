@@ -1233,5 +1233,69 @@
       "display": "Add one category to messages of owner@example.com",
       "exact_command": false
     }
+  },
+  {
+    "argv": [
+      "workflow",
+      "update-labels",
+      "--account",
+      "owner@example.com",
+      "--message",
+      "immutable-1",
+      "--remove",
+      "Wissen: offen",
+      "--remove",
+      "Wissen: prüfen",
+      "--add",
+      "Wissen: gesichert"
+    ],
+    "expected": {
+      "operation_id": "workflow.update-labels",
+      "permission": "o365.account[email=owner@example.com].mail[*]#categorize",
+      "display": "Remove and add named categories on messages of owner@example.com",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "workflow",
+      "update-labels",
+      "--account",
+      "owner@example.com",
+      "--message",
+      "immutable-1",
+      "--add",
+      "Example label",
+      "--content-version",
+      "assessment-v2:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "--lock",
+      "/Users/owner/shared-lock"
+    ],
+    "expected": {
+      "operation_id": "workflow.update-labels",
+      "permission": "o365.account[email=owner@example.com].mail[*]#categorize",
+      "display": "Remove and add named categories on messages of owner@example.com",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "workflow",
+      "add-category",
+      "--account",
+      "owner@example.com",
+      "--message",
+      "immutable-1",
+      "--category",
+      "Example label",
+      "--lock",
+      "/Users/owner/shared-lock"
+    ],
+    "expected": {
+      "operation_id": "workflow.add-category",
+      "permission": "o365.account[email=owner@example.com].mail[*]#categorize",
+      "display": "Add one category to messages of owner@example.com",
+      "exact_command": false
+    }
   }
 ]
