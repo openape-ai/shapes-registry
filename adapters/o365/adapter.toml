@@ -933,7 +933,7 @@ binding = "evidence"
 id = "workflow.add-category"
 command = ["workflow", "add-category"]
 required_options = ["account", "message", "category"]
-value_options = ["lock"]
+value_options = []
 flag_options = []
 display = "Add one category to messages of {account}"
 action = "categorize"
@@ -956,10 +956,10 @@ format = "code"
 id = "workflow.update-labels"
 command = ["workflow", "update-labels"]
 required_options = ["account", "message"]
-value_options = ["remove", "add", "content-version", "lock"]
+value_options = ["remove", "add", "content-version"]
 flag_options = []
 display = "Remove and add named categories on messages of {account}"
-action = "categorize"
+action = "relabel"
 risk = "medium"
 resource_chain = ["account:email={account}", "mail:*"]
 
@@ -967,7 +967,7 @@ resource_chain = ["account:email={account}", "mail:*"]
 title = { de = "Kategorien von Nachrichten in {account} ändern", en = "Change categories of messages in {account}" }
 
 [operation.presentation.consequence]
-allows = { de = "Entfernt und ergänzt pro Aufruf die genannten Kategorien einer Nachricht in einem Schreibvorgang unter der gemeinsamen Postfachsperre. Andere Kategorien bleiben erhalten; ein bereits erreichter Zustand wird nicht erneut geschrieben.", en = "Removes and adds the named categories of one message per call in a single write under the shared mailbox lock. Other categories are kept; an already reached state is not written again." }
+allows = { de = "Darf beliebige Kategorien von Nachrichten dieses Kontos entfernen und ergänzen, auch Vetos wie Behalten. Pro Aufruf ein Schreibvorgang unter der gemeinsamen Postfachsperre; andere Kategorien bleiben erhalten, ein bereits erreichter Zustand wird nicht erneut geschrieben.", en = "May remove and add any categories of messages in this account, including vetoes such as Behalten. One write per call under the shared mailbox lock; other categories are kept and an already reached state is not written again." }
 does_not_allow = { de = "Verschiebt, sendet und löscht keine Nachrichten.", en = "Does not move, send or delete messages." }
 
 [[operation.presentation.facts]]
