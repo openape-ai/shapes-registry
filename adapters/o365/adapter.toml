@@ -17,6 +17,7 @@ tested_digests = [
   "SHA-256:d613908473cf1de0f34521d047e197fd77991afb2fbef5155bd66ffa658dfb40",
   "SHA-256:4f95ecf9526552582b2138d1bc2bbcfef5c6b6e7d76a125b2bbd497e6c78d978",
   "SHA-256:a15382986e464bb2fee3588391f35bbb52020e520398754ea2876d011b11c88b",
+  "SHA-256:7f00d428b6f941d158410e3526146239ef5df3deb574aef2969236cf63ed0dd7",
 ]
 
 # ══════════════════════════════════════════════════════
@@ -575,6 +576,34 @@ title = { de = "Änderungen in {folder} von {account} lesen", en = "Read the cha
 [operation.presentation.consequence]
 allows = { de = "Liest alle neuen und geänderten Nachrichten dieses Ordners samt Inhalt, beliebig oft.", en = "Reads all new and changed messages of this folder with their content, any number of times." }
 does_not_allow = { de = "Ändert, sendet und löscht nichts.", en = "Changes, sends and deletes nothing." }
+
+[[operation.presentation.facts]]
+label = { de = "Konto", en = "Account" }
+binding = "account"
+format = "code"
+
+[[operation.presentation.facts]]
+label = { de = "Ordner", en = "Folder" }
+binding = "folder"
+format = "code"
+
+[[operation]]
+id = "workflow.find"
+command = ["workflow", "find"]
+required_options = ["account", "folder"]
+value_options = ["with", "without", "top"]
+flag_options = ["has-attachments", "oldest"]
+display = "Find messages in {folder} of {account} by category"
+action = "read"
+risk = "low"
+resource_chain = ["account:email={account}", "folder:name={folder}", "mail:*"]
+
+[operation.presentation]
+title = { de = "Nachrichten in {folder} von {account} nach Kategorie finden", en = "Find messages in {folder} of {account} by category" }
+
+[operation.presentation.consequence]
+allows = { de = "Liest IDs, Eingangszeit, Kategorien und Anhang-Kennzeichen passender Nachrichten dieses Ordners, beliebig oft.", en = "Reads ids, received time, categories and attachment flag of matching messages in this folder, any number of times." }
+does_not_allow = { de = "Liest keine Inhalte und ändert, sendet und löscht nichts.", en = "Reads no content and changes, sends and deletes nothing." }
 
 [[operation.presentation.facts]]
 label = { de = "Konto", en = "Account" }

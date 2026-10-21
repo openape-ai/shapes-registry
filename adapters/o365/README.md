@@ -172,3 +172,11 @@ is not written again. It neither moves nor sends mail.
 The lock directory is not part of the approved command. `add-category` and
 `update-labels` take it from `lock_dir` in the o365-cli config, so a Pod cannot
 choose a different lock; a call with `--lock` needs an exact approval.
+
+## Finding messages
+
+`workflow find --account ADDRESS --folder inbox [--with NAME ...] [--without NAME ...]
+[--has-attachments] [--oldest] [--top N]` returns ids, received time, categories and
+the attachment flag of Inbox messages matching exact category names, in one server-side
+query. It maps to the same folder read permission as `workflow delta` and reads no
+message content.

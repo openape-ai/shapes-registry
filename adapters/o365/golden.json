@@ -1275,5 +1275,47 @@
       "display": "Remove and add named categories on messages of owner@example.com",
       "exact_command": false
     }
+  },
+  {
+    "argv": [
+      "workflow",
+      "find",
+      "--account",
+      "owner@example.com",
+      "--folder",
+      "inbox",
+      "--without",
+      "Wissensstufe 0",
+      "--without",
+      "Wissensstufe 1",
+      "--top",
+      "1"
+    ],
+    "expected": {
+      "operation_id": "workflow.find",
+      "permission": "o365.account[email=owner@example.com].folder[name=inbox].mail[*]#read",
+      "display": "Find messages in inbox of owner@example.com by category",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "workflow",
+      "find",
+      "--account",
+      "owner@example.com",
+      "--folder",
+      "inbox",
+      "--with",
+      "Alarm: offen",
+      "--has-attachments",
+      "--oldest"
+    ],
+    "expected": {
+      "operation_id": "workflow.find",
+      "permission": "o365.account[email=owner@example.com].folder[name=inbox].mail[*]#read",
+      "display": "Find messages in inbox of owner@example.com by category",
+      "exact_command": false
+    }
   }
 ]
