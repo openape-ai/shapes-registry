@@ -1,0 +1,16 @@
+{
+  "id": "pdf-text",
+  "name": "PDF text",
+  "description": "Shapes adapter for pdf-text — reads the text of one PDF in an assigned folder, with OCR for scans",
+  "author": "delta-mind",
+  "category": "other",
+  "tags": [
+    "pdf",
+    "ocr",
+    "pods"
+  ],
+  "executable": "pdf-text",
+  "risk_summary": "One low-risk read of a PDF directly inside the named folder; writes nothing.",
+  "homepage": "https://repos.openape.ai/patrick/pdf-text",
+  "min_shapes_version": "0.10.0"
+}

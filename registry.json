@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-10-21T19:29:31.106Z",
+  "generated_at": "2026-10-22T01:02:11.095Z",
   "adapters": [
     {
       "id": "apes",
@@ -336,8 +336,8 @@
       "author": "delta-mind",
       "executable": "o365-cli",
       "min_shapes_version": "0.2.0",
-      "digest": "SHA-256:7dc29412dce34c0215dcab06f342e63eb0ea73def23b863a04d6c4f8c5aaf9c7",
-      "grant_digest": "SHA-256:ecc86062368771526d1e722a13f41cb38a81d3cc1288ddd5c55ecc46a24ea0d3",
+      "digest": "SHA-256:97aa60729d2fedc29b6da9761a0c39f7ec558750cc8c7950079ac7d1e708011e",
+      "grant_digest": "SHA-256:3994af07341bf18c220d31c7c22c20857858f5ec8578151f88d13ecf2af42c6a",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/o365/adapter.toml"
     },
     {
@@ -357,6 +357,23 @@
       "digest": "SHA-256:30cc9da3ae445ef24fdba9424b4ba7b76adfe6b368702420b6cc04e7cc4c5ad4",
       "grant_digest": "SHA-256:b1badd111b44dd2f7892dea01b987d888eded764ed61b51c48468db6ebfb7f20",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/o365mail/adapter.toml"
+    },
+    {
+      "id": "pdf-text",
+      "name": "PDF text",
+      "description": "Shapes adapter for pdf-text — reads the text of one PDF in an assigned folder, with OCR for scans",
+      "category": "other",
+      "tags": [
+        "pdf",
+        "ocr",
+        "pods"
+      ],
+      "author": "delta-mind",
+      "executable": "pdf-text",
+      "min_shapes_version": "0.10.0",
+      "digest": "SHA-256:40024c9f339b6ae0b604a67894b4c7e6f3456e5118c1688eaa7936af7463d002",
+      "grant_digest": "SHA-256:112786f33dfcad025d08f99d7770d73ee4f7c7982adfbd93f26ee11a989e2b9f",
+      "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/pdf-text/adapter.toml"
     },
     {
       "id": "pod-http",
