@@ -622,13 +622,14 @@ command = ["workflow", "attachments"]
 required_options = ["account", "message", "save-to"]
 value_options = []
 flag_options = []
-display = "Save the PDF attachments of one message of {account} to {save-to}"
-action = "read"
-risk = "low"
-resource_chain = ["account:email={account}", "mail:*"]
+display = "Save PDF attachments of messages of {account} into {save-to}"
+action = "download"
+risk = "medium"
+# The target directory is part of the permission, so a grant cannot write files anywhere else.
+resource_chain = ["account:email={account}", "directory:path={save-to}", "mail:*"]
 
 [operation.presentation]
-title = { de = "PDF-Anhänge einer Nachricht in {account} speichern", en = "Save the PDF attachments of a message in {account}" }
+title = { de = "PDF-Anhänge von Nachrichten in {account} nach {save-to} speichern", en = "Save PDF attachments of messages in {account} into {save-to}" }
 
 [operation.presentation.consequence]
 allows = { de = "Liest die Anhänge einer Nachricht und legt PDF-Dateien unter ihrem Hash im angegebenen Ordner ab, beliebig oft.", en = "Reads the attachments of one message and stores PDF files under their hash in the given folder, any number of times." }
@@ -653,6 +654,8 @@ flag_options = []
 display = "Archive messages of {account} labelled {label}"
 action = "archive"
 risk = "medium"
+# Deliberately scoped to the label, not to one message (owner decision for unattended invoice filing):
+# a standing grant archives only Inbox mail that carries this label and still has the assessed content.
 resource_chain = ["account:email={account}", "label:name={label}", "mail:*"]
 
 [operation.presentation]

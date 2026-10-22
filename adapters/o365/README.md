@@ -184,8 +184,8 @@ message content.
 ## PDF attachments
 
 `workflow attachments --account ADDRESS --message IMMUTABLE_ID --save-to DIR` stores the PDF
-attachments of one message as `DIR/<sha256>.pdf`. It maps to the account read permission
-of `label-snapshot`; reading the PDF text is the separate `pdf-text` adapter.
+attachments of one message as `DIR/<sha256>.pdf`. Its `download` permission names the target
+directory, so a grant writes only there; reading the PDF text is the separate `pdf-text` adapter.
 
 ## Label-gated archiving
 
