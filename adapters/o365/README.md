@@ -181,6 +181,12 @@ the attachment flag of Inbox messages matching exact category names, in one serv
 query. It maps to the same folder read permission as `workflow delta` and reads no
 message content.
 
+`workflow find-first` takes the same filters (without `--top`) and returns the first
+match together with its complete label snapshot, so a Pod needs one call instead of
+`find` plus `label-snapshot`. Because it reads message content it maps to the
+account-wide mail read permission of `workflow label-snapshot`, not to the folder
+read permission of `find`; a `find` grant never covers it.
+
 ## PDF attachments
 
 `workflow attachments --account ADDRESS --message IMMUTABLE_ID --save-to DIR` stores the PDF

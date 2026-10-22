@@ -1355,5 +1355,27 @@
       "display": "Archive messages of owner@example.com labelled Rechnung: abgelegt",
       "exact_command": false
     }
+  },
+  {
+    "argv": [
+      "workflow",
+      "find-first",
+      "--account",
+      "owner@example.com",
+      "--folder",
+      "inbox",
+      "--has-attachments",
+      "--oldest",
+      "--without",
+      "Rechnung: abgelegt",
+      "--without",
+      "Rechnung: keine"
+    ],
+    "expected": {
+      "operation_id": "workflow.find-first",
+      "permission": "o365.account[email=owner@example.com].mail[*]#read",
+      "display": "Find and read the first matching message of owner@example.com",
+      "exact_command": false
+    }
   }
 ]
