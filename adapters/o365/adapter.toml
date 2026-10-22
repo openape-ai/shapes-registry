@@ -19,6 +19,7 @@ tested_digests = [
   "SHA-256:a15382986e464bb2fee3588391f35bbb52020e520398754ea2876d011b11c88b",
   "SHA-256:7f00d428b6f941d158410e3526146239ef5df3deb574aef2969236cf63ed0dd7",
   "SHA-256:83eecd1da1c1a925bb7cca47726157061e3cfdfdfae3492fe7b3bb0d18a69d41",
+  "SHA-256:72fefb8207e32ff1c9248bd979ab8a4e9a4b1a9b30df2e53247de6283afd80ba",
 ]
 
 # ══════════════════════════════════════════════════════
@@ -614,6 +615,29 @@ format = "code"
 [[operation.presentation.facts]]
 label = { de = "Ordner", en = "Folder" }
 binding = "folder"
+format = "code"
+
+[[operation]]
+id = "workflow.find-first"
+command = ["workflow", "find-first"]
+required_options = ["account", "folder"]
+value_options = ["with", "without"]
+flag_options = ["has-attachments", "oldest"]
+display = "Find and read the first matching message of {account}"
+action = "read"
+risk = "low"
+resource_chain = ["account:email={account}", "mail:*"]
+
+[operation.presentation]
+title = { de = "Erste passende Nachricht von {account} finden und lesen", en = "Find and read the first matching message of {account}" }
+
+[operation.presentation.consequence]
+allows = { de = "Sucht im Posteingang nach Kategorien und liest Inhalt, Ordner, Lesestatus und Kategorien der ersten passenden Nachricht pro Aufruf.", en = "Searches the Inbox by category and reads the content, folder, read status and categories of the first matching message per call." }
+does_not_allow = { de = "Ändert keine Nachricht und verschiebt, sendet oder löscht nichts.", en = "Does not change messages, move, send or delete anything." }
+
+[[operation.presentation.facts]]
+label = { de = "Postfach", en = "Mailbox" }
+binding = "account"
 format = "code"
 
 [[operation]]
