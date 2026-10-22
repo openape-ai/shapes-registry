@@ -20,6 +20,7 @@ tested_digests = [
   "SHA-256:7f00d428b6f941d158410e3526146239ef5df3deb574aef2969236cf63ed0dd7",
   "SHA-256:83eecd1da1c1a925bb7cca47726157061e3cfdfdfae3492fe7b3bb0d18a69d41",
   "SHA-256:72fefb8207e32ff1c9248bd979ab8a4e9a4b1a9b30df2e53247de6283afd80ba",
+  "SHA-256:067ed800156a169b52a2b0b29c05598d694ce090ca28145113641c8c5ee44e57",
 ]
 
 # ══════════════════════════════════════════════════════
