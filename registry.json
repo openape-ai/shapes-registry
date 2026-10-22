@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-10-22T01:02:11.095Z",
+  "generated_at": "2026-10-22T01:03:48.164Z",
   "adapters": [
     {
       "id": "apes",
@@ -371,7 +371,7 @@
       "author": "delta-mind",
       "executable": "pdf-text",
       "min_shapes_version": "0.10.0",
-      "digest": "SHA-256:40024c9f339b6ae0b604a67894b4c7e6f3456e5118c1688eaa7936af7463d002",
+      "digest": "SHA-256:2bf55d060f6f24ea165499ee2685fed76089eb515ac11df246985dc9f39d4bc7",
       "grant_digest": "SHA-256:112786f33dfcad025d08f99d7770d73ee4f7c7982adfbd93f26ee11a989e2b9f",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/pdf-text/adapter.toml"
     },
