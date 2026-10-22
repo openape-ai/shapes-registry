@@ -11,7 +11,7 @@ id = "pdf-text"
 executable = "pdf-text"
 audience = "shapes"
 version = "1"
-tested_digests = ["SHA-256:493d62e766702b7def6d1d5367afeda7d8b368fa6e24e1b865d023c927fa265b"]
+tested_digests = ["SHA-256:0dff21482b6ea2b952fd064dbf415082d7e101b46c94f034f83d03733a7e97da"]
 
 [[operation]]
 id = "pdf-text.read"
