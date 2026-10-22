@@ -1,0 +1,42 @@
+[
+  {
+    "argv": [
+      "read",
+      "--dir",
+      "/Users/owner/Pods/invoices/staging",
+      "--name",
+      "0a1b.pdf"
+    ],
+    "expected": {
+      "operation_id": "pdf-text.read",
+      "permission": "pdf-text.directory[path=/Users/owner/Pods/invoices/staging].file[*]#read",
+      "display": "Read the text of PDFs in /Users/owner/Pods/invoices/staging",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "read",
+      "--dir",
+      "/Users/owner/Pods/invoices/staging",
+      "--name",
+      "0a1b.pdf",
+      "--max-chars",
+      "20000"
+    ],
+    "expected": {
+      "operation_id": "pdf-text.read",
+      "permission": "pdf-text.directory[path=/Users/owner/Pods/invoices/staging].file[*]#read",
+      "display": "Read the text of PDFs in /Users/owner/Pods/invoices/staging",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "read",
+      "--name",
+      "0a1b.pdf"
+    ],
+    "expected": null
+  }
+]

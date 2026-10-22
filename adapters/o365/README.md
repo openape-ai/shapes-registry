@@ -180,3 +180,17 @@ choose a different lock; a call with `--lock` needs an exact approval.
 the attachment flag of Inbox messages matching exact category names, in one server-side
 query. It maps to the same folder read permission as `workflow delta` and reads no
 message content.
+
+## PDF attachments
+
+`workflow attachments --account ADDRESS --message IMMUTABLE_ID --save-to DIR` stores the PDF
+attachments of one message as `DIR/<sha256>.pdf`. It maps to the account read permission
+of `label-snapshot`; reading the PDF text is the separate `pdf-text` adapter.
+
+## Label-gated archiving
+
+`workflow archive-labelled --account ADDRESS --message IMMUTABLE_ID --label NAME
+--content-version DIGEST` moves a message to Archive only while it is in the Inbox, carries
+the label and still has the assessed content. Its permission names the label
+(`label[name=…]`), so a standing grant covers only mails with that label; `workflow archive`
+stays an exact once-grant.

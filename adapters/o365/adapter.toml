@@ -18,6 +18,7 @@ tested_digests = [
   "SHA-256:4f95ecf9526552582b2138d1bc2bbcfef5c6b6e7d76a125b2bbd497e6c78d978",
   "SHA-256:a15382986e464bb2fee3588391f35bbb52020e520398754ea2876d011b11c88b",
   "SHA-256:7f00d428b6f941d158410e3526146239ef5df3deb574aef2969236cf63ed0dd7",
+  "SHA-256:83eecd1da1c1a925bb7cca47726157061e3cfdfdfae3492fe7b3bb0d18a69d41",
 ]
 
 # ══════════════════════════════════════════════════════
@@ -613,6 +614,62 @@ format = "code"
 [[operation.presentation.facts]]
 label = { de = "Ordner", en = "Folder" }
 binding = "folder"
+format = "code"
+
+[[operation]]
+id = "workflow.attachments"
+command = ["workflow", "attachments"]
+required_options = ["account", "message", "save-to"]
+value_options = []
+flag_options = []
+display = "Save the PDF attachments of one message of {account} to {save-to}"
+action = "read"
+risk = "low"
+resource_chain = ["account:email={account}", "mail:*"]
+
+[operation.presentation]
+title = { de = "PDF-Anhänge einer Nachricht in {account} speichern", en = "Save the PDF attachments of a message in {account}" }
+
+[operation.presentation.consequence]
+allows = { de = "Liest die Anhänge einer Nachricht und legt PDF-Dateien unter ihrem Hash im angegebenen Ordner ab, beliebig oft.", en = "Reads the attachments of one message and stores PDF files under their hash in the given folder, any number of times." }
+does_not_allow = { de = "Ändert, verschiebt, sendet und löscht keine Nachrichten und überschreibt keine anderen Dateien.", en = "Does not change, move, send or delete messages and does not overwrite other files." }
+
+[[operation.presentation.facts]]
+label = { de = "Konto", en = "Account" }
+binding = "account"
+format = "code"
+
+[[operation.presentation.facts]]
+label = { de = "Ordner", en = "Folder" }
+binding = "save-to"
+format = "code"
+
+[[operation]]
+id = "workflow.archive-labelled"
+command = ["workflow", "archive-labelled"]
+required_options = ["account", "message", "label", "content-version"]
+value_options = []
+flag_options = []
+display = "Archive messages of {account} labelled {label}"
+action = "archive"
+risk = "medium"
+resource_chain = ["account:email={account}", "label:name={label}", "mail:*"]
+
+[operation.presentation]
+title = { de = "Nachrichten in {account} mit Label {label} archivieren", en = "Archive messages in {account} labelled {label}" }
+
+[operation.presentation.consequence]
+allows = { de = "Verschiebt Nachrichten aus dem Posteingang ins Archiv, aber nur solange sie dieses Label tragen und ihr bewerteter Inhalt unverändert ist.", en = "Moves messages from the Inbox to Archive, but only while they carry this label and their assessed content is unchanged." }
+does_not_allow = { de = "Archiviert keine Nachrichten ohne dieses Label, löscht und sendet nichts.", en = "Does not archive messages without this label and deletes or sends nothing." }
+
+[[operation.presentation.facts]]
+label = { de = "Konto", en = "Account" }
+binding = "account"
+format = "code"
+
+[[operation.presentation.facts]]
+label = { de = "Label", en = "Label" }
+binding = "label"
 format = "code"
 
 [[operation]]

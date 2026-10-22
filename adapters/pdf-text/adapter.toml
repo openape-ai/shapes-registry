@@ -1,0 +1,37 @@
+schema = "openape-shapes/v1"
+
+# pdf-text: reads the text of one PDF (text layer, OCR fallback with tesseract).
+# Built from https://repos.openape.ai/patrick/pdf-text; it has no version
+# command, so the tested build is listed by file digest. It reads only a
+# regular *.pdf directly inside --dir, so a grant for one directory covers
+# nothing else.
+
+[cli]
+id = "pdf-text"
+executable = "pdf-text"
+audience = "shapes"
+version = "1"
+tested_digests = ["SHA-256:493d62e766702b7def6d1d5367afeda7d8b368fa6e24e1b865d023c927fa265b"]
+
+[[operation]]
+id = "pdf-text.read"
+command = ["read"]
+required_options = ["dir", "name"]
+value_options = ["max-chars"]
+flag_options = []
+display = "Read the text of PDFs in {dir}"
+action = "read"
+risk = "low"
+resource_chain = ["directory:path={dir}", "file:*"]
+
+[operation.presentation]
+title = { de = "Text von PDFs in {dir} lesen", en = "Read the text of PDFs in {dir}" }
+
+[operation.presentation.consequence]
+allows = { de = "Liest den Text von PDF-Dateien direkt in diesem Ordner, bei Scans per Texterkennung.", en = "Reads the text of PDF files directly in this folder, using OCR for scans." }
+does_not_allow = { de = "Liest keine anderen Ordner oder Dateitypen und schreibt, verschiebt oder löscht nichts.", en = "Reads no other folders or file types and writes, moves or deletes nothing." }
+
+[[operation.presentation.facts]]
+label = { de = "Ordner", en = "Folder" }
+binding = "dir"
+format = "code"

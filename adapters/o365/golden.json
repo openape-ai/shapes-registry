@@ -1317,5 +1317,43 @@
       "display": "Find messages in inbox of owner@example.com by category",
       "exact_command": false
     }
+  },
+  {
+    "argv": [
+      "workflow",
+      "attachments",
+      "--account",
+      "owner@example.com",
+      "--message",
+      "immutable-1",
+      "--save-to",
+      "/Users/owner/Pods/invoices/staging"
+    ],
+    "expected": {
+      "operation_id": "workflow.attachments",
+      "permission": "o365.account[email=owner@example.com].mail[*]#read",
+      "display": "Save the PDF attachments of one message of owner@example.com to /Users/owner/Pods/invoices/staging",
+      "exact_command": false
+    }
+  },
+  {
+    "argv": [
+      "workflow",
+      "archive-labelled",
+      "--account",
+      "owner@example.com",
+      "--message",
+      "immutable-1",
+      "--label",
+      "Rechnung: abgelegt",
+      "--content-version",
+      "assessment-v2:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    ],
+    "expected": {
+      "operation_id": "workflow.archive-labelled",
+      "permission": "o365.account[email=owner@example.com].label[name=Rechnung: abgelegt].mail[*]#archive",
+      "display": "Archive messages of owner@example.com labelled Rechnung: abgelegt",
+      "exact_command": false
+    }
   }
 ]
