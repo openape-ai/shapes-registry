@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-10-22T20:25:49.887Z",
+  "generated_at": "2026-10-23T07:38:22.135Z",
   "adapters": [
     {
       "id": "apes",
@@ -336,7 +336,7 @@
       "author": "delta-mind",
       "executable": "o365-cli",
       "min_shapes_version": "0.2.0",
-      "digest": "SHA-256:db91a921367410a7a78a7c814100ec755518ae362a3450c8eca4e9ed8a650074",
+      "digest": "SHA-256:2eb274b31d71962b770d6ccf4da2456013c383653d6e317114b16bc4932c2980",
       "grant_digest": "SHA-256:27d923c35f540769f542350bf43fbf27fc88b835b2673b893a4fbd2197bf7542",
       "download_url": "https://raw.githubusercontent.com/openape-ai/shapes-registry/main/adapters/o365/adapter.toml"
     },

@@ -121,9 +121,10 @@ shapes request --reason "schedule meeting" -- o365-cli calendar create --account
 
 ## Tested versions
 
-Every o365-cli build prints `o365-cli v2.1.1`, including the OpenApe Pods
-builds with the account-scoped `workflow` commands, so `tested_digests` lists
-the reviewed builds. Calendar and mail reads with `--account` bind that
+o365-cli builds up to 605ae82 print `o365-cli v2.1.1`, including the OpenApe
+Pods builds with the account-scoped `workflow` commands; 703f655 and later
+print their Makefile version (2.2.0). `tested_digests` lists the reviewed
+builds. Calendar and mail reads with `--account` bind that
 account. `checks.json` `absent_operations` lists commands some tested builds
 do not provide; the option check runs against the actual selected executable.
 
