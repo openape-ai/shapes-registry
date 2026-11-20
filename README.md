@@ -69,9 +69,11 @@ node scripts/check-adapters.mjs git             # one adapter
 node scripts/check-adapters.mjs --record git    # rewrite golden expectations, then review the diff
 ```
 
-Run it locally before every merge: Forgejo CI is manual only by owner decision.
-The `Registry checks` workflow can be dispatched with a monorepo ref; it builds
-`@openape/shapes` from that ref and runs the same command.
+Run it locally before every merge; there is no CI by owner decision. To check
+against another monorepo ref, build `@openape/shapes` in a monorepo worktree at
+that ref (`git worktree add <dir> <ref>`, then `pnpm install --frozen-lockfile
+--filter '@openape/shapes...'` and the build above) and point `SHAPES_MODULE`
+at that worktree.
 
 `registry.json` records two digests per adapter: `digest` hashes the file bytes
 (installers verify downloads with it) and `grant_digest` is the semantic digest
